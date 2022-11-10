@@ -7,6 +7,8 @@ import Login from './components/Login/Login';
 import NavBar from './components/NavBar/NavBar';
 import PersonalPage from './components/PersonalPage/PersonalPage';
 import './null.scss';
+import FormOrder from './components/FormOrder/FormOrder';
+import OrdersList from './components/OrdersList/OrdersList';
 
 function App() {
   return (
@@ -18,6 +20,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/createVPN" element={<FormVPN />} />
+        <Route path="/createorder" element={<FormOrder />} />
+        <Route path="/orders" element={<OrdersList />} />
+
       </Routes>
     </div>
   );
