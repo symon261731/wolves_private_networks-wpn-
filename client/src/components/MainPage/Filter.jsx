@@ -1,10 +1,12 @@
 import React from 'react';
 
 export default function Filter() {
+  function handleInput() {
+    console.log('asdsa');
+  }
+
   return (
     <div className="filter_conteiner">
-      <h5>Filters</h5>
-
       <div className="filter_item">
         <label className="form-check-label">Protocol</label>
         <br />
@@ -29,6 +31,20 @@ export default function Filter() {
         <div className="mb-3">
           <label htmlFor="formGroupExampleInput2" className="form-label">Owner name/company</label>
           <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="input name or company" />
+        </div>
+      </div>
+      <div className="filter_item">
+        <div className="mb-3">
+          <label htmlFor="formGroupExampleInput2" className="form-label">Price USD/Month</label>
+          <input type="text" className="form-control price" placeholder="from" />
+          <input type="text" className="form-control price" placeholder="to" />
+        </div>
+      </div>
+      <div className="filter_item">
+        <div className="mb-3">
+          <label htmlFor="formGroupExampleInput2" className="form-label">Likes</label>
+          <input type="range" value="24" min="1" max="100" onInput={handleInput} />
+          <output>24</output>
         </div>
       </div>
     </div>

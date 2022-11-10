@@ -9,9 +9,11 @@ export default function MainPage() {
   return (
     <div className="conteiner">
       <div className="item">
+        <h5>Filters</h5>
         <Filter />
       </div>
       <div className="item">
+        <h5>List</h5>
         <List className="item" />
       </div>
       <div className="item">
