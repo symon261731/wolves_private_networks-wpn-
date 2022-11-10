@@ -4,10 +4,10 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
 import './PesonalPage.scss';
+import { Link } from 'react-router-dom';
 
 export default function PersonalPage() {
   const [toggleState, setToggleState] = useState(1);
-
   const toggleTab = (index) => {
     setToggleState(index);
   };
@@ -28,7 +28,6 @@ export default function PersonalPage() {
           2 tab
         </li>
       </ul>
-
       <div className="personal-page__tabs">
         <div className={toggleState === 1 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
           <h4 className="personal-page__tab-title">first</h4>
@@ -38,8 +37,9 @@ export default function PersonalPage() {
         </div>
         <div className={toggleState === 2 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
           <div className="personal-page__content">
-            <h4 className="personal-page__tab-title">second</h4>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dolor optio non, voluptas fuga consequatur quam est quas earum a, distinctio repudiandae. Officia hic quos cupiditate unde provident, voluptatem voluptas?
+            <h4 className="personal-page__tab-title">Ваши VPN</h4>
+            <p className="personal-page__content">У вас пока нету VPN</p>
+            <Link className="personal-page__btn" to="/createVPN">Создать VPN</Link>
           </div>
         </div>
       </div>
