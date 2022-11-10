@@ -18,6 +18,13 @@
         }
     }
 
+    &__info {
+        &:not(:last-child) {
+            margin-right: 7px;
+        }
+    }
+
+
     &__picture {
         max-width: 250px;
         max-height: 250px;
