@@ -9,10 +9,12 @@ import PersonalPage from './components/PersonalPage/PersonalPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 import './null.scss';
+import FormOrder from './components/FormOrder/FormOrder';
+import OrdersList from './components/OrdersList/OrdersList';
 
 function App() {
-  const user = undefined;
-  // { login: 'admin', id: 1 };
+  const user = { login: 'admin', id: 1 };
+  // undefined;
 
   return (
     <div className="App">
@@ -22,9 +24,12 @@ function App() {
         <Route element={<ProtectedRoute redirect="/" isAllowed={user?.id} />}>
           <Route path="/personalPage" element={<PersonalPage />} />
           <Route path="/createVPN" element={<FormVPN />} />
+          <Route path="/createorder" element={<FormOrder />} />
+          <Route path="/orders" element={<OrdersList />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/auth" element={<Auth />} />
+
       </Routes>
     </div>
   );
