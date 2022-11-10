@@ -1,5 +1,6 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import MainPage from './components/MainPage/MainPage';
 import Auth from './components/Auth/Auth';
 import FormVPN from './components/FormVPN/FormVPN';
 import Login from './components/Login/Login';
@@ -12,6 +13,7 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
+        <Route element={<MainPage />} path="/" />
         <Route path="/personalPage" element={<PersonalPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/auth" element={<Auth />} />

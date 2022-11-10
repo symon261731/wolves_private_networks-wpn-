@@ -1,0 +1,21 @@
+.conteiner{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.item{
+  margin: 10px;
+}
+
+.filter_item{
+  margin-bottom: 40px;
+}
+
+.price{
+  max-width: 100px;
+}
+
+
+
+
