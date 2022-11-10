@@ -10,6 +10,7 @@ export default function Card() {
         <p>Location:</p>
         <p>Price:</p>
         <p>Rating:</p>
+        <button className="btn btn-primary" type="button">Subscribe</button>
       </div>
     </div>
   );

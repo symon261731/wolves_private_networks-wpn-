@@ -3,6 +3,10 @@ import Card from '../Card/Card';
 
 export default function List() {
   return (
-    <Card />
+    <div>
+      <Card />
+      <Card />
+      <Card />
+    </div>
   );
 }
