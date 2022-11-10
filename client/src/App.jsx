@@ -6,6 +6,7 @@ import FormVPN from './components/FormVPN/FormVPN';
 import Login from './components/Login/Login';
 import NavBar from './components/NavBar/NavBar';
 import PersonalPage from './components/PersonalPage/PersonalPage';
+import UserPage from './components/UserPage/UserPage';
 import './null.scss';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/createVPN" element={<FormVPN />} />
+        <Route path="/userHori" element={<UserPage />} />
       </Routes>
     </div>
   );
