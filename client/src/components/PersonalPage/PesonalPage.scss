@@ -1,0 +1,76 @@
+.personal-page {
+    &__title {
+        text-align: center;
+
+        &:not(:last-child) {
+            margin-bottom: 80px;
+        }
+
+    }
+
+    &__link-tab {
+        display: flex;
+        align-items: center;
+        max-width: 1440px;
+        justify-content: center;
+        margin-bottom: 0;
+    }
+
+    &__item {
+        cursor: pointer;
+        text-decoration: none;
+        list-style-type: none;
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 8px 25px;
+
+        &:hover {
+            color: green;
+        }
+    }
+
+    &__tabs {
+        text-align: center;
+        background-color: #333;
+        color: white;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    &__one-tab {
+        display: none;
+    }
+
+    &__btn {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        line-height: 1.4;
+        font-weight: 500;
+        background-color: #1FAB8A;
+        border-radius: 60px;
+        padding: 19px 103px;
+
+        &:hover {
+            color: white;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #309F85;
+        }
+    }
+}
+
+.active-tab {
+    color: orange;
+
+    &::before {
+        content: '';
+        width: 10px;
+        height: 2px;
+        background-color: coral;
+    }
+}
+
+.active-content {
+    display: block;
+}
