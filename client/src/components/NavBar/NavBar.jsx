@@ -10,14 +10,14 @@ export default function NavBar() {
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="/">Home</Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="/personalPage">MyPage</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/orders">Orders</Link>
-        </li>
         {user?.id ? (
           <>
+            <li className="nav-item">
+              <Link className="nav-link active" aria-current="page" to="/personalPage">MyPage</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/orders">Orders</Link>
+            </li>
             <li className="nav-item">
               <Link className="nav-link" to="/addCash">Pocket: 0 USD</Link>
             </li>
