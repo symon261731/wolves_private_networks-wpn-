@@ -1,0 +1,62 @@
+.personal-page {
+    &__title {
+        text-align: center;
+
+        &:not(:last-child) {
+            margin-bottom: 80px;
+        }
+
+    }
+
+    &__link-tab {
+        display: flex;
+        align-items: center;
+        max-width: 1440px;
+        justify-content: center;
+        margin-bottom: 0;
+    }
+
+    &__item {
+        cursor: pointer;
+        text-decoration: none;
+        list-style-type: none;
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 8px 25px;
+
+        &:hover {
+            color: green;
+        }
+    }
+
+    &__tabs {
+        text-align: center;
+        background-color: #333;
+        color: white;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    &__one-tab {
+        display: none;
+    }
+
+
+}
+
+.active-tab {
+    color: orange;
+
+    &::before {
+        content: '';
+        width: 10px;
+        height: 2px;
+        background-color: coral;
+    }
+}
+
+.active-content {
+    display: block;
+}

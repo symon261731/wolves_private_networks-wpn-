@@ -6,7 +6,7 @@ export default function NavBar() {
     <div>
       <ul className="nav justify-content-center">
         <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="/">Личный кабинет</Link>
+          <Link className="nav-link active" aria-current="page" to="/personalPage">Личный кабинет</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/">Заказы</Link>
