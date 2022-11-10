@@ -1,7 +1,12 @@
 import React from 'react';
+import Card from '../Card/Card';
 
 export default function List() {
   return (
-    <div>List</div>
+    <div>
+      <Card />
+      <Card />
+      <Card />
+    </div>
   );
 }
