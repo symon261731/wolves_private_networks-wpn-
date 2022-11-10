@@ -1,0 +1,78 @@
+.form-vpn {
+
+    &__container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 70px;
+        background-color: #333;
+        border-radius: 40px;
+    }
+
+    &__title {
+        font-size: 35px;
+        font-weight: 900;
+        line-height: 1.2;
+        letter-spacing: 0.2px;
+        text-align: center;
+        color: white;
+        ;
+
+        &:not(:last-child) {
+            margin-bottom: 25px;
+        }
+    }
+
+    &__main-flex {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+
+
+    &__inputs-flex {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 15px;
+        row-gap: 15px;
+        justify-content: center;
+
+        &:not(:last-child) {
+            margin-bottom: 35px;
+        }
+    }
+
+    &__input {
+        padding: 15px;
+        border: 2px solid #272525;
+        border-radius: 15px;
+        font-size: 14px;
+        line-height: 1.64;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+
+
+    &__btn {
+        align-self: center;
+        background-color: #309F85;
+        border-radius: 15px;
+        padding: 10px 51px;
+        border: none;
+        color: rgba(255, 255, 255, 0.63);
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 1.4;
+
+        transition: all 300ms ease-in 0s;
+
+        &:hover {
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #309F85;
+            color: white;
+        }
+
+    }
+}
