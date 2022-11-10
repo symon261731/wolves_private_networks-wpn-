@@ -1,7 +1,11 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import MainPage from './components/MainPage/MainPage';
+import Auth from './components/Auth/Auth';
+import Login from './components/Login/Login';
 import NavBar from './components/NavBar/NavBar';
+import PersonalPage from './components/PersonalPage/PersonalPage';
+import './null.scss';
 
 function App() {
   return (
@@ -9,6 +13,9 @@ function App() {
       <NavBar />
       <Routes>
         <Route element={<MainPage />} path="/" />
+        <Route path="/personalPage" element={<PersonalPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/auth" element={<Auth />} />
       </Routes>
     </div>
   );

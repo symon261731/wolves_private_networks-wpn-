@@ -1,0 +1,23 @@
+li {
+    list-style: none;
+}
+
+
+a {
+    color: inherit;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+body,
+html {
+    min-height: 100%;
+    line-height: 1;
+}
