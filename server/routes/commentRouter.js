@@ -8,10 +8,10 @@ router.get('/user/all/:userId', async (req, res) => {
   try {
     const { userId } = req.params;
     const comments = await UserComment.findAll({ where: { user_id: userId }, include: { model: Comment, include: [User] } });
-    const commentsText = comments.map((el) => {
-      return { comment: el.Comment.content, login: el.Comment.User.login }
-    });
-    return res.json(commentsText);
+    // const commentsText = comments.map((el) => {
+    //   return { comment: el.Comment.content, login: el.Comment.User.login }
+    // });
+    return res.json(comments);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' })
@@ -38,10 +38,10 @@ router.get('/server/all/:serverId', async (req, res) => {
   try {
     const { serverId } = req.params;
     const comments = await ServerComment.findAll({ where: { server_id: serverId }, include: { model: Comment, include: [User] } });
-    const commentsText = comments.map((el) => {
-      return { comment: el.Comment.content, login: el.Comment.User.login }
-    });
-    return res.json(commentsText);
+    // const commentsText = comments.map((el) => {
+    //   return { comment: el.Comment.content, login: el.Comment.User.login }
+    // });
+    return res.json(comments);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' })
