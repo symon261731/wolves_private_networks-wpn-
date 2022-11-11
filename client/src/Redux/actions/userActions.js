@@ -20,11 +20,10 @@ export const loginUserThunk = (inputs, navigate) => (dispatch) => {
     .catch(console.log);
 };
 
-export const logoutUserThunk = (navigate) => (dispatch) => {
+export const logoutUserThunk = () => (dispatch) => {
   axios
     .get('/user/logout')
     .then(() => dispatch(logout()))
-    .then(() => navigate('/'))
     .catch(console.log);
 };
 

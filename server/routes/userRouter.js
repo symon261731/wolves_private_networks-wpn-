@@ -5,10 +5,10 @@ const { User } = require('../db/models');
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {
-  const { login, email, password, img } = req.body;
+  const { login, email, password, img } = req.body.inputs;
   if (login && email && password) {
     try {
-      if (!img) img = '/img/avatar.jpg';
+      // if (!img) img = '/img/avatar.jpg';
       const [user, created] = await User.findOrCreate({
         where: { email },
         defaults: { login, password: await bcrypt.hash(password, 10), img },
@@ -29,7 +29,7 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body.inputs;
   if (email && password) {
     try {
       const user = await User.findOne({
