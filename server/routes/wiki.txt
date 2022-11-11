@@ -16,3 +16,5 @@ orderRouter
 /api/order/new - создать новый заказ
 /api/order/myorders - получить все заказы, которые юзер создал
 /api/order/mywork - получить все заказы, которые юзер выполняет
+/api/order/newjob - откликнуться на заказ
+/api/order/closejob - пометить заказ выполненным

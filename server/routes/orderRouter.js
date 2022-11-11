@@ -62,14 +62,15 @@ router.get('/mywork', async (req, res) => {
 router.get('/newjob/:orderId', async (req, res) => {
   try {
     const { orderId } = req.params;
-    const findOrder = await Order.update({ status: 'in progress' }, { where: { id: orderId } });
+    await Order.update({ status: 'in progress' }, { where: { id: orderId } });
+    const findOrder = await Order.findByPk(orderId);
     console.log(findOrder);
-    return res.json(findOrder);
-    //const newConnection = await OrderUser.create({creator: , worker, user_id})
+    const newConnection = await OrderUser.create({ creator: findOrder['user_id'], worker: req.session.user.id, order_id: findOrder.id })
+    return res.sendStatus(200);
   } catch (error) {
     console.log(error);
     return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
   };
-})
+});
 
 module.exports = router;
