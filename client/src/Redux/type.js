@@ -15,3 +15,7 @@ export const ADD_ORDER = 'ADD_ORDER';
 export const SET_CURRENT_ORDER = 'SET_CURRENT_ORDER'; // которые взял сам
 //
 export const SET_ISSUED_ORDER = 'SET_ISSUED_ORDER'; // которое выдал
+
+// Comments
+export const SET_COMMENT = 'SET_COMMENT';
+export const ADD_COMMENT = 'ADD_COMMENT';

@@ -4,6 +4,7 @@ import serversReducer from './reducers/serversReducer';
 import orderReducer from './reducers/orderReducer';
 import currentOrderReducer from './reducers/currentOrderReducer';
 import issuedOrderReducer from './reducers/issuedOrderReducer';
+import commentsReducer from './reducers/commentsReducer';
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,7 @@ export default configureStore({
     order: orderReducer,
     currentOrder: currentOrderReducer,
     issuedOrder: issuedOrderReducer,
+    comments: commentsReducer,
+
   },
 });
