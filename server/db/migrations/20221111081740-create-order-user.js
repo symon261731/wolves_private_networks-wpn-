@@ -10,13 +10,34 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       order_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: {
+                tableName: 'Orders',
+            },
+        key: 'id',
+        },
       },
       creator: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: {
+                tableName: 'Users',
+            },
+        key: 'id',
+        },
       },
       worker: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: {
+                tableName: 'Users',
+            },
+        key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,

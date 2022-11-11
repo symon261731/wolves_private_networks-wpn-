@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Orders', {
+    await queryInterface.createTable('Purchases', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -19,17 +19,15 @@ module.exports = {
         key: 'id',
         },
       },
-      title: {
-        type: Sequelize.STRING
-      },
-      price: {
-        type: Sequelize.INTEGER
-      },
-      location: {
-        type: Sequelize.STRING
-      },
-      protocol: {
-        type: Sequelize.STRING
+      server_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: {
+                tableName: 'ServerVPNs',
+            },
+        key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,
@@ -42,6 +40,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Orders');
+    await queryInterface.dropTable('Purchases');
   }
 };

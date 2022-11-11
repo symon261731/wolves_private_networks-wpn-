@@ -30,5 +30,6 @@ app.use(session({
 }));
 
 app.use('/api/user', userRouter);
+app.use('/api/server', serverRouter);
 
 app.listen(PORT, () => console.log(`Happy to see you, my Lord, on port ${PORT}`));
