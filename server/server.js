@@ -4,6 +4,7 @@ const cors = require('cors');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const userRouter = require('./routes/userRouter');
+const serverRouter = require('./routes/serverRouter');
 
 require('dotenv').config();
 
