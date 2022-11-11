@@ -103,6 +103,7 @@ module.exports = {
         price: Math.floor(Math.random() * 1000000),
         location: faker.address.country(),
         protocol: 'very secure swear to God',
+        status: 'open',
         createdAt: new Date(),
         updatedAt: new Date(),
       })
