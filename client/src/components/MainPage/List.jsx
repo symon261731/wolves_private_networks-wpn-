@@ -8,11 +8,18 @@ export default function List() {
 
   return (
     <div>
-      {servers?.map((server) => (
-        <Link key={server?.id} to={`/server/${server?.id}`}>
-          <Card server={server} />
-        </Link>
-      ))}
+      {servers.length ? (
+        servers?.map((server) => (
+          <Link key={server?.id} to={`/server/${server?.id}`}>
+            <Card server={server} />
+          </Link>
+        ))
+
+      ) : (
+        <div className="card" style={{ width: '36rem' }}>
+          No matching results
+        </div>
+      )}
 
     </div>
   );
