@@ -47,4 +47,35 @@ router.get('/user/:userId', async (req, res) => {
   }
 })
 
+// /api/rating/check/user/:userId - проверить статус лайка юзера по номеру юзера
+router.get('/check/user/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const status = await RatingUser.findOne({ where: { author: req.session.user.id, user_id: userId } });
+    if (status) {
+      return res.json(true);
+    } else {
+      return res.json(false);
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
+})
+
+// /api/rating/check/server/:serverId - проверить статус лайка сервера по номеру сервера
+router.get('/check/server/:serverId', async (req, res) => {
+  try {
+    const { serverId } = req.params;
+    const status = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: serverId } });
+    if (status) {
+      return res.json(true);
+    } else {
+      return res.json(false);
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
+})
 module.exports = router;
