@@ -42,7 +42,7 @@ export default function Filter() {
       </div>
       <div className="filter_item">
         <div className="mb-3">
-          <label htmlFor="formGroupExampleInput2" className="form-label">Likes</label>
+          <label htmlFor="formGroupExampleInput2" className="form-label">Rating</label>
           <input type="range" value="24" min="1" max="100" onInput={handleInput} />
           <output>24</output>
         </div>

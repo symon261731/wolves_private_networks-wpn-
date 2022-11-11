@@ -1,17 +1,19 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Card from '../Card/Card';
 
 export default function List() {
-  const id = 4;
+  const servers = useSelector((state) => state.servers);
+
   return (
     <div>
-      <Link to={`/server/${id}`}>
-        {' '}
-        <Card />
-      </Link>
-      <Card />
-      <Card />
+      {servers?.map((server) => (
+        <Link key={server?.id} to={`/server/${server?.id}`}>
+          <Card server={server} />
+        </Link>
+      ))}
+
     </div>
   );
 }
