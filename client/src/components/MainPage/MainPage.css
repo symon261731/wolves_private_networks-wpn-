@@ -1,11 +1,12 @@
 .conteiner{
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  /* flex-direction: row;
+  justify-content: space-around; */
 }
 
 .item{
   margin: 10px;
+  flex: 1 1 auto;
 }
 
 .filter_item{

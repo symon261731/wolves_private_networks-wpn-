@@ -1,17 +1,17 @@
 import React from 'react';
 import './OneOrder.scss';
 
-export default function OneOrder() {
+export default function OneOrder({ info }) {
   return (
-    <>
-      <div className="one-order__box">
-        <p className="one-order__title">title of order</p>
-        <p className="one-order__desription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel unde molestias, aliquid, voluptatum fugit amet nulla repudiandae ad magni corporis odit at delectus saepe voluptatibus, tenetur sint assumenda error soluta?</p>
+    <div className="one-order__box">
+      <p className="one-order__title">{info?.title}</p>
+      <div className="one-order__path">
+        <p className="one-order__location">{info?.location}</p>
+        <p className="one-order__price">
+          {info?.price}
+          <span className="one-order__span">€</span>
+        </p>
       </div>
-      <div className="one-order__box">
-        <p className="one-order__title">title of order</p>
-        <p className="one-order__desription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel unde molestias, aliquid, voluptatum fugit amet nulla repudiandae ad magni corporis odit at delectus saepe voluptatibus, tenetur sint assumenda error soluta?</p>
-      </div>
-    </>
+    </div>
   );
 }

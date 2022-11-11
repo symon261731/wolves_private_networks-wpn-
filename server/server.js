@@ -6,6 +6,7 @@ const FileStore = require('session-file-store')(session);
 const userRouter = require('./routes/userRouter');
 const serverRouter = require('./routes/serverRouter');
 const commentRouter = require('./routes/commentRouter');
+const orderRouter = require('./routes/orderRouter');
 
 require('dotenv').config();
 
@@ -35,5 +36,6 @@ app.use(session({
 app.use('/api/user', userRouter);
 app.use('/api/server', serverRouter);
 app.use('/api/comment', commentRouter);
+app.use('/api/order', orderRouter);
 
 app.listen(PORT, () => console.log(`Happy to see you, my Lord, on port ${PORT}`));
