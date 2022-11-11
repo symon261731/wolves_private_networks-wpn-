@@ -3,7 +3,7 @@ import React from 'react';
 export default function Card() {
   return (
 
-    <div className="card" style={{ width: '18rem' }}>
+    <div className="card" style={{ width: '36rem' }}>
       <div className="card-body">
         <p>User_owner:</p>
         <p>Protocol:</p>

@@ -1,0 +1,46 @@
+.order {
+
+
+    &__container {
+        max-width: 1440px;
+        margin: 0 auto;
+        margin-bottom: 50px;
+    }
+
+    &__title {
+        font-size: 50px;
+        text-align: center;
+
+        &:not(:last-child) {
+            margin-bottom: 40px;
+        }
+    }
+
+    &__btn {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.4;
+        text-align: center;
+        padding: 19.5px 55.25px 19.5px 55.25px;
+        background-color: #309F85;
+        border-radius: 60px;
+
+        &:hover {
+            color: white;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #309F85;
+        }
+    }
+}
+
+
+
+.one-order {
+    display: flex;
+    flex-direction: column;
+    column-gap: 15px;
+    row-gap: 15px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
