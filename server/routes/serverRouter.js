@@ -45,7 +45,7 @@ router.get('/user/:userId/purchase', async (req, res) => {
     console.log(error);
     return res.sendStatus(500).json({message: 'You broke my perfect database. Again.'})
   }
-})
+}) 
 
 ///api/server/user/:userId - получить все сервера, которые создал юзер по его id
 router.get('/user/:userId', async (req, res) => {

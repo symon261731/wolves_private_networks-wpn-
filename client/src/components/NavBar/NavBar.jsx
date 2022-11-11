@@ -22,6 +22,9 @@ export default function NavBar() {
                 <Link className="nav-link active" aria-current="page" to="/personalPage">MyPage</Link>
               </li>
               <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to="/userHori">UserPage</Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link" to="/orders">Orders</Link>
               </li>
             </div>

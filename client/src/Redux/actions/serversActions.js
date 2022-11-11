@@ -15,6 +15,13 @@ export const setServersThunk = (input) => (dispatch) => {
     .catch(console.log);
 };
 
+export const setServersOfUserThunk = (id) => (dispatch) => {
+  axios
+    .get(`/server/user/${id}`)
+    .then((res) => dispatch(setServers(res.data)))
+    .catch(console.log);
+};
+
 export const addServersThunk = (input) => (dispatch) => {
   axios
     .post('/servers/server', { input })
