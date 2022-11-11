@@ -29,5 +29,6 @@ export const logoutUserThunk = (navigate) => (dispatch) => {
 };
 
 export const checkUserThunk = () => (dispatch) => {
-  axios.post('/user/check').then((res) => dispatch(setUser(res.data)));
+  axios.post('/user/check').then((res) => dispatch(setUser(res.data)))
+    .catch(console.log);
 };

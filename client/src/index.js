@@ -9,6 +9,7 @@ import 'bootstrap/dist/js/bootstrap';
 import store from './Redux/store';
 
 axios.defaults.withCredentials = true;
+axios.defaults.baseURL = process.env.REACT_APP_BASEURL;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
