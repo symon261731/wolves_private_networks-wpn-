@@ -4,11 +4,30 @@ const { ServerVPN, Purchase } = require('../db/models');
 const router = express.Router();
 
 // /api/server/all - получить все впн
-
 router.get('/all', async (req, res) => {
   try {
     const vpns = await ServerVPN.findAll();
     return res.json(vpns);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500).json({message: 'You broke my perfect database. Again.'})
+  }
+})
+
+// /api/server/new/:userId - создать новый впн
+// для проверки thunderclient
+// {
+//     "ip": "asdasdasd", 
+//     "location": "hell",
+//     "protocol": "otsosi", 
+//     "price": 2
+// }
+router.post('/new/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { ip, location, protocol, price } = req.body;
+    const newVpn = await ServerVPN.create({ ip, location, protocol, price, rating: 0, user_id: userId });
+    return res.json(newVpn);
   } catch (error) {
     console.log(error);
     return res.sendStatus(500).json({message: 'You broke my perfect database. Again.'})
