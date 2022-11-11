@@ -21,3 +21,9 @@ orderRouter
 
 purchaseRouter
 /api/purchase/new/:serverId - подписаться на новый впн по его id(если деньги есть - ок, если ты уже подписан или не хватает денег - вернется message)
+
+ratingRouter
+/api/rating/server/:serverId - поставить лайк серверу по его id
+/api/rating/user/:userId - поставить лайк юзеру по его id
+/api/rating/check/user/:userId - проверить статус лайка юзера по номеру юзера
+/api/rating/check/server/:serverId - проверить статус лайка сервера по номеру сервера

@@ -41,8 +41,10 @@ router.get('/server/all/:serverId', async (req, res) => {
   try {
     const { serverId } = req.params;
     const comments = await ServerComment.findAll({ where: { server_id: serverId }, include: { model: Comment, include: [User] } });
+
     const commentsText = comments.map((el) => ({ comment: el.Comment.content, login: el.Comment.User.login }));
     return res.json(commentsText);
+
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });

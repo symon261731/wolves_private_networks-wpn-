@@ -8,6 +8,7 @@ const serverRouter = require('./routes/serverRouter');
 const commentRouter = require('./routes/commentRouter');
 const orderRouter = require('./routes/orderRouter');
 const purchaseRouter = require('./routes/purchaseRouter');
+const ratingRouter = require('./routes/ratingRouter');
 
 require('dotenv').config();
 
@@ -39,5 +40,6 @@ app.use('/api/server', serverRouter);
 app.use('/api/comment', commentRouter);
 app.use('/api/order', orderRouter);
 app.use('/api/purchase', purchaseRouter);
+app.use('/api/rating', ratingRouter);
 
 app.listen(PORT, () => console.log(`Happy to see you, my Lord, on port ${PORT}`));

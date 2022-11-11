@@ -32,11 +32,13 @@ function App() {
           <Route path="/createVPN" element={<FormVPN />} />
           <Route path="/createorder" element={<FormOrder />} />
           <Route path="/orders" element={<OrdersList />} />
+          {/* <Route path="/server/:id" element={<ServerInfo />} /> */}
+
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/auth" element={<Auth />} />
-        <Route path="/createVPN" element={<FormVPN />} />
-        <Route path="/userHori/:id" element={<UserPage />} />
+
+        <Route path="/userHori" element={<UserPage />} />
       </Routes>
     </div>
   );
