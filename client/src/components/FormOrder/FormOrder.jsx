@@ -21,6 +21,7 @@ export default function FormOrder() {
         >
           <div className="form-vpn__main-flex">
             <div className="form-vpn__inputs-flex">
+              <input placeholder="please describe your order" name="title" className="form-vpn__input" type="text" />
               <input placeholder="protocol" name="protocol" className="form-vpn__input" type="text" />
               <input placeholder="price" name="price" className="form-vpn__input" type="text" />
               <input placeholder="location" name="location" className="form-vpn__input" type="text" />
