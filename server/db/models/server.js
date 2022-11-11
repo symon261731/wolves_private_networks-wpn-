@@ -28,5 +28,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'ServerVPN',
   });
-  return Server;
+  return ServerVPN;
 };
