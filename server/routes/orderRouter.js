@@ -6,7 +6,7 @@ const router = express.Router();
 // /api/order/all - получить все заказы
 router.get('/all', async (req, res) => {
   try {
-    const data = await Order.findAll({where: {status: 'open'}});
+    const data = await Order.findAll({ where: { status: 'open' } });
     res.json(data);
   } catch (error) {
     console.log(error);
