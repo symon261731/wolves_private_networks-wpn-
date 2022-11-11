@@ -41,4 +41,30 @@
         font-weight: 900;
     }
 
+    &__nope {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    &__text {
+        font-size: 18px;
+    }
+
+    &__btn {
+        border: none;
+        text-decoration: none;
+        color: white;
+        font-size: 19px;
+        line-height: 1.4;
+        font-weight: 500;
+        background-color: #1FAB8A;
+        border-radius: 60px;
+        padding: 19px 103px;
+
+        &:hover {
+            color: white;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #309F85;
+        }
+    }
+
 }
