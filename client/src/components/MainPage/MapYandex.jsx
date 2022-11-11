@@ -22,7 +22,7 @@ export default function Map() {
         >
           Яндекс Карты — транспорт, навигация, поиск мест
         </a>
-        <iframe title="aaa" src="https://yandex.ru/map-widget/v1/-/CCUZr6dmsA" width="560" height="400" frameBorder="1" allowfullscreen="true" style={{ position: 'relative' }} />
+        <iframe title="aaa" src="https://yandex.ru/map-widget/v1/-/CCUZr6dmsA" width="560" height="800" frameBorder="1" allowfullscreen="true" style={{ position: 'relative' }} />
       </div>
     </>
 
