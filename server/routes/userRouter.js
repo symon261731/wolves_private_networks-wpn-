@@ -5,12 +5,13 @@ const { User } = require('../db/models');
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {
-  const { login, email, password } = req.body;
+  const { login, email, password, img } = req.body;
   if (login && email && password) {
     try {
+      if (!img) img = '/img/avatar.jpg';
       const [user, created] = await User.findOrCreate({
         where: { email },
-        defaults: { login, password: await bcrypt.hash(password, 10) },
+        defaults: { login, password: await bcrypt.hash(password, 10), img },
       });
       if (created) {
         const sessionUser = JSON.parse(JSON.stringify(user));

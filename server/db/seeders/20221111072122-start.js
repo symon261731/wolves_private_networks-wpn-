@@ -139,19 +139,32 @@ module.exports = {
 
     //OrderUser
     const temp3 = [];
-    for (let i = 0; i < 20; i += 1) {
+    for (let i = 0; i < 19; i += 1) {
     //   order_id: DataTypes.INTEGER,
     // creator: DataTypes.INTEGER,
     // worker: DataTypes.INTEGER
       temp3.push({
-        order_id: i,
-        creator: orders[i]['user_id'],
+        order_id: i + 1,
+        creator: orders[i + 1]['user_id'],
         worker: Math.floor(Math.random() * 19 + 1),
         createdAt: new Date(),
         updatedAt: new Date(),
       })
     }
     await queryInterface.bulkInsert('OrderUsers', temp3, {});
+
+    //Purchase
+    const purchases = [];
+    for (let i = 0; i < 30; i += 1) {
+      purchases.push({
+        user_id: Math.floor(Math.random() * 19 + 1),
+        server_id: Math.floor(Math.random() * 39 + 1),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      })
+    }
+    await queryInterface.bulkInsert('Purchases', purchases, {});
+
   },
 
   async down (queryInterface, Sequelize) {
