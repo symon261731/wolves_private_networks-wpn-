@@ -31,3 +31,10 @@ export const checkUserThunk = () => (dispatch) => {
   axios.post('/user/check').then((res) => dispatch(setUser(res.data)))
     .catch(console.log);
 };
+
+// export const findUserThunk = (id) => (dispatch) => {
+//   axios
+//     .post(`/user/${id}`)
+//     .then((res) => dispatch(setUser(res.data)))
+//     .catch(console.log);
+// };

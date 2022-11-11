@@ -6,6 +6,7 @@ export default function Modal({ user }) {
   const [input, setInput] = useState('');
   const changeHandler = (e) => setInput(e.target.value);
   const dispatch = useDispatch();
+  // const user = useSelector((state) => state.user);
 
   return (
     <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

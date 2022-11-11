@@ -37,6 +37,7 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/auth" element={<Auth />} />
+
         <Route path="/userHori" element={<UserPage />} />
       </Routes>
     </div>

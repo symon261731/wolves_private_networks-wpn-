@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './UserPage.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { setServersOfUserThunk } from '../../Redux/actions/serversActions';
 import VpnItem from './VpnItem';
 import { setCommentsOfUserThunk } from '../../Redux/actions/commentsActions';
@@ -8,15 +10,31 @@ import CommentItem from './CommentItem';
 import Modal from './Modal';
 
 export default function UserPage() {
+  const { id } = useParams();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const [user, setUser] = useState({});
+  const [flag, setFlag] = useState(false);
+  // const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (user?.id) {
-      dispatch(setServersOfUserThunk(user?.id));
-      dispatch(setCommentsOfUserThunk(user?.id));
-    }
-  }, [user]);
+    axios
+      .get(`/user/${id}`)
+      .then((res) => {
+        // console.log(res);
+        setUser(res.data);
+      });
+  }, [id]);
+
+  useEffect(() => {
+    // console.log(id);
+
+    dispatch(setServersOfUserThunk(id));
+    dispatch(setCommentsOfUserThunk(id));
+  }, [id]);
+
+  // useEffect(() => {
+  //   dispatch(setCommentsOfUserThunk(id));
+  // }, []);
 
   const vpnList = useSelector((state) => state.servers);
   const commentsList = useSelector((state) => state.comments);
@@ -26,7 +44,9 @@ export default function UserPage() {
       <div className="user-page__container">
         <div className="user-page__header">
           <div className="user-page__info">
-            <h3 className="user-page__user-name">{user?.login}</h3>
+            <h3 className="user-page__user-name">
+              {user?.login}
+            </h3>
             <p className="user-page__user-statistic">238000 выполненных заказов</p>
           </div>
           <div className="user-page__picture">
@@ -50,7 +70,7 @@ export default function UserPage() {
           <Modal user={user} />
 
           {
-              commentsList?.map((el) => (<CommentItem key={el.id} comment={el} />))
+              commentsList?.map((el) => (<CommentItem key={el.id} comment={el} setFlag={setFlag} flag={flag} />))
             }
         </div>
       </div>
