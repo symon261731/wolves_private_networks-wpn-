@@ -18,9 +18,6 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      name: {
-        type: Sequelize.STRING
-      },
       pocket: {
         type: Sequelize.INTEGER
       },
