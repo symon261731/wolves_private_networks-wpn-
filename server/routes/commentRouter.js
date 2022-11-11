@@ -21,8 +21,11 @@ router.get('/user/all/:userId', async (req, res) => {
 // /api/comment/user/new/:userId - добавить комментарий о юзере (юзер id - это тот человек, на которого мы пишем коммент)
 router.post('/user/new/:userId', async (req, res) => {
   try {
+    // console.log(req.body);
     const { userId } = req.params;
-    const { content } = req.body;
+    const  content = req.body.input;
+
+    console.log({content});
     const newComment = await Comment.create({ content, user_id: req.session.user.id });
     await UserComment.create({ user_id: userId, comment_id: newComment.id });
     const comment = { comment: newComment.content, login: req.session.user.login };
