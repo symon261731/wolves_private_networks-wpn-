@@ -1,9 +1,13 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logoutUserThunk } from '../../Redux/actions/userActions';
 import './NavBar.scss';
 
 export default function NavBar() {
-  const user = { login: 'admin', id: 1 };
+  // const user = { login: 'admin', id: 1 };
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -23,7 +27,16 @@ export default function NavBar() {
             </div>
             <div className="nav__flex">
               <li className="nav-item">
-                <Link className="nav-link" to="/logout">Logout</Link>
+                <Link
+                  className="nav-link"
+                  to="/#"
+                  onClick={() => {
+                    dispatch(logoutUserThunk());
+                  }}
+                >
+                  Logout
+
+                </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/addCash">Pocket: 0 USD</Link>

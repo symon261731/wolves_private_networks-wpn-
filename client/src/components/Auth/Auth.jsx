@@ -1,11 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { signUpUserThunk } from '../../Redux/actions/userActions';
 
 export default function Auth() {
+  const dispatch = useDispatch();
   return (
     <form
       method="post"
       onSubmit={(e) => {
         e.preventDefault();
+        dispatch(signUpUserThunk(Object.fromEntries(new FormData(e.target))));
       }}
     >
       <div className="mb-3">
