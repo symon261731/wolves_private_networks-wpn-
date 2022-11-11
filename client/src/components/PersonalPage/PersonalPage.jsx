@@ -1,13 +1,22 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './PesonalPage.scss';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Order from './Order/Order';
+import { setCurrentOrderThunk, setIssuedOrderThunk } from '../../Redux/actions/orderActions';
 
 export default function PersonalPage() {
+  const dispatch = useDispatch();
+  const order = useSelector((state) => state.order);
+  useEffect(() => {
+    dispatch(setCurrentOrderThunk());
+  });
+  console.log('order', order);
   const [toggleState, setToggleState] = useState(1);
   const toggleTab = (index) => {
     setToggleState(index);
@@ -58,30 +67,7 @@ export default function PersonalPage() {
         <div className={toggleState === 3 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
           <h4 className="personal-page__tab-title">CURRENT ORDERS</h4>
           <div className="personal-page__order current-order">
-            {/* <Order /> */}
-
-            <div className="current-order__box">
-              <p className="current-order__title">order title</p>
-              <div className="current-order__path">
-                <p className="current-order__costumer">Costumer</p>
-                <p className="current-order__price">123</p>
-              </div>
-            </div>
-            <div className="current-order__box">
-              <p className="current-order__title">order title</p>
-              <div className="current-order__path">
-                <p className="current-order__costumer">Costumer</p>
-                <p className="current-order__price">123</p>
-              </div>
-            </div>
-            <div className="current-order__box">
-              <p className="current-order__title">order title</p>
-              <div className="current-order__path">
-                <p className="current-order__costumer">Costumer</p>
-                <p className="current-order__price">123</p>
-              </div>
-            </div>
-
+            {order ? (order.map((el) => <Order key={el.id} info={el} />)) : (<p> You haven't token a job yet</p>)}
           </div>
         </div>
         <div className={toggleState === 4 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>

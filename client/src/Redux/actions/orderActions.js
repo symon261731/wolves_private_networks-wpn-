@@ -21,11 +21,11 @@ export const addOrderThunk = (order, navigate) => (dispatch) => axios
   .catch((error) => console.log(error));
 
 export const setCurrentOrderThunk = () => (dispatch) => axios
-  .get('/order/allCurrentOrder')
+  .get('/order/mywork')
   .then((res) => dispatch(setCurrentOrder(res.data)))
   .catch((error) => console.log(error));
 
 export const setIssuedOrderThunk = () => (dispatch) => axios
-  .get('/order/allIssuedOrder')
+  .get('/order/myorders')
   .then((res) => dispatch(setIssuedOrder(res.data)))
   .catch((error) => console.log(error));
