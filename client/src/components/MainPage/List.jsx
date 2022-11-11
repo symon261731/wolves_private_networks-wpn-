@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Card from '../Card/Card';
 
 export default function List() {
@@ -10,9 +9,7 @@ export default function List() {
     <div>
       {servers.length ? (
         servers?.map((server) => (
-          <Link key={server?.id} to={`/server/${server?.id}`}>
-            <Card server={server} />
-          </Link>
+          <Card key={server.id} server={server} />
         ))
 
       ) : (
