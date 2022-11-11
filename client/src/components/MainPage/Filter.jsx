@@ -36,8 +36,10 @@ export default function Filter() {
       <div className="filter_item">
         <div className="mb-3">
           <label htmlFor="formGroupExampleInput2" className="form-label">Price USD/Month</label>
-          <input type="text" className="form-control price" placeholder="from" />
-          <input type="text" className="form-control price" placeholder="to" />
+          <div className="form-label__flex">
+            <input type="text" className="form-control price" placeholder="from" />
+            <input type="text" className="form-control price" placeholder="to" />
+          </div>
         </div>
       </div>
       <div className="filter_item">

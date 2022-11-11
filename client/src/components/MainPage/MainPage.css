@@ -1,21 +1,23 @@
-.conteiner{
+.conteiner {
   display: flex;
   /* flex-direction: row;
   justify-content: space-around; */
 }
 
-.item{
+.item {
   margin: 10px;
   flex: 1 1 auto;
 }
 
-.filter_item{
+.filter_item {
   margin-bottom: 40px;
 }
 
-.price{
+.price {
   max-width: 100px;
 }
 
-
-
+.form-label__flex {
+  display: flex;
+  column-gap: 15px
+}
