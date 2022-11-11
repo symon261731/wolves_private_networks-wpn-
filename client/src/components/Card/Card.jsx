@@ -29,7 +29,8 @@ export default function Card({ server }) {
           Rating:
           {' '}
           {server?.rating}
-          ⭐
+          <button type="button">🐺</button>
+
         </p>
         <button className="btn btn-primary" type="button">Subscribe</button>
       </div>
