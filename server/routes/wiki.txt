@@ -4,3 +4,17 @@ serverRouter
 /api/server/:serverId - получить сервер по его id
 /api/server/user/:userId - получить все сервера, которые создал юзер по его id
 /api/server/user/:userId/purchase - получить все подписки на сервера по номеру id
+
+commentRouter
+/api/comment/user/all/:userId - получить все комментарии о юзере по его id
+/api/comment/server/all/:serverId - получить все комментарии о сервере по его id
+/api/comment/user/new/:userId - добавить комментарий о юзере (юзер id - это тот человек, на которого мы пишем коммент)
+/api/comment/server/new/:serverId - добавить комментарий о сервере по сервер id
+
+orderRouter
+/api/order/all - получить все заказы
+/api/order/new - создать новый заказ
+/api/order/myorders - получить все заказы, которые юзер создал
+/api/order/mywork - получить все заказы, которые юзер выполняет
+/api/order/newjob/:orderId - откликнуться на заказ
+/api/order/closejob/:orderId - пометить заказ выполненным

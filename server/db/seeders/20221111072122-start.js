@@ -28,7 +28,7 @@ module.exports = {
     // img: DataTypes.STRING
         login: uniqueNamesGenerator({ dictionaries: [adjectives, colors, animals] }),
         email: faker.internet.email(),
-        password: faker.music.songName(),
+        password: '123',
         pocket: Math.floor(Math.random() * 1000000),
         rating: Math.floor(Math.random() * 1000),
         img: '/img/avatar.jpg',
@@ -103,6 +103,7 @@ module.exports = {
         price: Math.floor(Math.random() * 1000000),
         location: faker.address.country(),
         protocol: 'very secure swear to God',
+        status: 'open',
         createdAt: new Date(),
         updatedAt: new Date(),
       })
