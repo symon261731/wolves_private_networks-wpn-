@@ -1,12 +1,14 @@
 const { faker } = require('@faker-js/faker');
-const { uniqueNamesGenerator, adjectives, colors, animals } = require('unique-names-generator');
+const {
+  uniqueNamesGenerator, adjectives, colors, animals,
+} = require('unique-names-generator');
 const bcrypt = require('bcrypt');
 
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     /**
      * Add seed commands here.
      *
@@ -16,16 +18,16 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    //User
+    // User
     const users = [];
     for (let i = 0; i < 20; i += 1) {
       users.push({
-    //     login: DataTypes.STRING,
-    // email: DataTypes.STRING,
-    // password: DataTypes.STRING,
-    // pocket: DataTypes.INTEGER,
-    // rating: DataTypes.INTEGER,
-    // img: DataTypes.STRING
+        //     login: DataTypes.STRING,
+        // email: DataTypes.STRING,
+        // password: DataTypes.STRING,
+        // pocket: DataTypes.INTEGER,
+        // rating: DataTypes.INTEGER,
+        // img: DataTypes.STRING
         login: uniqueNamesGenerator({ dictionaries: [adjectives, colors, animals] }),
         email: faker.internet.email(),
         password: '123',
@@ -34,7 +36,7 @@ module.exports = {
         img: '/img/avatar.jpg',
         createdAt: new Date(),
         updatedAt: new Date(),
-      })
+      });
     }
     for (const user of users) {
       user.password = await bcrypt.hash(user.password, 10);
@@ -44,36 +46,36 @@ module.exports = {
     const vpns = [];
     for (let i = 0; i < 40; i += 1) {
       vpns.push({
-    //         ip: DataTypes.STRING,
-    // location: DataTypes.STRING,
-    // protocol: DataTypes.STRING,
-    // rating: DataTypes.INTEGER,
-    // user_id: DataTypes.INTEGER,
-    // price: DataTypes.INTEGER
+        //         ip: DataTypes.STRING,
+        // location: DataTypes.STRING,
+        // protocol: DataTypes.STRING,
+        // rating: DataTypes.INTEGER,
+        // user_id: DataTypes.INTEGER,
+        // price: DataTypes.INTEGER
         ip: faker.internet.ipv4(),
         location: faker.address.country(),
-        protocol: 'very secure swear to God',
+        protocol: 'WireGuard',
         rating: Math.floor(Math.random() * 1000),
         user_id: Math.floor(Math.random() * 19 + 1),
         price: Math.floor(Math.random() * 1000000),
         createdAt: new Date(),
         updatedAt: new Date(),
-      })
+      });
     }
     await queryInterface.bulkInsert('ServerVPNs', vpns, {});
-    // File 
+    // File
     const files = [];
     for (let i = 0; i < 40; i += 1) {
       files.push({
-    //     user_id: DataTypes.INTEGER,
-    // config_path: DataTypes.STRING,
-    // server_id: DataTypes.INTEGER
+        //     user_id: DataTypes.INTEGER,
+        // config_path: DataTypes.STRING,
+        // server_id: DataTypes.INTEGER
         user_id: Math.floor(Math.random() * 19 + 1),
         server_id: Math.floor(Math.random() * 39 + 1),
         config_path: '/very/secure/path',
         createdAt: new Date(),
         updatedAt: new Date(),
-      })
+      });
     }
     await queryInterface.bulkInsert('Files', files, {});
 
@@ -86,7 +88,7 @@ module.exports = {
         content: faker.commerce.productDescription(),
         createdAt: new Date(),
         updatedAt: new Date(),
-      })
+      });
     }
     await queryInterface.bulkInsert('Comments', comments, {});
 
@@ -106,7 +108,7 @@ module.exports = {
         status: 'open',
         createdAt: new Date(),
         updatedAt: new Date(),
-      })
+      });
     }
     await queryInterface.bulkInsert('Orders', orders, {});
 
@@ -120,7 +122,7 @@ module.exports = {
         comment_id: Math.floor(Math.random() * 99 + 1),
         createdAt: new Date(),
         updatedAt: new Date(),
-      })
+      });
     }
     await queryInterface.bulkInsert('ServerComments', temp, {});
 
@@ -134,11 +136,11 @@ module.exports = {
         user_id: Math.floor(Math.random() * 19 + 1),
         createdAt: new Date(),
         updatedAt: new Date(),
-      })
+      });
     }
     await queryInterface.bulkInsert('UserComments', temp2, {});
 
-    //OrderUser
+    // OrderUser
     const temp3 = [];
     for (let i = 0; i < 19; i += 1) {
     //   order_id: DataTypes.INTEGER,
@@ -146,15 +148,15 @@ module.exports = {
     // worker: DataTypes.INTEGER
       temp3.push({
         order_id: i + 1,
-        creator: orders[i + 1]['user_id'],
+        creator: orders[i + 1].user_id,
         worker: Math.floor(Math.random() * 19 + 1),
         createdAt: new Date(),
         updatedAt: new Date(),
-      })
+      });
     }
     await queryInterface.bulkInsert('OrderUsers', temp3, {});
 
-    //Purchase
+    // Purchase
     const purchases = [];
     for (let i = 0; i < 30; i += 1) {
       purchases.push({
@@ -162,13 +164,12 @@ module.exports = {
         server_id: Math.floor(Math.random() * 39 + 1),
         createdAt: new Date(),
         updatedAt: new Date(),
-      })
+      });
     }
     await queryInterface.bulkInsert('Purchases', purchases, {});
-
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      *
@@ -184,6 +185,5 @@ module.exports = {
     await queryInterface.bulkDelete('Files', null, {});
     await queryInterface.bulkDelete('ServerVPNs', null, {});
     await queryInterface.bulkDelete('Users', null, {});
-
-  }
+  },
 };
