@@ -64,7 +64,6 @@ router.get('/newjob/:orderId', async (req, res) => {
     const { orderId } = req.params;
     await Order.update({ status: 'in progress' }, { where: { id: orderId } });
     const findOrder = await Order.findByPk(orderId);
-    console.log(findOrder);
     const newConnection = await OrderUser.create({ creator: findOrder['user_id'], worker: req.session.user.id, order_id: findOrder.id })
     return res.sendStatus(200);
   } catch (error) {
@@ -72,5 +71,23 @@ router.get('/newjob/:orderId', async (req, res) => {
     return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
   };
 });
+
+// /api/order/closejob - пометить заказ выполненным по номеру заказа
+router.get('/closejob/:orderId', async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    await Order.update({ status: 'closed' }, { where: { id: orderId } });
+    const findOrder = await Order.findByPk(orderId);
+    const findCon = await OrderUser.findOne({ where: { order_id: orderId } });
+    const user = await User.findOne({ where: { id: findCon.worker } });
+    const money = user.pocket + findOrder.price;
+    await User.update({ pocket: money }, { where: { id: user.id } });
+    const newConnection = await OrderUser.destroy({ where: { order_id: orderId } });
+    return res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+  };
+})
 
 module.exports = router;
