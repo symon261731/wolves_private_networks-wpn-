@@ -10,3 +10,9 @@ commentRouter
 /api/comment/server/all/:serverId - получить все комментарии о сервере по его id
 /api/comment/user/new/:userId - добавить комментарий о юзере (юзер id - это тот человек, на которого мы пишем коммент)
 /api/comment/server/new/:serverId - добавить комментарий о сервере по сервер id
+
+orderRouter
+/api/order/all - получить все заказы
+/api/order/new - создать новый заказ
+/api/order/myorders - получить все заказы, которые юзер создал
+/api/order/mywork - получить все заказы, которые юзер выполняет

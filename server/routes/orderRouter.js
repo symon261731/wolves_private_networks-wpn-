@@ -1,33 +1,75 @@
 const express = require('express');
-const {Order} = require('../db/models')
+const { Order, OrderUser, User } = require('../db/models');
 
 const router = express.Router();
 
-
-router.get('/all', async (req,res)=>{
-    try{
+// /api/order/all - получить все заказы
+router.get('/all', async (req, res) => {
+  try {
     const data = await Order.findAll();
     res.json(data);
-    } catch(e){
-        console.log(e);
-    }
-})
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+  }
+});
 
-router.post('/new', async(req,res)=>{
-    // console.log('order', req.body.order);
-    try{
-    const {title, protocol, price, location} = req.body.order;
+// /api/order/new - создать новый заказ
+router.post('/new', async (req, res) => {
+  // console.log('order', req.body.order);
+  try {
+    const { title, protocol, price, location } = req.body.order;
     const newOrder = await Order.create({
-         user_id: req.session.user.id,
-         title,
-         protocol,
-         price: Number(price),
-        location
+      user_id: req.session.user.id,
+      title,
+      protocol,
+      price: Number(price),
+      location,
+      status: 'open'
     });
     res.json(newOrder);
-    }catch(e){
-    console.log(e);
-    }
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+  };
+});
+
+// /api/order/myorders - получить все заказы, которые юзер создал
+router.get('/myorders', async (req, res) => {
+  try {
+    const orders = await Order.findAll({ where: { user_id: req.session.user.id }, include: { model: Order, include: [User] } });
+    const data = orders.map((el) => el.Order);
+    return res.json(data);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+  };
+})
+
+// /api/order/mywork - получить все заказы, которые юзер выполняет
+router.get('/mywork', async (req, res) => {
+  try {
+    const orders = await OrderUser.findAll({ where: { worker: req.session.user.id }, include: { model: Order, include: [User] } });
+    const data = orders.map((el) => el.Order);
+    return res.json(data);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+  };
+});
+
+// /api/order/newjob/:orderId - откликнуться на заказ по номеру заказа
+router.get('/newjob/:orderId', async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const findOrder = await Order.update({ status: 'in progress' }, { where: { id: orderId } });
+    console.log(findOrder);
+    return res.json(findOrder);
+    //const newConnection = await OrderUser.create({creator: , worker, user_id})
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+  };
 })
 
 module.exports = router;
