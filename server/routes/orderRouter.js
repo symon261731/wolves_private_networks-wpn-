@@ -5,12 +5,18 @@ const router = express.Router();
 
 
 router.get('/all', async (req,res)=>{
+    try{
     const data = await Order.findAll();
     res.json(data);
+    } catch(e){
+        console.log(e);
+    }
 })
 
 router.post('/new', async(req,res)=>{
-    const {title, protocol, price, location} = req.body;
+    // console.log('order', req.body.order);
+    try{
+    const {title, protocol, price, location} = req.body.order;
     const newOrder = await Order.create({
          user_id: req.session.user.id,
          title,
@@ -19,6 +25,9 @@ router.post('/new', async(req,res)=>{
         location
     });
     res.json(newOrder);
+    }catch(e){
+    console.log(e);
+    }
 })
 
 module.exports = router;
