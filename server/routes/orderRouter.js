@@ -10,7 +10,7 @@ router.get('/all', async (req, res) => {
     res.json(data);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
   }
 });
 
@@ -30,7 +30,7 @@ router.post('/new', async (req, res) => {
     res.json(newOrder);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
   };
 });
 

@@ -14,7 +14,7 @@ router.get('/user/all/:userId', async (req, res) => {
     return res.json(commentsText);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
   }
 });
 
@@ -29,7 +29,7 @@ router.post('/user/new/:userId', async (req, res) => {
     return res.json(comment);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
   }
 });
 
@@ -44,7 +44,7 @@ router.get('/server/all/:serverId', async (req, res) => {
     return res.json(commentsText);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
   }
 });
 
@@ -59,7 +59,7 @@ router.post('/server/new/:serverId', async (req, res) => {
     return res.json(comment);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
   }
 });
 module.exports = router;
