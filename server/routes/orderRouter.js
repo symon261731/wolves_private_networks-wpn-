@@ -16,7 +16,7 @@ router.get('/all', async (req, res) => {
 
 // /api/order/new - создать новый заказ
 router.post('/new', async (req, res) => {
-  // console.log('order', req.body.order);
+  console.log('order', req.body.order);
   try {
     const { title, protocol, price, location } = req.body.order;
     const newOrder = await Order.create({
@@ -30,16 +30,16 @@ router.post('/new', async (req, res) => {
     res.json(newOrder);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
   };
 });
 
 // /api/order/myorders - получить все заказы, которые юзер создал
 router.get('/myorders', async (req, res) => {
   try {
-    const orders = await Order.findAll({ where: { user_id: req.session.user.id }, include: { model: Order, include: [User] } });
-    const data = orders.map((el) => el.Order);
-    return res.json(data);
+    const orders = await Order.findAll({ where: { user_id: req.session.user.id } });
+
+    return res.json(orders);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' })

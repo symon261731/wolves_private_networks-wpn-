@@ -4,19 +4,24 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
-import './PesonalPage.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Order from './Order/Order';
-import { setCurrentOrderThunk, setIssuedOrderThunk } from '../../Redux/actions/orderActions';
+import { setIssuedOrderThunk } from '../../Redux/actions/issuedOrderActions';
+import { setCurrentOrderThunk } from '../../Redux/actions/currentOrderActions';
+import './PesonalPage.scss';
 
 export default function PersonalPage() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const order = useSelector((state) => state.order);
+  const currentOrder = useSelector((state) => state.currentOrder);
+  const issuedOrder = useSelector((state) => state.issuedOrder);
   useEffect(() => {
     dispatch(setCurrentOrderThunk());
-  });
-  console.log('order', order);
+    dispatch(setCurrentOrderThunk());
+    dispatch(setIssuedOrderThunk());
+  }, []);
+
   const [toggleState, setToggleState] = useState(1);
   const toggleTab = (index) => {
     setToggleState(index);
@@ -67,14 +72,25 @@ export default function PersonalPage() {
         <div className={toggleState === 3 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
           <h4 className="personal-page__tab-title">CURRENT ORDERS</h4>
           <div className="personal-page__order current-order">
-            {order ? (order.map((el) => <Order key={el.id} info={el} />)) : (<p> You haven't token a job yet</p>)}
+            {currentOrder.length ? (
+              currentOrder.map((el) => <Order key={el.id} info={el} />)) : (
+                <div className="current-order__nope">
+                  <p className="current-order__text"> You haven't token a job yet</p>
+                  <button onClick={() => navigate('/orders')} type="button" className="current-order__btn">find order</button>
+                </div>
+            )}
           </div>
         </div>
         <div className={toggleState === 4 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
           <h4 className="personal-page__tab-title">ISSUED ORDERS</h4>
-          <p className="personal-page__content">
-            fourth
-          </p>
+          <div className="personal-page__order current-order">
+            { issuedOrder ? (issuedOrder?.map((el) => <Order key={el.id} info={el} />)) : (
+              <div className="current-order__nope">
+                <p className="current-order__text"> You haven't given a job yet</p>
+                <button onClick={() => navigate('/orders')} type="button" className="current-order__btn">find order</button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
