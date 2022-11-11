@@ -37,12 +37,11 @@ router.post('/new', async (req, res) => {
 // /api/order/myorders - получить все заказы, которые юзер создал
 router.get('/myorders', async (req, res) => {
   try {
-    const orders = await Order.findAll({ where: { user_id: req.session.user.id }, include: { model: Order, include: [User] } });
-    const data = orders.map((el) => el.Order);
-    return res.json(data);
+    const orders = await Order.findAll({ where: { user_id: req.session.user.id } });
+    return res.json(orders);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
   };
 })
 
@@ -54,7 +53,7 @@ router.get('/mywork', async (req, res) => {
     return res.json(data);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
   };
 });
 
@@ -68,7 +67,7 @@ router.get('/newjob/:orderId', async (req, res) => {
     return res.sendStatus(200);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
   };
 });
 
@@ -86,7 +85,7 @@ router.get('/closejob/:orderId', async (req, res) => {
     return res.sendStatus(200);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
   };
 })
 
