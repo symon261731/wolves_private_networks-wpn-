@@ -5,6 +5,7 @@
 import React, { useState } from 'react';
 import './PesonalPage.scss';
 import { Link } from 'react-router-dom';
+import Order from './Order/Order';
 
 export default function PersonalPage() {
   const [toggleState, setToggleState] = useState(1);
@@ -25,7 +26,19 @@ export default function PersonalPage() {
           onClick={() => toggleTab(2)}
           className={toggleState === 2 ? 'personal-page__item active-tab' : 'personal-page__item'}
         >
-          2 tab
+          VPN
+        </li>
+        <li
+          onClick={() => toggleTab(3)}
+          className={toggleState === 3 ? 'personal-page__item active-tab' : 'personal-page__item'}
+        >
+          current orders
+        </li>
+        <li
+          onClick={() => toggleTab(4)}
+          className={toggleState === 4 ? 'personal-page__item active-tab' : 'personal-page__item'}
+        >
+          issued orders
         </li>
       </ul>
       <div className="personal-page__tabs">
@@ -41,6 +54,41 @@ export default function PersonalPage() {
             <p className="personal-page__content">У вас пока нету VPN</p>
             <Link className="personal-page__btn" to="/createVPN">Создать VPN</Link>
           </div>
+        </div>
+        <div className={toggleState === 3 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
+          <h4 className="personal-page__tab-title">CURRENT ORDERS</h4>
+          <div className="personal-page__order current-order">
+            {/* <Order /> */}
+
+            <div className="current-order__box">
+              <p className="current-order__title">order title</p>
+              <div className="current-order__path">
+                <p className="current-order__costumer">Costumer</p>
+                <p className="current-order__price">123</p>
+              </div>
+            </div>
+            <div className="current-order__box">
+              <p className="current-order__title">order title</p>
+              <div className="current-order__path">
+                <p className="current-order__costumer">Costumer</p>
+                <p className="current-order__price">123</p>
+              </div>
+            </div>
+            <div className="current-order__box">
+              <p className="current-order__title">order title</p>
+              <div className="current-order__path">
+                <p className="current-order__costumer">Costumer</p>
+                <p className="current-order__price">123</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div className={toggleState === 4 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
+          <h4 className="personal-page__tab-title">ISSUED ORDERS</h4>
+          <p className="personal-page__content">
+            fourth
+          </p>
         </div>
       </div>
     </div>

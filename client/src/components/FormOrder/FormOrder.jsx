@@ -14,8 +14,7 @@ export default function FormOrder() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            dispatch(addOrderThunk(Object.fromEntries(new FormOrder(e.target))));
-            navigate('/');
+            dispatch(addOrderThunk(Object.fromEntries(new FormData(e.target)), navigate));
           }}
           className="form-vpn__form"
         >

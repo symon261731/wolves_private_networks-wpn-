@@ -11,8 +11,24 @@
         font-weight: 700;
     }
 
-    &__desription {
-        font-size: 17px;
-        font-weight: 400;
+    &__path {
+        display: flex;
+        justify-content: space-between;
     }
+
+    &__location {
+        font-size: 17px;
+        font-weight: 500;
+    }
+
+    &__price {
+        color: orange;
+    }
+
+    &__span {
+        padding-left: 8px;
+    }
+
+
+
 }
