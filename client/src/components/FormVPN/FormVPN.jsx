@@ -10,6 +10,7 @@ export default function FormVPN() {
           <div className="form-vpn__main-flex">
             <div className="form-vpn__inputs-flex">
               <input placeholder="ip" name="ip" className="form-vpn__input" type="text" />
+              {/* добавить поле с ip */}
               <input placeholder="protocol" name="protocol" className="form-vpn__input" type="text" />
               <input placeholder="price" name="price" className="form-vpn__input" type="text" />
               <input placeholder="location" name="location" className="form-vpn__input" type="text" />
