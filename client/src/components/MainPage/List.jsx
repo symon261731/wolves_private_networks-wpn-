@@ -28,21 +28,19 @@ export default function List() {
   }, []);
 
   return (
-    <>
-      <ul className=" main-page__list">
-        {servers.length ? (
-          servers
-            .slice(firstContentIndex, lastContentIndex)
-            .map((server) => (
-              <li className="main-page__item">
-                <Card key={server.id} server={server} />
-              </li>
-            ))) : (
-              <div className="card" style={{ width: '36rem' }}>
-                No matching results
-              </div>
-        )}
-      </ul>
+    <ul className=" main-page__list">
+      {servers.length ? (
+        servers
+          .slice(firstContentIndex, lastContentIndex)
+          .map((server) => (
+            <li className="main-page__item">
+              <Card key={server.id} server={server} />
+            </li>
+          ))) : (
+            <div className="card" style={{ width: '36rem' }}>
+              No matching results
+            </div>
+      )}
       {servers.length > 0
        && (
        <div className="pagination">
@@ -101,7 +99,7 @@ export default function List() {
        </div>
 
        )}
-    </>
+    </ul>
 
   );
 }
