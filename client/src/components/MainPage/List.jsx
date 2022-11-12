@@ -1,15 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../Card/Card';
+import './MainPage.scss';
 
 export default function List() {
   const servers = useSelector((state) => state.servers);
 
   return (
-    <div>
+    <ul className=" main-page__list">
       {servers.length ? (
         servers?.map((server) => (
-          <Card key={server.id} server={server} />
+          <li className="main-page__item">
+            <Card key={server.id} server={server} />
+          </li>
         ))
 
       ) : (
@@ -18,6 +21,6 @@ export default function List() {
         </div>
       )}
 
-    </div>
+    </ul>
   );
 }
