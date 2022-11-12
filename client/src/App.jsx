@@ -38,7 +38,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/auth" element={<Auth />} />
 
-        <Route path="/userHori" element={<UserPage />} />
+        <Route path="/userHori/:id" element={<UserPage />} />
       </Routes>
     </div>
   );
