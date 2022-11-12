@@ -5,7 +5,12 @@
     display: flex;
     justify-content: space-around;
 
+
     &__flex {
         display: flex;
     }
+}
+
+.header__margin {
+    margin-bottom: 30px;
 }
