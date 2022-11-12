@@ -14,6 +14,9 @@ import FormOrder from './components/FormOrder/FormOrder';
 import OrdersList from './components/OrdersList/OrdersList';
 import { checkUserThunk } from './Redux/actions/userActions';
 import ServerInfo from './components/ServerInfo/ServerInfo';
+import Pocket from './components/Pocket/Pocket';
+import PocketForm from './components/PocketForm/PocketForm';
+
 
 function App() {
   // const user = { login: 'admin', id: 1 };
@@ -30,15 +33,17 @@ function App() {
         <Route element={<MainPage />} path="/" />
         <Route element={<ProtectedRoute redirect="/" isAllowed={user?.id} />}>
           <Route path="/personalPage" element={<PersonalPage />} />
+          <Route path="/addCash" element={<Pocket />} />
           <Route path="/createVPN" element={<FormVPN />} />
           <Route path="/createorder" element={<FormOrder />} />
           <Route path="/orders" element={<OrdersList />} />
           <Route path="/server/:id" element={<ServerInfo />} />
+          <Route path="/pocketForm" element={<PocketForm />} />
+          {/* <Route path="/server/:id" element={<ServerInfo />} /> */}
 
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/auth" element={<Auth />} />
-
         <Route path="/userHori/:id" element={<UserPage />} />
       </Routes>
     </div>

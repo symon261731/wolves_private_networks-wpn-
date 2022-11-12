@@ -1,0 +1,51 @@
+.pocket {
+    &__box {
+
+        background-color: #333;
+        max-width: 500px;
+        margin: 0 auto;
+        margin-top: 300px;
+        color: white;
+        font-weight: 500;
+        padding: 20px;
+        border-radius: 15px;
+        padding-bottom: 35px;
+
+    }
+
+    &__current-cash {
+        text-align: center;
+        font-size: 25px;
+    }
+
+    &__text {
+        text-align: center;
+
+        &:not(:last-child) {
+            margin-bottom: 30px;
+        }
+    }
+
+    &__center {
+        text-align: center;
+    }
+
+    &__btn {
+        text-align: center;
+        background-color: #309F85;
+        padding: 18px 51px;
+        border-radius: 50px;
+        border: none;
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 600;
+
+        &:hover {
+            color: white;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #309F85;
+        }
+    }
+
+
+}
