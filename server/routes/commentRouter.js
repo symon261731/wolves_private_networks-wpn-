@@ -24,8 +24,6 @@ router.post('/user/new/:userId', async (req, res) => {
     // console.log(req.body);
     const { userId } = req.params;
     const content = req.body.input;
-
-    console.log({ content });
     const newComment = await Comment.create({ content, user_id: req.session.user.id });
     const temp = await UserComment.create({ user_id: userId, comment_id: newComment.id });
     const comment = await UserComment.findOne({ where: { id: temp.id }, include: { model: Comment, include: [User] } });
@@ -42,9 +40,8 @@ router.get('/server/all/:serverId', async (req, res) => {
     const { serverId } = req.params;
     const comments = await ServerComment.findAll({ where: { server_id: serverId }, include: { model: Comment, include: [User] } });
 
-    const commentsText = comments.map((el) => ({ comment: el.Comment.content, login: el.Comment.User.login }));
-    return res.json(commentsText);
-
+    // const commentsText = comments.map((el) => ({ comment: el.Comment.content, login: el.Comment.User.login }));
+    return res.json(comments);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
@@ -55,10 +52,11 @@ router.get('/server/all/:serverId', async (req, res) => {
 router.post('/server/new/:serverId', async (req, res) => {
   try {
     const { serverId } = req.params;
-    const { content } = req.body;
+    const content = req.body.input;
     const newComment = await Comment.create({ content, user_id: req.session.user.id });
-    await ServerComment.create({ server_id: serverId, comment_id: newComment.id });
-    const comment = { comment: newComment.content, login: req.session.user.login };
+    const temp = await ServerComment.create({ server_id: serverId, comment_id: newComment.id });
+    // const comment = { comment: newComment.content, login: req.session.user.login };
+    const comment = await ServerComment.findOne({ where: { id: temp.id }, include: { model: Comment, include: [User] } });
     return res.json(comment);
   } catch (error) {
     console.log(error);

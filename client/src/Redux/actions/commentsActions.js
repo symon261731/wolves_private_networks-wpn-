@@ -29,3 +29,18 @@ export const addCommentOfUserThunk = (input, setInput, id) => (dispatch) => {
     .then(() => setInput(''))
     .catch(console.log);
 };
+
+export const setCommentsOfServerThunk = (id) => (dispatch) => {
+  axios
+    .get(`/comment/server/all/${id}`)
+    .then((res) => { dispatch(setComment(res.data)); })
+    .catch(console.log);
+};
+
+export const addCommentOfServerThunk = (input, setInput, id) => (dispatch) => {
+  axios
+    .post(`/comment/server/new/${id}`, { input })
+    .then((res) => { dispatch(addComment(res.data)); })
+    .then(() => setInput(''))
+    .catch(console.log);
+};

@@ -13,6 +13,7 @@ import './null.scss';
 import FormOrder from './components/FormOrder/FormOrder';
 import OrdersList from './components/OrdersList/OrdersList';
 import { checkUserThunk } from './Redux/actions/userActions';
+import ServerInfo from './components/ServerInfo/ServerInfo';
 
 function App() {
   // const user = { login: 'admin', id: 1 };
@@ -32,7 +33,7 @@ function App() {
           <Route path="/createVPN" element={<FormVPN />} />
           <Route path="/createorder" element={<FormOrder />} />
           <Route path="/orders" element={<OrdersList />} />
-          {/* <Route path="/server/:id" element={<ServerInfo />} /> */}
+          <Route path="/server/:id" element={<ServerInfo />} />
 
         </Route>
         <Route path="/login" element={<Login />} />
