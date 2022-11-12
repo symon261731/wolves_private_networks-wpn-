@@ -19,15 +19,10 @@ export default function MainPage() {
 
   return (
     <div className="main-page">
-      <div className="main-page__item filter">
-        <Filter />
-      </div>
-      <div className="main-page__item">
-        <h5 className="main-page__title">List</h5>
-        <List className="item" />
-      </div>
-      <div className="item">
-        <MapYandex className="item" />
+      <Filter />
+      <div className="main-page__flex">
+        <List />
+        <MapYandex />
       </div>
     </div>
   );

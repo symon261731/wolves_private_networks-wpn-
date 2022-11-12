@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import './Card.scss';
 
 export default function Card({ server }) {
   const [curServer, setCurServer] = useState(server);
@@ -12,45 +13,48 @@ export default function Card({ server }) {
 
   return (
 
-    <div className="card" style={{ width: '36rem' }}>
-
-      <div className="card-body">
-        <p>
+    <div className="card">
+      <div className="card__body">
+        <p className="card__item">
           Username:
           {' '}
           {curServer?.User?.login || 'ololoshka'}
         </p>
-        <p>
+        <p className="card__item">
           Protocol:
           {' '}
           {curServer?.protocol}
         </p>
-        <p>
-          Location:
-          {' '}
-          {curServer?.location}
-        </p>
-        <p>
-          Price:
-          {' '}
-          {curServer?.price}
-        </p>
-        <div className="form-label__flex">
-          <p>
+        <div className="card__flex">
+          <p className="card__item">
+            Location:
+            {' '}
+            {curServer?.location}
+          </p>
+          <p className="card__item card__price">
+            Price:
+            {' '}
+            {curServer?.price}
+          </p>
+        </div>
+        <div className="card__flex">
+          <p className="card__item">
             Rating:
             {' '}
             {curServer?.rating}
           </p>
           <button className="btn btn-sm" style={{ height: '30px' }} type="button" onClick={likeHandle}>🐺</button>
-          {/* когда с бека придет инфо о том был ли лайк будет меняться иконка */}
-          <div>☝</div>
         </div>
-      </div>
-      <Link key={curServer?.id} to={`/server/${curServer?.id}`}>
-        <button className="btn btn-info" type="button">Info</button>
-      </Link>
+        {/* когда с бека придет инфо о том был ли лайк будет меняться иконка */}
+        {/* <div>☝</div> */}
 
-      <button className="btn btn-primary" type="button">Subscribe</button>
+      </div>
+      <div className="card__buttons">
+        <Link key={curServer?.id} to={`/server/${curServer?.id}`}>
+          <button className="card__btn-info" type="button">Info</button>
+        </Link>
+        <button className="card__btn-sub" type="button">Subscribe</button>
+      </div>
 
     </div>
   );

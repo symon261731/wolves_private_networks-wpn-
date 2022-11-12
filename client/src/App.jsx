@@ -23,7 +23,7 @@ function App() {
   const user = useSelector((state) => state.user);
 
   return (
-    <div className="App">
+    <div className="App" style={{ position: 'relative', zIndex: '10' }}>
       <NavBar />
       <Routes>
         <Route element={<MainPage />} path="/" />

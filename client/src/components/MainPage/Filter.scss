@@ -1,5 +1,6 @@
 .filter {
-
+    position: fixed;
+    left: 25px;
 
     &__flex-radio {
         display: flex;
@@ -34,7 +35,6 @@
         border-radius: 10px;
         padding: 2px 8px;
         border: 1px solid rgba(36, 35, 35, 0.327);
-
     }
 
     &__btn {
@@ -48,4 +48,16 @@
             background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #3C336C;
         }
     }
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; // Yeah, yeah everybody write about it
+}
+
+input[type='number'],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
 }
