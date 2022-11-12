@@ -5,12 +5,11 @@ import { logoutUserThunk } from '../../Redux/actions/userActions';
 import './NavBar.scss';
 
 export default function NavBar() {
-  // const user = { login: 'admin', id: 1 };
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className="header__margin">
       <ul className="nav">
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="/">Home</Link>
