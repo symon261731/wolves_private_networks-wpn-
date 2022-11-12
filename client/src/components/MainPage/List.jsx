@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../Card/Card';
 import usePagination from '../../hooks/usePagination';
+import './MainPage.scss';
+import './MainPage.css';
 
 export default function List() {
   const servers = useSelector((state) => state.servers);
@@ -27,21 +29,20 @@ export default function List() {
 
   return (
     <>
-      <div>
-        {
-        servers.length ? (servers
-          .slice(firstContentIndex, lastContentIndex)
-          .map((server) => (<Card key={server.id} server={server} />
-          ))) : (
-            <div className="card" style={{ width: '36rem' }}>
-              No matching results
-            </div>
-        )
-
-        }
-
-      </div>
-
+      <ul className=" main-page__list">
+        {servers.length ? (
+          servers
+            .slice(firstContentIndex, lastContentIndex)
+            .map((server) => (
+              <li className="main-page__item">
+                <Card key={server.id} server={server} />
+              </li>
+            ))) : (
+              <div className="card" style={{ width: '36rem' }}>
+                No matching results
+              </div>
+        )}
+      </ul>
       {servers.length > 0
        && (
        <div className="pagination">
@@ -98,8 +99,9 @@ export default function List() {
            &rarr;
          </button>
        </div>
-       )}
 
+       )}
     </>
+
   );
 }
