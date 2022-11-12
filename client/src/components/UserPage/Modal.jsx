@@ -9,11 +9,11 @@ export default function Modal({ user }) {
   // const user = useSelector((state) => state.user);
 
   return (
-    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ zIndex: '99999' }}>
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <h1 className="modal-title fs-5" id="exampleModalLabel">Add comment</h1>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
           </div>
           <div className="modal-body">
