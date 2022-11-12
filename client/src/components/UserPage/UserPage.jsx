@@ -13,7 +13,6 @@ export default function UserPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
-  const [flag, setFlag] = useState(false);
   // const user = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -67,10 +66,10 @@ export default function UserPage() {
           <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             АДД
           </button>
-          <Modal user={user} />
+          <Modal id={user.id} />
 
           {
-              commentsList?.map((el) => (<CommentItem key={el.id} comment={el} setFlag={setFlag} flag={flag} />))
+              commentsList?.map((el) => (<CommentItem key={el.id} comment={el} />))
             }
         </div>
       </div>

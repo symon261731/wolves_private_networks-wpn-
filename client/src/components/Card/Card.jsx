@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './Card.scss';
 
 export default function Card({ server }) {
   const [curServer, setCurServer] = useState(server);
+  const { id } = useParams();
 
   function likeHandle() {
     setCurServer((prev) => ({ ...prev, rating: prev.rating + 1 }));
@@ -51,7 +52,8 @@ export default function Card({ server }) {
       </div>
       <div className="card__buttons">
         <Link key={curServer?.id} to={`/server/${curServer?.id}`}>
-          <button className="card__btn-info" type="button">Info</button>
+          {!id
+                    && <button className="card__btn-info" type="button">Info</button>}
         </Link>
         <button className="card__btn-sub" type="button">Subscribe</button>
       </div>
