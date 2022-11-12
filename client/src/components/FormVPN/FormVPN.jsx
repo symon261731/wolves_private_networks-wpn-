@@ -1,10 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './FormVPN.scss';
 import { addServersThunk } from '../../Redux/actions/serversActions';
 
 export default function FormVPN() {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
   return (
     <div className="form-vpn">
       <div className="form-vpn__container">
@@ -13,7 +15,7 @@ export default function FormVPN() {
           className="form-vpn__form"
           onSubmit={(e) => {
             e.preventDefault();
-            dispatch(addServersThunk(Object.fromEntries(new FormData(e.target))));
+            dispatch(addServersThunk(Object.fromEntries(new FormData(e.target)), user.id));
           }}
         >
           <div className="form-vpn__main-flex">
