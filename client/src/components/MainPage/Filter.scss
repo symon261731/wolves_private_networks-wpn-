@@ -1,0 +1,51 @@
+.filter {
+
+
+    &__flex-radio {
+        display: flex;
+        flex-direction: column;
+
+        &:not(:last-child) {
+            margin-bottom: 25px;
+        }
+    }
+
+    &__label {
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 13px;
+    }
+
+    &__input {
+        padding: 8px 15px;
+        border-radius: 10px;
+        border: 1px solid rgba(36, 35, 35, 0.327);
+    }
+
+
+    &__flex {
+        display: flex;
+        row-gap: 10px;
+        column-gap: 10px;
+    }
+
+    &__price {
+        max-width: 100px;
+        border-radius: 10px;
+        padding: 2px 8px;
+        border: 1px solid rgba(36, 35, 35, 0.327);
+
+    }
+
+    &__btn {
+        border: none;
+        padding: 10px 55px;
+        background-color: #3C336C;
+        color: white;
+        border-radius: 65px;
+
+        &:hover {
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #3C336C;
+        }
+    }
+}

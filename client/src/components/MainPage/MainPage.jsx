@@ -4,7 +4,7 @@ import Filter from './Filter';
 import List from './List';
 import MapYandex from './MapYandex';
 
-import './MainPage.css';
+import './MainPage.scss';
 import { setServersThunk } from '../../Redux/actions/serversActions';
 
 export default function MainPage() {
@@ -18,13 +18,12 @@ export default function MainPage() {
   }, []);
 
   return (
-    <div className="conteiner">
-      <div className="item">
-        <h5>Filters</h5>
+    <div className="main-page">
+      <div className="main-page__item filter">
         <Filter />
       </div>
-      <div className="item">
-        <h5>List</h5>
+      <div className="main-page__item">
+        <h5 className="main-page__title">List</h5>
         <List className="item" />
       </div>
       <div className="item">
