@@ -42,7 +42,13 @@ export default function NavBar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/addCash">Pocket: 0 USD</Link>
+                <Link className="nav-link" to="/addCash">
+                  Pocket:
+                  {' '}
+                  {user?.pocket}
+                  {' '}
+                  USD
+                </Link>
               </li>
             </div>
           </>
