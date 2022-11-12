@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import Card from '../Card/Card';
 import usePagination from '../../hooks/usePagination';
 import './MainPage.scss';
-import './MainPage.css';
 
 export default function List() {
   const servers = useSelector((state) => state.servers);
@@ -21,7 +20,6 @@ export default function List() {
     contentPerPage: 5,
     count: servers.length,
   });
-  console.log(gaps);
 
   useEffect(() => {
     // usePagination({ count: servers.length });
