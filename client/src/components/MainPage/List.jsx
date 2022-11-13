@@ -22,8 +22,8 @@ export default function List() {
   });
 
   useEffect(() => {
-    // usePagination({ count: servers.length });
-  }, []);
+    if (page > totalPages && totalPages !== 0) setPage(1);
+  }, [totalPages]);
 
   return (
     <ul className=" main-page__list">
@@ -43,9 +43,12 @@ export default function List() {
        && (
        <div className="pagination">
          <p className="text">
-           {page}
+
+           { page }
            /
-           {totalPages}
+           {' '}
+           { totalPages }
+
          </p>
          <button
            type="button"
@@ -75,7 +78,7 @@ export default function List() {
          ))}
          {gaps.after ? '...' : null}
          {
-          servers.length > 1
+          servers.length > 1 && totalPages > 1
             && (
             <button
               type="button"
