@@ -13,7 +13,9 @@ router.post('/signup', async (req, res) => {
       // if (!img) img = '/img/avatar.jpg';
       const [user, created] = await User.findOrCreate({
         where: { email },
-        defaults: { login, password: await bcrypt.hash(password, 10), img },
+        defaults: {
+          login, password: await bcrypt.hash(password, 10), img, pocket: 0,
+        },
       });
       if (created) {
         const sessionUser = JSON.parse(JSON.stringify(user));

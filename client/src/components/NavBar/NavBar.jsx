@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setMoneyPocketThunk } from '../../Redux/actions/pocketAction';
 import { logoutUserThunk } from '../../Redux/actions/userActions';
 import './NavBar.scss';
 
 export default function NavBar() {
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const pocket = useSelector((state) => state.pocket);
+  useEffect(() => {
+    dispatch(setMoneyPocketThunk());
+  }, [user.id]);
 
   return (
     <div className="header__margin">
@@ -44,7 +49,7 @@ export default function NavBar() {
                 <Link className="nav-link" to="/addCash">
                   Pocket:
                   {' '}
-                  {user?.pocket || 0}
+                  {pocket || 0}
                   {' '}
                   USD
                 </Link>

@@ -36,8 +36,8 @@ router.get('/check', authCheck, async (req, res) => {
     return res.status(200).json(user.pocket);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({message: 'You broke my perfect database. Again.'})
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
-})
+});
 
 module.exports = router;
