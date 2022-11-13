@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Card from '../Card/Card';
 import usePagination from '../../hooks/usePagination';
 import './MainPage.scss';
+import Pagination from '../Pagination/Pagination';
 
 export default function List() {
   const servers = useSelector((state) => state.servers);
@@ -41,64 +42,7 @@ export default function List() {
       )}
       {servers.length > 0
        && (
-       <div className="pagination">
-         <p className="text">
-
-           { page }
-           /
-           {' '}
-           { totalPages }
-
-         </p>
-         <button
-           type="button"
-           onClick={prevPage}
-           className={`page ${page === 1 && 'disabled'}`}
-         >
-           &larr;
-         </button>
-         <button
-           type="button"
-           onClick={() => setPage(1)}
-           className={`page ${page === 1 && 'disabled'}`}
-         >
-           1
-         </button>
-         {gaps.before ? '...' : null}
-         {/* @ts-ignore */}
-         {gaps?.paginationGroup?.map((el) => (
-           <button
-             type="button"
-             onClick={() => setPage(el)}
-             key={el}
-             className={`page ${page === el ? 'active' : ''}`}
-           >
-             {el}
-           </button>
-         ))}
-         {gaps.after ? '...' : null}
-         {
-          servers.length > 1 && totalPages > 1
-            && (
-            <button
-              type="button"
-              onClick={() => setPage(totalPages)}
-              className={`page ${page === totalPages && 'disabled'}`}
-            >
-              {totalPages}
-            </button>
-            )
-         }
-
-         <button
-           type="button"
-           onClick={nextPage}
-           className={`page ${page === totalPages && 'disabled'}`}
-         >
-           &rarr;
-         </button>
-       </div>
-
+       <Pagination array={servers} nextPage={nextPage} prevPage={prevPage} gaps={gaps} page={page} setPage={setPage} totalPages={totalPages} />
        )}
     </ul>
 
