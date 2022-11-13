@@ -16,7 +16,7 @@ router.get('/max-rate', async (req, res) => {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
-})
+});
 
 // /api/server/all - получить все впн
 router.get('/all', async (req, res) => {
@@ -32,7 +32,7 @@ router.get('/all', async (req, res) => {
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.likeStatus = false;
       for (let j = 0; j < likes.length; j += 1) {
-        if (vpns[i].dataValues.id === likes[j].dataValues['server_id']) {
+        if (vpns[i].dataValues.id === likes[j].dataValues.server_id) {
           vpns[i].dataValues.likeStatus = true;
           break;
         }
@@ -86,7 +86,7 @@ router.post('/filter', async (req, res) => {
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.likeStatus = false;
       for (let j = 0; j < likes.length; j += 1) {
-        if (vpns[i].dataValues.id === likes[j]['server_id']) {
+        if (vpns[i].dataValues.id === likes[j].server_id) {
           vpns[i].dataValues.likeStatus = true;
           break;
         }
