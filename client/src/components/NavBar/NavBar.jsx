@@ -5,12 +5,11 @@ import { logoutUserThunk } from '../../Redux/actions/userActions';
 import './NavBar.scss';
 
 export default function NavBar() {
-  // const user = { login: 'admin', id: 1 };
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className="header__margin">
       <ul className="nav">
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="/">Home</Link>
@@ -22,7 +21,7 @@ export default function NavBar() {
                 <Link className="nav-link active" aria-current="page" to="/personalPage">MyPage</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/userHori">UserPage</Link>
+                <Link className="nav-link active" aria-current="page" to={`/userHori/${user.id}`}>UserPage</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/orders">Orders</Link>
@@ -42,7 +41,13 @@ export default function NavBar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/addCash">Pocket: 0 USD</Link>
+                <Link className="nav-link" to="/addCash">
+                  Pocket:
+                  {' '}
+                  {user?.pocket || 0}
+                  {' '}
+                  USD
+                </Link>
               </li>
             </div>
           </>

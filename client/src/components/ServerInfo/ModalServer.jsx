@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addCommentOfUserThunk } from '../../Redux/actions/commentsActions';
+import { addCommentOfServerThunk } from '../../Redux/actions/commentsActions';
 
-export default function Modal({ id }) {
+export default function ModalServer({ id }) {
   const [input, setInput] = useState('');
   const changeHandler = (e) => setInput(e.target.value);
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export default function Modal({ id }) {
               onSubmit={(e) => {
                 e.preventDefault();
                 // eslint-disable-next-line max-len
-                dispatch(addCommentOfUserThunk(input, setInput, id));
+                dispatch(addCommentOfServerThunk(input, setInput, id));
               }}
             >
               <div className="form-vpn__main-flex">

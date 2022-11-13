@@ -1,6 +1,6 @@
 const express = require('express');
+const { ServerVPN, Purchase, RatingServer, User } = require('../db/models');
 const { Op } = require('sequelize');
-const { ServerVPN, Purchase, User } = require('../db/models');
 
 const router = express.Router();
 
@@ -13,6 +13,15 @@ router.get('/all', async (req, res) => {
         required: true,
       },
     });
+    if (!req.session.user) return res.json(vpns);
+    for (const server of vpns) {
+      const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: server.id } });
+      if (likeStatus) {
+        server.dataValues.likeStatus = true;
+      } else {
+        server.dataValues.likeStatus = false;
+      }
+    }
     return res.json(vpns);
   } catch (error) {
     console.log(error);
@@ -56,6 +65,14 @@ router.post('/filter', async (req, res) => {
         },
       },
     });
+    for (const server of vpns) {
+      const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: server.id } });
+      if (likeStatus) {
+        server.dataValues.likeStatus = true;
+      } else {
+        server.dataValues.likeStatus = false;
+      }
+    }
     return res.json(vpns);
   } catch (error) {
     console.log(error);
@@ -64,13 +81,6 @@ router.post('/filter', async (req, res) => {
 });
 
 // /api/server/new/:userId - создать новый впн
-// для проверки thunderclient
-// {
-//     "ip": "asdasdasd",
-//     "location": "hell",
-//     "protocol": "otsosi",
-//     "price": 2
-// }
 router.post('/new/:userId', async (req, res) => {
   try {
     const { userId } = req.params;
@@ -93,6 +103,14 @@ router.get('/user/:userId/purchase', async (req, res) => {
     const { userId } = req.params;
     const purchases = await Purchase.findAll({ where: { user_id: userId }, include: [ServerVPN] });
     const vpns = purchases.map((el) => el.ServerVPN);
+    for (const server of vpns) {
+      const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: server.id } });
+      if (likeStatus) {
+        server.dataValues.likeStatus = true;
+      } else {
+        server.dataValues.likeStatus = false;
+      }
+    }
     return res.json(vpns);
   } catch (error) {
     console.log(error);
@@ -105,6 +123,14 @@ router.get('/user/:userId', async (req, res) => {
   try {
     const { userId } = req.params;
     const vpns = await ServerVPN.findAll({ where: { user_id: userId } });
+    for (const server of vpns) {
+      const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: server.id } });
+      if (likeStatus) {
+        server.dataValues.likeStatus = true;
+      } else {
+        server.dataValues.likeStatus = false;
+      }
+    }
     return res.json(vpns);
   } catch (error) {
     console.log(error);
@@ -118,6 +144,12 @@ router.get('/:serverId', async (req, res) => {
     const { serverId } = req.params;
     const vpn = await ServerVPN.findByPk(serverId);
     if (!vpn) return res.json({ message: 'VPN with this number doesn\'t exist' });
+    const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: vpn.id } });
+      if (likeStatus) {
+        vpn.dataValues.likeStatus = true;
+      } else {
+        vpn.dataValues.likeStatus = false;
+      }
     return res.json(vpn);
   } catch (error) {
     console.log(error);

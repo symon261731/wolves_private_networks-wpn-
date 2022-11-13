@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setServersThunk } from '../../Redux/actions/serversActions';
+import './Filter.scss';
 
 export default function Filter() {
   const [ratingValue, setRatingValue] = useState('0');
@@ -31,11 +32,11 @@ export default function Filter() {
   }
 
   return (
-    <div className="filter_conteiner">
+    <div className="filter">
+      <h5 className="main-page__title">Filters</h5>
       <form onSubmit={submitHandle}>
-        <div className="filter_item">
-          <label className="form-check-label">Protocol</label>
-          <br />
+        <div className="filter__flex-radio">
+          <p className="filter__label">Choose you protocol</p>
           <div className="form-check form-check-inline">
             <input name="OpenVPN" className="form-check-input" type="checkbox" id="inlineCheckbox1" value="OpenVPN" />
             <label className="form-check-label" htmlFor="inlineCheckbox1">OpenVPN</label>
@@ -51,31 +52,31 @@ export default function Filter() {
         </div>
         <div className="filter_item">
           <div className="mb-3">
-            <label htmlFor="formGroupExampleInput" className="form-label">Location</label>
-            <input name="location" type="text" className="form-control" id="formGroupExampleInput" placeholder="input loacation" />
+            <p className="filter__label">Location</p>
+            <input name="location" type="text" className="filter__input" id="formGroupExampleInput" placeholder="input loacation" />
           </div>
           <div className="mb-3">
-            <label htmlFor="formGroupExampleInput2" className="form-label">Owner name/company</label>
-            <input name="ownerName" type="text" className="form-control" id="formGroupExampleInput2" placeholder="input name or company" />
+            <p className="filter__label">Owner name/company</p>
+            <input className="filter__input" name="ownerName" type="text" id="formGroupExampleInput2" placeholder="input name or company" />
           </div>
         </div>
         <div className="filter_item">
           <div className="mb-3">
-            <label htmlFor="formGroupExampleInput2" className="form-label">Price USD/Month</label>
-            <div className="form-label__flex">
-              <input name="from" type="number" className="form-control price" placeholder="from" />
-              <input name="to" type="number" className="form-control price" placeholder="to" />
+            <p className="filter__label">Price USD/Month</p>
+            <div className="filter__flex">
+              <input name="from" type="number" className="filter__price" placeholder="from" />
+              <input name="to" type="number" className="filter__price" placeholder="to" />
             </div>
           </div>
         </div>
         <div className="filter_item">
           <div className="mb-3">
-            <label htmlFor="formGroupExampleInput2" className="form-label">Rating From</label>
+            <p className="filter__label">Rating From</p>
             <input name="ratingValue" type="range" value={ratingValue} min="1" max="100" onChange={handleChange} />
             <output>{ratingValue}</output>
           </div>
         </div>
-        <button className="btn btn-primary" type="submit">Search</button>
+        <button className="filter__btn" type="submit">Search</button>
       </form>
     </div>
   );

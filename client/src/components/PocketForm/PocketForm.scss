@@ -1,0 +1,90 @@
+.pocket-form {
+    padding: 5px;
+    margin-top: 6%;
+
+    &__box {
+        padding: 15px;
+        background-color: #333;
+        max-width: 500px;
+        margin: 0 auto;
+        text-align: center;
+        border-radius: 25px;
+    }
+
+
+    &__flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:last-child {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__flex-text {
+        display: flex;
+        column-gap: 50px;
+        row-gap: 5px;
+        justify-content: center;
+    }
+
+    &__text {
+        color: whitesmoke;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 5px;
+
+        &::first-letter {
+            text-transform: uppercase;
+        }
+    }
+
+    &__input {
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        text-align: center;
+        margin-bottom: 20px;
+
+        &:focus {
+            outline: none;
+        }
+
+        &::placeholder {
+            text-align: center;
+        }
+    }
+
+    &__btn {
+        text-align: center;
+        background-color: #309F85;
+        padding: 10px 51px;
+        border-radius: 30px;
+        border: none;
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 600;
+
+        &:hover {
+            color: white;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #309F85;
+        }
+    }
+}
+
+
+.input_date {
+    max-width: 150px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-right: 1px solid black;
+}
+
+.input_code {
+    max-width: 150px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-left: 1px solid black;
+}
