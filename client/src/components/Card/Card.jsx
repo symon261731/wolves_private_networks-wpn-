@@ -1,16 +1,60 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './Card.scss';
 
 export default function Card({ server }) {
   const [curServer, setCurServer] = useState(server);
   const { id } = useParams();
+  const [flag, setFlag] = useState(false);
 
   function likeHandle() {
     setCurServer((prev) => ({ ...prev, rating: prev.rating + 1 }));
   }
+  // const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    axios
+      .get(`/purchase/info/${curServer.id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.length > 0) { setFlag(true); } else (setFlag(false));
+      });
+  }, []);
+
+  const handlerSubscr = async () => {
+    // if (id) {
+    //   axios
+    //     .get(`/purchase/new/${id}`)
+    //     // .then((res) => dispatch(addServers(res.data)))
+    //     .catch(console.log);
+    // } else {
+    axios
+      .get(`/purchase/new/${curServer.id}`)
+      .then((res) => {
+        console.log(res);
+        if (!res.data.message) setFlag(!flag);
+      });
+    // }
+  };
+
+  const handlerUnsubscr = async () => {
+    // if (id) {
+    //   axios
+    //     .get(`/purchase/unsubscribe/${id}`)
+    //     // .then((res) => dispatch(addServers(res.data)))
+    //     .catch(console.log);
+    // } else {
+    axios
+      .delete(`/purchase/unsubscribe/${curServer.id}`)
+      .then((res) => {
+        console.log(res);
+        if (!res.data.message) setFlag(!flag);
+      });
+    // }
+  };
 
   return (
 
@@ -60,7 +104,9 @@ export default function Card({ server }) {
           {!id
                     && <button className="card__btn-info" type="button">Info</button>}
         </Link>
-        <button className="card__btn-sub" type="button">Subscribe</button>
+        {!flag ? <button className="card__btn-sub" type="button" onClick={() => handlerSubscr()}>Subscribe</button>
+          : <button type="button" className="card__btn-sub unsub_btn" onClick={() => handlerUnsubscr()}>Unsubscribe</button>}
+
       </div>
 
     </div>
