@@ -18,7 +18,7 @@ export default function List() {
     setPage,
     totalPages,
   } = usePagination({
-    contentPerPage: 5,
+    contentPerPage: 4,
     count: servers.length,
   });
 

@@ -2,7 +2,6 @@ import React from 'react';
 import './OneVpn.scss';
 
 export default function OneVpn({ info }) {
-  console.log(info);
   return (
     <div className="one-vpn">
       <div className="one-vpn__box">
