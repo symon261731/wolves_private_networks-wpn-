@@ -7,6 +7,17 @@ const {
 
 const router = express.Router();
 
+// /api/server/max-rate - получить значение наибольшего рейтинга среди серверов
+router.get('/max-rate', async (req, res) => {
+  try {
+    const vpns = await ServerVPN.findAll({ order: [['rating', 'DESC']] });
+    return res.status(200).json(vpns[0].rating);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
+})
+
 // /api/server/all - получить все впн
 router.get('/all', async (req, res) => {
   try {
