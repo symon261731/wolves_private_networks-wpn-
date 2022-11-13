@@ -14,14 +14,24 @@ router.get('/all', async (req, res) => {
       },
     });
     if (!req.session.user) return res.json(vpns);
-    for (const server of vpns) {
-      const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: server.id } });
-      if (likeStatus) {
-        server.dataValues.likeStatus = true;
-      } else {
-        server.dataValues.likeStatus = false;
+    const likes = await RatingServer.findAll({ where: { user_id: req.session.user.id } });
+    for (let i = 0; i < vpns.length; i += 1) {
+      vpns[i].dataValues.likeStatus = false;
+      for (let j = 0; j < likes.length; j += 1) {
+        if (vpns[i].dataValues.id === likes[j].dataValues['server_id']) {
+          vpns[i].dataValues.likeStatus = true;
+          break;
+        }
       }
     }
+    // for (const server of vpns) {
+    //   const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: server.id } });
+    //   if (likeStatus) {
+    //     server.dataValues.likeStatus = true;
+    //   } else {
+    //     server.dataValues.likeStatus = false;
+    //   }
+    // }
     return res.json(vpns);
   } catch (error) {
     console.log(error);
@@ -65,12 +75,15 @@ router.post('/filter', async (req, res) => {
         },
       },
     });
-    for (const server of vpns) {
-      const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: server.id } });
-      if (likeStatus) {
-        server.dataValues.likeStatus = true;
-      } else {
-        server.dataValues.likeStatus = false;
+    if (!req.session.user) return res.json(vpns);
+    const likes = await RatingServer.findAll({ where: { user_id: req.session.user.id } });
+    for (let i = 0; i < vpns.length; i += 1) {
+      vpns[i].dataValues.likeStatus = false;
+      for (let j = 0; j < likes.length; j += 1) {
+        if (vpns[i].dataValues.id === likes[j]['server_id']) {
+          vpns[i].dataValues.likeStatus = true;
+          break;
+        }
       }
     }
     return res.json(vpns);
@@ -144,6 +157,7 @@ router.get('/:serverId', async (req, res) => {
     const { serverId } = req.params;
     const vpn = await ServerVPN.findByPk(serverId);
     if (!vpn) return res.json({ message: 'VPN with this number doesn\'t exist' });
+    if (!req.session.user) return req.json(vpn);
     const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: vpn.id } });
       if (likeStatus) {
         vpn.dataValues.likeStatus = true;
