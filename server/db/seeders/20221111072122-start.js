@@ -44,7 +44,7 @@ module.exports = {
     await queryInterface.bulkInsert('Users', users, {});
     // ServerVPN
     const vpns = [];
-    for (let i = 0; i < 40; i += 1) {
+    for (let i = 0; i < 5; i += 1) {
       vpns.push({
         //         ip: DataTypes.STRING,
         // location: DataTypes.STRING,
@@ -71,7 +71,7 @@ module.exports = {
         // config_path: DataTypes.STRING,
         // server_id: DataTypes.INTEGER
         user_id: Math.floor(Math.random() * 19 + 1),
-        server_id: Math.floor(Math.random() * 39 + 1),
+        server_id: Math.floor(Math.random() * 5 + 1),
         config_path: '/very/secure/path',
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -118,7 +118,7 @@ module.exports = {
     //   comment_id: DataTypes.INTEGER,
     // server_id: DataTypes.INTEGER
       temp.push({
-        server_id: Math.floor(Math.random() * 39 + 1),
+        server_id: Math.floor(Math.random() * 5 + 1),
         comment_id: Math.floor(Math.random() * 99 + 1),
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -161,7 +161,7 @@ module.exports = {
     for (let i = 0; i < 30; i += 1) {
       purchases.push({
         user_id: Math.floor(Math.random() * 19 + 1),
-        server_id: Math.floor(Math.random() * 39 + 1),
+        server_id: Math.floor(Math.random() * 5 + 1),
         createdAt: new Date(),
         updatedAt: new Date(),
       });
