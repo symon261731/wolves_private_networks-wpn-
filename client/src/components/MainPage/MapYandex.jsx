@@ -32,7 +32,7 @@ export default function Map() {
   useEffect(() => {
     // eslint-disable-next-line no-undef
     ymaps.ready(() => {
-      myMap.geoObjects.removeAll();
+      myMap?.geoObjects?.removeAll();
       // eslint-disable-next-line no-undef
       const MyIconContentLayout = ymaps.templateLayoutFactory.createClass( // Создаём макет содержимого.
         '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>',

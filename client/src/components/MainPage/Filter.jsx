@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions */
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setServersThunk } from '../../Redux/actions/serversActions';
 import './Filter.scss';
@@ -10,6 +11,13 @@ export default function Filter() {
   function handleChange(e) {
     setRatingValue(e.target.value);
   }
+
+  const [maxRating, setMaxRating] = useState(1000000);
+
+  useEffect(() => {
+    axios.get('/server/max-rate')
+      .then((res) => setMaxRating(res.data));
+  });
 
   const dispatch = useDispatch();
   function submitHandle(e) {
@@ -71,7 +79,7 @@ export default function Filter() {
         <div className="filter_item">
           <div className="mb-3">
             <p className="filter__label">Rating From</p>
-            <input name="ratingValue" type="range" value={ratingValue} min="1" max="100000" onChange={handleChange} />
+            <input name="ratingValue" type="range" value={ratingValue} min="1" max={maxRating} onChange={handleChange} />
             <output>{ratingValue}</output>
           </div>
         </div>
