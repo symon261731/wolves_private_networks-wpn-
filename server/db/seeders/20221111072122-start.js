@@ -148,7 +148,7 @@ module.exports = {
     // worker: DataTypes.INTEGER
       temp3.push({
         order_id: i + 1,
-        creator: orders[i + 1].user_id,
+        creator: orders[i]['user_id'],
         worker: Math.floor(Math.random() * 19 + 1),
         createdAt: new Date(),
         updatedAt: new Date(),
