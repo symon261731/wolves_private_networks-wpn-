@@ -76,7 +76,7 @@ router.get('/newjob/:orderId', authCheck, async (req, res) => {
   }
 });
 
-// /api/order/closejob - пометить заказ выполненным по номеру заказа
+// /api/order/closejob/:orderId - пометить заказ выполненным по номеру заказа
 router.get('/closejob/:orderId', authCheck, authCloseOrder, async (req, res) => {
   try {
     const { orderId } = req.params;
