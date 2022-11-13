@@ -1,6 +1,8 @@
 const express = require('express');
-const { ServerVPN, Purchase, RatingServer, User } = require('../db/models');
 const { Op } = require('sequelize');
+const {
+  ServerVPN, Purchase, RatingServer, User,
+} = require('../db/models');
 
 const router = express.Router();
 
@@ -65,14 +67,14 @@ router.post('/filter', async (req, res) => {
         },
       },
     });
-    for (const server of vpns) {
-      const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: server.id } });
-      if (likeStatus) {
-        server.dataValues.likeStatus = true;
-      } else {
-        server.dataValues.likeStatus = false;
-      }
-    }
+    // for (const server of vpns) {
+    //   const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: server.id } });
+    //   if (likeStatus) {
+    //     server.dataValues.likeStatus = true;
+    //   } else {
+    //     server.dataValues.likeStatus = false;
+    //   }
+    // }
     return res.json(vpns);
   } catch (error) {
     console.log(error);
@@ -145,11 +147,11 @@ router.get('/:serverId', async (req, res) => {
     const vpn = await ServerVPN.findByPk(serverId);
     if (!vpn) return res.json({ message: 'VPN with this number doesn\'t exist' });
     const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: vpn.id } });
-      if (likeStatus) {
-        vpn.dataValues.likeStatus = true;
-      } else {
-        vpn.dataValues.likeStatus = false;
-      }
+    if (likeStatus) {
+      vpn.dataValues.likeStatus = true;
+    } else {
+      vpn.dataValues.likeStatus = false;
+    }
     return res.json(vpn);
   } catch (error) {
     console.log(error);
