@@ -30,7 +30,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route element={<MainPage />} path="/" />
-        <Route element={<ProtectedRoute redirect="/" isAllowed={user?.id} />}>
+        <Route element={<ProtectedRoute redirect="/" isAllowed={!!user.id} />}>
           <Route path="/personalPage" element={<PersonalPage />} />
           <Route path="/addCash" element={<Pocket />} />
           <Route path="/createVPN" element={<FormVPN />} />
@@ -41,9 +41,11 @@ function App() {
           {/* <Route path="/server/:id" element={<ServerInfo />} /> */}
 
         </Route>
+        {/* <Route element={<ProtectedRoute redirect="/" isAllowed={!!user.id} />}> */}
         <Route path="/login" element={<Login />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/userHori/:id" element={<UserPage />} />
+        {/* </Route> */}
       </Routes>
     </div>
   );
