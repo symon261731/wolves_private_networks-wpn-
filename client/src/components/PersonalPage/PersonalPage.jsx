@@ -10,17 +10,22 @@ import Order from './Order/Order';
 import { setIssuedOrderThunk } from '../../Redux/actions/issuedOrderActions';
 import { setCurrentOrderThunk } from '../../Redux/actions/currentOrderActions';
 import './PesonalPage.scss';
+import { setServersOfUserThunk } from '../../Redux/actions/serversActions';
+import OneVpn from './OneVpn/OneVpn';
 
 export default function PersonalPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentOrder = useSelector((state) => state.currentOrder);
   const issuedOrder = useSelector((state) => state.issuedOrder);
+
   useEffect(() => {
     dispatch(setCurrentOrderThunk());
     dispatch(setCurrentOrderThunk());
     dispatch(setIssuedOrderThunk());
+    dispatch(setServersOfUserThunk());
   }, []);
+  const vpn = useSelector((state) => state.servers);
 
   const [toggleState, setToggleState] = useState(1);
   const toggleTab = (index) => {
@@ -65,7 +70,9 @@ export default function PersonalPage() {
         <div className={toggleState === 2 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
           <div className="personal-page__content">
             <h4 className="personal-page__tab-title">Ваши VPN</h4>
-            <p className="personal-page__content">У вас пока нету VPN</p>
+            { vpn.length !== 0
+              ? (vpn?.map((el) => <OneVpn key={el.id} info={el} />))
+              : (<p className="personal-page__content">У вас пока нету VPN</p>)}
             <Link className="personal-page__btn" to="/createVPN">Создать VPN</Link>
           </div>
         </div>

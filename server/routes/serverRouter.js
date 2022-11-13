@@ -1,7 +1,9 @@
 const express = require('express');
-const { ServerVPN, Purchase, RatingServer, User } = require('../db/models');
 const { Op } = require('sequelize');
 const authCheck = require('../middlewares/authUser');
+const {
+  ServerVPN, Purchase, RatingServer, User,
+} = require('../db/models');
 
 const router = express.Router();
 
@@ -152,11 +154,11 @@ router.get('/:serverId', async (req, res) => {
     if (!vpn) return res.json({ message: 'VPN with this number doesn\'t exist' });
     if (!req.session.user) return req.json(vpn);
     const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: vpn.id } });
-      if (likeStatus) {
-        vpn.dataValues.likeStatus = true;
-      } else {
-        vpn.dataValues.likeStatus = false;
-      }
+    if (likeStatus) {
+      vpn.dataValues.likeStatus = true;
+    } else {
+      vpn.dataValues.likeStatus = false;
+    }
     return res.json(vpn);
   } catch (error) {
     console.log(error);
