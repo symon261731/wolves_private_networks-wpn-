@@ -38,6 +38,16 @@ router.get('/all', async (req, res) => {
         }
       }
     }
+    const subscribed = await Purchase.findAll({ where: { user_id: req.session.user.id } });
+    for (let i = 0; i < vpns.length; i += 1) {
+      vpns[i].dataValues.subscribeStatus = false;
+      for (let j = 0; j < subscribed.length; j += 1) {
+        if (vpns[i].dataValues.id === subscribed[j].dataValues['server_id']) {
+          vpns[i].dataValues.subscribeStatus = true;
+          break;
+        }
+      }
+    }
     return res.json(vpns);
   } catch (error) {
     console.log(error);
@@ -92,6 +102,16 @@ router.post('/filter', async (req, res) => {
         }
       }
     }
+    const subscribed = await Purchase.findAll({ where: { user_id: req.session.user.id } });
+    for (let i = 0; i < vpns.length; i += 1) {
+      vpns[i].dataValues.subscribeStatus = false;
+      for (let j = 0; j < subscribed.length; j += 1) {
+        if (vpns[i].dataValues.id === subscribed[j].dataValues['server_id']) {
+          vpns[i].dataValues.subscribeStatus = true;
+          break;
+        }
+      }
+    }
     return res.json(vpns);
   } catch (error) {
     console.log(error);
@@ -124,6 +144,7 @@ router.get('/user/:userId/purchase', authCheck, async (req, res) => {
     const vpns = purchases.map((el) => el.ServerVPN);
     const likes = await RatingServer.findAll({ where: { user_id: req.session.user.id } });
     for (let i = 0; i < vpns.length; i += 1) {
+      vpns[i].dataValues.subscribeStatus = true;
       vpns[i].dataValues.likeStatus = false;
       for (let j = 0; j < likes.length; j += 1) {
         if (vpns[i].dataValues.id === likes[j]['server_id']) {
@@ -146,6 +167,7 @@ router.get('/user/:userId', authCheck, async (req, res) => {
     const vpns = await ServerVPN.findAll({ where: { user_id: userId } });
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.likeStatus = false;
+      vpns[i].dataValues.subscribeStatus = false;
     }
     return res.json(vpns);
   } catch (error) {
