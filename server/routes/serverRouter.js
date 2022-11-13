@@ -4,6 +4,7 @@ const authCheck = require('../middlewares/authUser');
 const {
   ServerVPN, Purchase, RatingServer, User,
 } = require('../db/models');
+const { NumberDictionary } = require('unique-names-generator');
 
 const router = express.Router();
 
@@ -27,6 +28,16 @@ router.get('/all', async (req, res) => {
         required: true,
       },
     });
+    const allPurchase = await Purchase.findAll({ include: [User] });
+    for (let i = 0; i < vpns.length; i += 1) {
+      vpns[i].dataValues.subscribedUsers = [];
+      for (let j = 0; j < allPurchase.length; j += 1) {
+        if (vpns[i].dataValues.id === allPurchase[j].dataValues['server_id']) {
+          vpns[i].dataValues.subscribedUsers.push(allPurchase[j].User);
+          allPurchase.splice(j, 1);
+        }
+      }
+    }
     if (!req.session.user) return res.json(vpns);
     const likes = await RatingServer.findAll({ where: { user_id: req.session.user.id } });
     for (let i = 0; i < vpns.length; i += 1) {
@@ -91,6 +102,16 @@ router.post('/filter', async (req, res) => {
         },
       },
     });
+    const allPurchase = await Purchase.findAll({ include: [User] });
+    for (let i = 0; i < vpns.length; i += 1) {
+      vpns[i].dataValues.subscribedUsers = [];
+      for (let j = 0; j < allPurchase.length; j += 1) {
+        if (vpns[i].dataValues.id === allPurchase[j].dataValues['server_id']) {
+          vpns[i].dataValues.subscribedUsers.push(allPurchase[j].User);
+          allPurchase.splice(j, 1);
+        }
+      }
+    }
     if (!req.session.user) return res.json(vpns);
     const likes = await RatingServer.findAll({ where: { user_id: req.session.user.id } });
     for (let i = 0; i < vpns.length; i += 1) {
@@ -140,8 +161,18 @@ router.post('/new/:userId', authCheck, async (req, res) => {
 router.get('/user/:userId/purchase', authCheck, async (req, res) => {
   try {
     const { userId } = req.params;
-    const purchases = await Purchase.findAll({ where: { user_id: userId }, include: [ServerVPN] });
+    const allPurchase = await Purchase.findAll({ include: [User, ServerVPN] });
+    const purchases = allPurchase.filter((el) => el.dataValues['user_id'] === Number(userId));
     const vpns = purchases.map((el) => el.ServerVPN);
+    for (let i = 0; i < vpns.length; i += 1) {
+      vpns[i].dataValues.subscribedUsers = [];
+      for (let j = 0; j < allPurchase.length; j += 1) {
+        if (vpns[i].dataValues.id === allPurchase[j].dataValues['server_id']) {
+          vpns[i].dataValues.subscribedUsers.push(allPurchase[j].User);
+          allPurchase.splice(j, 1);
+        }
+      }
+    }
     const likes = await RatingServer.findAll({ where: { user_id: req.session.user.id } });
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.subscribeStatus = true;
@@ -165,9 +196,17 @@ router.get('/user/:userId', authCheck, async (req, res) => {
   try {
     const { userId } = req.params;
     const vpns = await ServerVPN.findAll({ where: { user_id: userId } });
+    const allPurchase = await Purchase.findAll({ include: [User] });
     for (let i = 0; i < vpns.length; i += 1) {
+      vpns[i].dataValues.subscribedUsers = [];
       vpns[i].dataValues.likeStatus = false;
       vpns[i].dataValues.subscribeStatus = false;
+      for (let j = 0; j < allPurchase.length; j += 1) {
+        if (vpns[i].dataValues.id === allPurchase[j].dataValues['server_id']) {
+          vpns[i].dataValues.subscribedUsers.push(allPurchase[j].User);
+          allPurchase.splice(j, 1);
+        }
+      }
     }
     return res.json(vpns);
   } catch (error) {
@@ -182,6 +221,8 @@ router.get('/:serverId', async (req, res) => {
     const { serverId } = req.params;
     const vpn = await ServerVPN.findByPk(serverId);
     if (!vpn) return res.json({ message: 'VPN with this number doesn\'t exist' });
+    const subscribedUsers = (await Purchase.findAll({ where: { 'server_id': serverId }, include: [User] })).map((el) => el.User);
+    vpn.dataValues.subscribedUsers = subscribedUsers;
     if (!req.session.user) return req.json(vpn);
     const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: vpn.id } });
     if (likeStatus) {
