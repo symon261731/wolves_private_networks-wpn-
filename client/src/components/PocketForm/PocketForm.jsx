@@ -13,7 +13,7 @@ export default function PocketForm() {
             <input placeholder="Jonh Uvanov" type="text" className="pocket-form__input" />
             <p className="pocket-form__text">card number</p>
             <input placeholder="Your card number" type="text" className="pocket-form__input" />
-            <div className="pocket-form__flex">
+            <div className="pocket-form__flex-text">
               <p className="pocket-form__text">expire date</p>
               <p className="pocket-form__text">security code</p>
             </div>

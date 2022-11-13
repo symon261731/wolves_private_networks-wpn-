@@ -17,7 +17,6 @@ import ServerInfo from './components/ServerInfo/ServerInfo';
 import Pocket from './components/Pocket/Pocket';
 import PocketForm from './components/PocketForm/PocketForm';
 
-
 function App() {
   // const user = { login: 'admin', id: 1 };
   const dispatch = useDispatch();
