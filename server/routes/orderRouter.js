@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 const express = require('express');
 const { Order, OrderUser, User } = require('../db/models');
+const authCheck = require('../middlewares/authUser');
+const authCloseOrder = require('../middlewares/authCloseOrder');
 
 const router = express.Router();
 
@@ -16,8 +18,8 @@ router.get('/all', async (req, res) => {
 });
 
 // /api/order/new - создать новый заказ
-router.post('/new', async (req, res) => {
-  console.log('order', req.body.order);
+router.post('/new', authCheck, async (req, res) => {
+  //console.log('order', req.body.order);
   try {
     const {
       title, protocol, price, location,
@@ -38,7 +40,7 @@ router.post('/new', async (req, res) => {
 });
 
 // /api/order/myorders - получить все заказы, которые юзер создал
-router.get('/myorders', async (req, res) => {
+router.get('/myorders', authCheck, async (req, res) => {
   try {
     const orders = await Order.findAll({ where: { user_id: req.session.user.id } });
     return res.json(orders);
@@ -49,7 +51,7 @@ router.get('/myorders', async (req, res) => {
 });
 
 // /api/order/mywork - получить все заказы, которые юзер выполняет
-router.get('/mywork', async (req, res) => {
+router.get('/mywork', authCheck, async (req, res) => {
   try {
     const orders = await OrderUser.findAll({ where: { worker: req.session.user.id }, include: { model: Order, include: [User] } });
     const data = orders.map((el) => el.Order);
@@ -61,7 +63,7 @@ router.get('/mywork', async (req, res) => {
 });
 
 // /api/order/newjob/:orderId - откликнуться на заказ по номеру заказа
-router.get('/newjob/:orderId', async (req, res) => {
+router.get('/newjob/:orderId', authCheck, async (req, res) => {
   try {
     const { orderId } = req.params;
     await Order.update({ status: 'in progress' }, { where: { id: orderId } });
@@ -75,7 +77,7 @@ router.get('/newjob/:orderId', async (req, res) => {
 });
 
 // /api/order/closejob - пометить заказ выполненным по номеру заказа
-router.get('/closejob/:orderId', async (req, res) => {
+router.get('/closejob/:orderId', authCheck, authCloseOrder, async (req, res) => {
   try {
     const { orderId } = req.params;
     await Order.update({ status: 'closed' }, { where: { id: orderId } });

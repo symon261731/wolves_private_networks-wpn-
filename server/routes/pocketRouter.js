@@ -1,10 +1,11 @@
 const express = require('express');
 const { User, Card, Transaction } = require('../db/models');
+const authCheck = require('../middlewares/authUser');
 
 const router = express.Router();
 
 // /api/pocket/refill - положить деньги на кошелек
-router.post('/refill', async (req, res) => {
+router.post('/refill', authCheck, async (req, res) => {
   try {
     const { amount, name, card_number, expire_date } = req.body;
     const [card, created] = await Card.findOrCreate({

@@ -1,14 +1,16 @@
 const express = require('express');
 const { ServerVPN, RatingServer, User, RatingUser } = require('../db/models');
+const authCheck = require('../middlewares/authUser');
 
 const router = express.Router();
 
 
 // /api/rating/server/:serverId - поставить лайк серверу по его id
-router.get('/server/:serverId', async (req, res) => {
+router.get('/server/:serverId', authCheck, async (req, res) => {
   try {
     const { serverId } = req.params;
     const findServer = await ServerVPN.findOne({ where: { id: serverId } });
+    if (findServer['user_id'] === req.session.user.id) return res.json({ message: 'You can\'t rate your own service' });
     let liked = await RatingServer.findAll({ where: { user_id: req.session.user.id } });
     liked = liked.filter((el) => el['server_id'] === Number(serverId));
     if (liked.length === 0) {
@@ -26,7 +28,7 @@ router.get('/server/:serverId', async (req, res) => {
 })
 
 // /api/rating/user/:userId - поставить лайк юзеру по его id
-router.get('/user/:userId', async (req, res) => {
+router.get('/user/:userId', authCheck, async (req, res) => {
   try {
     const { userId } = req.params;
     if(Number(userId) === Number(req.session.user.id)) return res.json({message: 'Of course you can like yourself but not in my shift!'})
