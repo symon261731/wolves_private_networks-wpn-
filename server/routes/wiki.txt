@@ -21,6 +21,7 @@ orderRouter
 
 purchaseRouter
 /api/purchase/new/:serverId - подписаться на новый впн по его id(если деньги есть - ок, если ты уже подписан или не хватает денег - вернется message)
+/api/purchase/unsubscribe/:serverId - отписаться от впн сервера
 
 ratingRouter
 /api/rating/server/:serverId - поставить лайк серверу по его id
@@ -30,3 +31,4 @@ ratingRouter
 
 pocketRouter
 /api/pocket/refill - положить деньги на кошелек
+/api/pocket/check - вернуть количество денег у юзера
