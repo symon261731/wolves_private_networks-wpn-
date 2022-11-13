@@ -9,7 +9,6 @@ export default function Filter() {
 
   function handleChange(e) {
     setRatingValue(e.target.value);
-    console.log(1);
   }
 
   const dispatch = useDispatch();
@@ -27,7 +26,7 @@ export default function Filter() {
     options.to?.length === 0 ? options.to = 1000000000 : options.to;
     options.ratingValue?.length === 0 ? options.ratingValue = 0 : options.ratingValue;
 
-    console.log({ options });
+    // console.log({ options });
     dispatch(setServersThunk(options));
   }
 
@@ -72,7 +71,7 @@ export default function Filter() {
         <div className="filter_item">
           <div className="mb-3">
             <p className="filter__label">Rating From</p>
-            <input name="ratingValue" type="range" value={ratingValue} min="1" max="100" onChange={handleChange} />
+            <input name="ratingValue" type="range" value={ratingValue} min="1" max="100000" onChange={handleChange} />
             <output>{ratingValue}</output>
           </div>
         </div>
