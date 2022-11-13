@@ -24,4 +24,16 @@ router.post('/refill', authCheck, async (req, res) => {
   }
 })
 
+// /api/pocket/check - вернуть количество денег у юзера
+router.get('/check', authCheck, async (req, res) => {
+  try {
+    const user = await User.findByPk(req.session.user.id);
+    // return res.status(200).json(user);
+    return res.status(200).json(user.pocket);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({message: 'You broke my perfect database. Again.'})
+  }
+})
+
 module.exports = router;

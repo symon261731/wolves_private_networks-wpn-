@@ -8,7 +8,6 @@ const router = express.Router();
 router.get('/new/:serverId', authCheck, async (req, res) => {
   try {
     const { serverId } = req.params;
-    req.session.user = { id: 1 };
     const user = await User.findByPk(req.session.user.id);
     const server = await ServerVPN.findByPk(serverId);
     if(server['user_id'] === req.session.user.id) return res.json({message: 'You can\'t subscribe - it\'s your VPN!'})
@@ -29,5 +28,20 @@ router.get('/new/:serverId', authCheck, async (req, res) => {
     return res.status(500).json({message: 'You broke my perfect database. Again.'})
   }
 });
+
+// /api/purchase/unsubscribe/:serverId - отписаться от впн сервера
+router.delete('/unsubscribe/:serverId', authCheck, async (req, res) => {
+  try {
+    const { serverId } = req.params;
+    req.session.user.id = 9;
+    const findPurchase = await Purchase.findOne({ where: { server_id: serverId, user_id: req.session.user.id } });
+    if (!findPurchase) return res.json({ message: 'You can\'t unsubscribed, because you are not subscribed!' });
+    await Purchase.destroy({ where: { id: findPurchase.id } });
+    return res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({message: 'You broke my perfect database. Again.'})
+  }
+})
 
 module.exports = router;
