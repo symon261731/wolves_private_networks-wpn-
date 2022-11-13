@@ -26,6 +26,11 @@ export default function Card({ server }) {
           {' '}
           {curServer?.protocol}
         </p>
+        <p className="card__item">
+          IP:
+          {' '}
+          {curServer?.ip}
+        </p>
         <div className="card__flex">
           <p className="card__item">
             Location:
