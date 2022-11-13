@@ -18,10 +18,7 @@ export default function UserPage() {
   useEffect(() => {
     axios
       .get(`/user/${id}`)
-      .then((res) => {
-        // console.log(res);
-        setUser(res.data);
-      });
+      .then((res) => { setUser(res.data); });
   }, [id]);
 
   useEffect(() => {
