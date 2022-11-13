@@ -66,6 +66,14 @@ router.post('/filter', async (req, res) => {
         },
       },
     });
+    for (const server of vpns) {
+      const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: server.id } });
+      if (likeStatus) {
+        server.dataValues.likeStatus = true;
+      } else {
+        server.dataValues.likeStatus = false;
+      }
+    }
     return res.json(vpns);
   } catch (error) {
     console.log(error);
