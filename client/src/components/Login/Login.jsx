@@ -8,26 +8,27 @@ export default function Login() {
   const navigate = useNavigate();
 
   return (
-    <form
-      method="post"
-      onSubmit={(e) => {
-        e.preventDefault();
-        dispatch(loginUserThunk(Object.fromEntries(new FormData(e.target)), navigate));
-      }}
-    >
-      <div className="mb-3">
-        <label htmlFor="title-input" className="block mar-b-1">
-          Email
-          <input name="email" type="email" className="block w-100 no-outline no-border pad-1 mar-b-2" id="exampleInputEmail1" aria-describedby="emailHelp" />
-        </label>
-      </div>
-      <div className="mb-3">
-        <label htmlFor="title-input" className="block mar-b-1">
-          Password
-          <input name="password" type="password" className="block w-100 no-outline no-border pad-1 mar-b-2" id="exampleInputPassword1" />
-        </label>
-      </div>
-      <button type="submit" className="btn btn-primary">Submit</button>
-    </form>
+    <div className="auth__main-box">
+      <form
+        className="auth__form"
+        method="post"
+        onSubmit={(e) => {
+          e.preventDefault();
+          dispatch(loginUserThunk(Object.fromEntries(new FormData(e.target)), navigate));
+        }}
+      >
+        <div className="auth__container">
+          <div className="auth__content">
+            <p className="auth__text">Email</p>
+            <input placeholder="email" name="email" type="email" className="auth__input" />
+          </div>
+          <div className="auth__content">
+            <p className="auth__text">Password</p>
+            <input placeholder="password" name="password" type="password" className="auth__input" />
+          </div>
+          <button type="submit" className="auth__btn">Submit</button>
+        </div>
+      </form>
+    </div>
   );
 }

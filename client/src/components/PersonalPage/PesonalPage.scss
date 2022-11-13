@@ -11,6 +11,7 @@
     &__link-tab {
         display: flex;
         align-items: center;
+        column-gap: 10px;
         max-width: 1440px;
         justify-content: center;
         margin-bottom: 0;
@@ -24,6 +25,8 @@
         color: white;
         text-align: center;
         padding: 8px 25px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
 
         &:hover {
             color: green;
@@ -37,6 +40,7 @@
         max-width: 1440px;
         margin: 0 auto;
         padding: 20px;
+        border-radius: 15px;
     }
 
     &__one-tab {

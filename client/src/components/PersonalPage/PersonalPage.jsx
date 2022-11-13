@@ -1,12 +1,27 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import Order from './Order/Order';
+import { setIssuedOrderThunk } from '../../Redux/actions/issuedOrderActions';
+import { setCurrentOrderThunk } from '../../Redux/actions/currentOrderActions';
 import './PesonalPage.scss';
-import { Link } from 'react-router-dom';
 
 export default function PersonalPage() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const currentOrder = useSelector((state) => state.currentOrder);
+  const issuedOrder = useSelector((state) => state.issuedOrder);
+  useEffect(() => {
+    dispatch(setCurrentOrderThunk());
+    dispatch(setCurrentOrderThunk());
+    dispatch(setIssuedOrderThunk());
+  }, []);
+
   const [toggleState, setToggleState] = useState(1);
   const toggleTab = (index) => {
     setToggleState(index);
@@ -25,7 +40,19 @@ export default function PersonalPage() {
           onClick={() => toggleTab(2)}
           className={toggleState === 2 ? 'personal-page__item active-tab' : 'personal-page__item'}
         >
-          2 tab
+          VPN
+        </li>
+        <li
+          onClick={() => toggleTab(3)}
+          className={toggleState === 3 ? 'personal-page__item active-tab' : 'personal-page__item'}
+        >
+          current orders
+        </li>
+        <li
+          onClick={() => toggleTab(4)}
+          className={toggleState === 4 ? 'personal-page__item active-tab' : 'personal-page__item'}
+        >
+          issued orders
         </li>
       </ul>
       <div className="personal-page__tabs">
@@ -40,6 +67,29 @@ export default function PersonalPage() {
             <h4 className="personal-page__tab-title">Ваши VPN</h4>
             <p className="personal-page__content">У вас пока нету VPN</p>
             <Link className="personal-page__btn" to="/createVPN">Создать VPN</Link>
+          </div>
+        </div>
+        <div className={toggleState === 3 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
+          <h4 className="personal-page__tab-title">CURRENT ORDERS</h4>
+          <div className="personal-page__order current-order">
+            {currentOrder.length ? (
+              currentOrder.map((el) => <Order key={el.id} info={el} />)) : (
+                <div className="current-order__nope">
+                  <p className="current-order__text"> You haven't token a job yet</p>
+                  <button onClick={() => navigate('/orders')} type="button" className="current-order__btn">find order</button>
+                </div>
+            )}
+          </div>
+        </div>
+        <div className={toggleState === 4 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
+          <h4 className="personal-page__tab-title">ISSUED ORDERS</h4>
+          <div className="personal-page__order current-order">
+            { issuedOrder ? (issuedOrder?.map((el) => <Order key={el.id} info={el} />)) : (
+              <div className="current-order__nope">
+                <p className="current-order__text"> You haven't given a job yet</p>
+                <button onClick={() => navigate('/orders')} type="button" className="current-order__btn">find order</button>
+              </div>
+            )}
           </div>
         </div>
       </div>

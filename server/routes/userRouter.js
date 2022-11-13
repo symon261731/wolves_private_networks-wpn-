@@ -5,7 +5,9 @@ const { User } = require('../db/models');
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {
-  const { login, email, password, img } = req.body.inputs;
+  const {
+    login, email, password, img,
+  } = req.body.inputs;
   if (login && email && password) {
     try {
       // if (!img) img = '/img/avatar.jpg';
@@ -60,6 +62,13 @@ router.post('/check', (req, res) => {
 router.get('/logout', (req, res) => {
   req.session.destroy();
   res.clearCookie('sid').sendStatus(200);
+});
+
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+  console.log({ id });
+  const user = await User.findByPk(id);
+  res.json(user);
 });
 
 module.exports = router;

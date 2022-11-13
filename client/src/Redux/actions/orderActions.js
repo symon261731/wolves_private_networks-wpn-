@@ -4,8 +4,6 @@ import { SET_ORDER, ADD_ORDER } from '../type';
 export const setOrder = (payload) => ({ type: SET_ORDER, payload });
 export const addOrder = (payload) => ({ type: ADD_ORDER, payload });
 
-// const serverHost = process.env.REACT_APP_SERVERHOST;
-
 export const setOrderThunk = () => (dispatch) => axios
   .get('/order/all')
   .then((res) => dispatch(setOrder(res.data)))

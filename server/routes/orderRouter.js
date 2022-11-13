@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const express = require('express');
 const { Order, OrderUser, User } = require('../db/models');
 
@@ -10,28 +11,30 @@ router.get('/all', async (req, res) => {
     res.json(data);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
 });
 
 // /api/order/new - создать новый заказ
 router.post('/new', async (req, res) => {
-  // console.log('order', req.body.order);
+  console.log('order', req.body.order);
   try {
-    const { title, protocol, price, location } = req.body.order;
+    const {
+      title, protocol, price, location,
+    } = req.body.order;
     const newOrder = await Order.create({
       user_id: req.session.user.id,
       title,
       protocol,
       price: Number(price),
       location,
-      status: 'open'
+      status: 'open',
     });
     res.json(newOrder);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
-  };
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
 });
 
 // /api/order/myorders - получить все заказы, которые юзер создал
@@ -41,9 +44,9 @@ router.get('/myorders', async (req, res) => {
     return res.json(orders);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
-  };
-})
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
+});
 
 // /api/order/mywork - получить все заказы, которые юзер выполняет
 router.get('/mywork', async (req, res) => {
@@ -53,8 +56,8 @@ router.get('/mywork', async (req, res) => {
     return res.json(data);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
-  };
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
 });
 
 // /api/order/newjob/:orderId - откликнуться на заказ по номеру заказа
@@ -63,12 +66,12 @@ router.get('/newjob/:orderId', async (req, res) => {
     const { orderId } = req.params;
     await Order.update({ status: 'in progress' }, { where: { id: orderId } });
     const findOrder = await Order.findByPk(orderId);
-    const newConnection = await OrderUser.create({ creator: findOrder['user_id'], worker: req.session.user.id, order_id: findOrder.id })
+    const newConnection = await OrderUser.create({ creator: findOrder.user_id, worker: req.session.user.id, order_id: findOrder.id });
     return res.sendStatus(200);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
-  };
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
 });
 
 // /api/order/closejob - пометить заказ выполненным по номеру заказа
@@ -85,8 +88,8 @@ router.get('/closejob/:orderId', async (req, res) => {
     return res.sendStatus(200);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
-  };
-})
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
+});
 
 module.exports = router;

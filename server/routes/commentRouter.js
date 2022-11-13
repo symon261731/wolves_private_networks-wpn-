@@ -1,5 +1,7 @@
 const express = require('express');
-const { Comment, UserComment, ServerComment, User } = require('../db/models');
+const {
+  Comment, UserComment, ServerComment, User,
+} = require('../db/models');
 
 const router = express.Router();
 
@@ -8,28 +10,27 @@ router.get('/user/all/:userId', async (req, res) => {
   try {
     const { userId } = req.params;
     const comments = await UserComment.findAll({ where: { user_id: userId }, include: { model: Comment, include: [User] } });
-    // const commentsText = comments.map((el) => {
-    //   return { comment: el.Comment.content, login: el.Comment.User.login }
-    // });
+    // const commentsText = comments.map((el) => ({ comment: el.Comment.content, login: el.Comment.User.login }));
     return res.json(comments);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
 });
 
 // /api/comment/user/new/:userId - добавить комментарий о юзере (юзер id - это тот человек, на которого мы пишем коммент)
 router.post('/user/new/:userId', async (req, res) => {
   try {
+    // console.log(req.body);
     const { userId } = req.params;
-    const { content } = req.body;
+    const content = req.body.input;
     const newComment = await Comment.create({ content, user_id: req.session.user.id });
-    await UserComment.create({ user_id: userId, comment_id: newComment.id });
-    const comment = { comment: newComment.content, login: req.session.user.login };
+    const temp = await UserComment.create({ user_id: userId, comment_id: newComment.id });
+    const comment = await UserComment.findOne({ where: { id: temp.id }, include: { model: Comment, include: [User] } });
     return res.json(comment);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
 });
 
@@ -38,13 +39,12 @@ router.get('/server/all/:serverId', async (req, res) => {
   try {
     const { serverId } = req.params;
     const comments = await ServerComment.findAll({ where: { server_id: serverId }, include: { model: Comment, include: [User] } });
-    // const commentsText = comments.map((el) => {
-    //   return { comment: el.Comment.content, login: el.Comment.User.login }
-    // });
+
+    // const commentsText = comments.map((el) => ({ comment: el.Comment.content, login: el.Comment.User.login }));
     return res.json(comments);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
 });
 
@@ -52,14 +52,15 @@ router.get('/server/all/:serverId', async (req, res) => {
 router.post('/server/new/:serverId', async (req, res) => {
   try {
     const { serverId } = req.params;
-    const { content } = req.body;
+    const content = req.body.input;
     const newComment = await Comment.create({ content, user_id: req.session.user.id });
-    await ServerComment.create({ server_id: serverId, comment_id: newComment.id });
-    const comment = { comment: newComment.content, login: req.session.user.login };
+    const temp = await ServerComment.create({ server_id: serverId, comment_id: newComment.id });
+    // const comment = { comment: newComment.content, login: req.session.user.login };
+    const comment = await ServerComment.findOne({ where: { id: temp.id }, include: { model: Comment, include: [User] } });
     return res.json(comment);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'You broke my perfect database. Again.' })
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
 });
 module.exports = router;
