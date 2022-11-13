@@ -1,7 +1,6 @@
 const express = require('express');
 const { ServerVPN, Purchase, RatingServer, User } = require('../db/models');
 const { Op } = require('sequelize');
-const { ServerVPN, Purchase, User } = require('../db/models');
 
 const router = express.Router();
 
