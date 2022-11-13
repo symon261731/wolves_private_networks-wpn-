@@ -19,3 +19,8 @@ export const SET_ISSUED_ORDER = 'SET_ISSUED_ORDER'; // которое выдал
 // Comments
 export const SET_COMMENT = 'SET_COMMENT';
 export const ADD_COMMENT = 'ADD_COMMENT';
+
+// Pocket
+
+export const ADD_MONEY_POCKET = 'ADD_MONEY_POCKET';
+export const PAY_MONEY_POCKET = 'PAY_MONEY_POCKET';

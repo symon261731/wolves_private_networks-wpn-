@@ -5,6 +5,7 @@ import orderReducer from './reducers/orderReducer';
 import currentOrderReducer from './reducers/currentOrderReducer';
 import issuedOrderReducer from './reducers/issuedOrderReducer';
 import commentsReducer from './reducers/commentsReducer';
+import pocketReducer from './reducers/pocketReducer';
 
 export default configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export default configureStore({
     currentOrder: currentOrderReducer,
     issuedOrder: issuedOrderReducer,
     comments: commentsReducer,
+    pocket: pocketReducer,
 
   },
 });
