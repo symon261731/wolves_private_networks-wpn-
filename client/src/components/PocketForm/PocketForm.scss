@@ -1,4 +1,5 @@
 .pocket-form {
+    padding: 5px;
     margin-top: 6%;
 
     &__box {
@@ -19,6 +20,13 @@
         &:last-child {
             margin-bottom: 20px;
         }
+    }
+
+    &__flex-text {
+        display: flex;
+        column-gap: 50px;
+        row-gap: 5px;
+        justify-content: center;
     }
 
     &__text {
