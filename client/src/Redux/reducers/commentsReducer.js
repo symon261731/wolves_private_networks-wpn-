@@ -1,7 +1,4 @@
-import {
-  ADD_COMMENT,
-  SET_COMMENT,
-} from '../type';
+import { ADD_COMMENT, SET_COMMENT } from '../type';
 
 export default function listsReducer(state = [], action) {
   const { type, payload } = action;
