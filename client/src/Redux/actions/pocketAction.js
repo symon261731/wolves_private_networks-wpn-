@@ -6,6 +6,10 @@ export const addMoneyPocket = (payload) => ({ type: ADD_MONEY_POCKET, payload })
 export const payMoneyPocket = (payload) => ({ type: PAY_MONEY_POCKET, payload });
 
 export const setMoneyPocketThunk = () => (dispatch) => {
+  axios
+    .get('/pocket/check')
+    .then((res) => dispatch(setMoneyPocket(res.data)))
+    .catch(console.log);
 };
 
 export const addMoneyPocketThunk = (param) => (dispatch) => {

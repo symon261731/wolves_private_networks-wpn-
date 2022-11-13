@@ -6,7 +6,7 @@
     &__box {
         padding: 15px;
         background-color: #333;
-        max-width: 900px;
+        max-width: 700px;
         margin: 0 auto;
         text-align: center;
         border-radius: 25px;
@@ -15,20 +15,23 @@
     &__form {
         display: flex;
         flex-direction: column;
-
+        align-items: center
     }
 
-    &__flex {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    // &__flex {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
 
-        &:last-child {
-            margin-bottom: 20px;
-        }
-    }
+    //     &:last-child {
+    //         margin-bottom: 20px;
+    //     }
+    // }
 
     &__input {
+
+        width: 100%;
+        max-width: 500px;
         padding: 10px;
         border-radius: 10px;
         border: none;
