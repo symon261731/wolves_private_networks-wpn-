@@ -9,7 +9,7 @@ export default function Pocket() {
     <div className="pocket">
       <div className="pocket__box">
         <p className="pocket__current-cash">
-          {user?.pocket}
+          {user?.pocket || 0}
           $
         </p>
         <p className="pocket__text">
