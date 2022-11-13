@@ -1,12 +1,16 @@
 import axios from 'axios';
-import { ADD_MONEY_POCKET, PAY_MONEY_POCKET } from '../type';
+import { ADD_MONEY_POCKET, PAY_MONEY_POCKET, SET_MONEY_POCKET } from '../type';
 
+export const setMoneyPocket = (payload) => ({ type: SET_MONEY_POCKET, payload });
 export const addMoneyPocket = (payload) => ({ type: ADD_MONEY_POCKET, payload });
 export const payMoneyPocket = (payload) => ({ type: PAY_MONEY_POCKET, payload });
 
-export const addMoneyPocketThunk = () => (dispatch) => {
+export const setMoneyPocketThunk = () => (dispatch) => {
+};
+
+export const addMoneyPocketThunk = (param) => (dispatch) => {
   axios
-    .post()
+    .post('/pocket/refill', { param })
     .then((res) => dispatch(addMoneyPocket(res.data)))
     .catch(console.log);
 };

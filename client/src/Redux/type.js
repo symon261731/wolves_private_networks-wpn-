@@ -22,5 +22,6 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 
 // Pocket
 
+export const SET_MONEY_POCKET = 'SET_MONEY_POCKET';
 export const ADD_MONEY_POCKET = 'ADD_MONEY_POCKET';
 export const PAY_MONEY_POCKET = 'PAY_MONEY_POCKET';
