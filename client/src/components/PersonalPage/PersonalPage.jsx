@@ -18,12 +18,13 @@ export default function PersonalPage() {
   const dispatch = useDispatch();
   const currentOrder = useSelector((state) => state.currentOrder);
   const issuedOrder = useSelector((state) => state.issuedOrder);
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(setCurrentOrderThunk());
     dispatch(setCurrentOrderThunk());
     dispatch(setIssuedOrderThunk());
-    dispatch(setServersOfUserThunk());
+    dispatch(setServersOfUserThunk(user.id));
   }, []);
   const vpn = useSelector((state) => state.servers);
 
