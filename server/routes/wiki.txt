@@ -27,3 +27,6 @@ ratingRouter
 /api/rating/user/:userId - поставить лайк юзеру по его id
 /api/rating/check/user/:userId - проверить статус лайка юзера по номеру юзера
 /api/rating/check/server/:serverId - проверить статус лайка сервера по номеру сервера
+
+pocketRouter
+/api/pocket/refill - положить деньги на кошелек
