@@ -122,12 +122,14 @@ router.get('/user/:userId/purchase', authCheck, async (req, res) => {
     const { userId } = req.params;
     const purchases = await Purchase.findAll({ where: { user_id: userId }, include: [ServerVPN] });
     const vpns = purchases.map((el) => el.ServerVPN);
-    for (const server of vpns) {
-      const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: server.id } });
-      if (likeStatus) {
-        server.dataValues.likeStatus = true;
-      } else {
-        server.dataValues.likeStatus = false;
+    const likes = await RatingServer.findAll({ where: { user_id: req.session.user.id } });
+    for (let i = 0; i < vpns.length; i += 1) {
+      vpns[i].dataValues.likeStatus = false;
+      for (let j = 0; j < likes.length; j += 1) {
+        if (vpns[i].dataValues.id === likes[j]['server_id']) {
+          vpns[i].dataValues.likeStatus = true;
+          break;
+        }
       }
     }
     return res.json(vpns);
@@ -142,13 +144,8 @@ router.get('/user/:userId', authCheck, async (req, res) => {
   try {
     const { userId } = req.params;
     const vpns = await ServerVPN.findAll({ where: { user_id: userId } });
-    for (const server of vpns) {
-      const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: server.id } });
-      if (likeStatus) {
-        server.dataValues.likeStatus = true;
-      } else {
-        server.dataValues.likeStatus = false;
-      }
+    for (let i = 0; i < vpns.length; i += 1) {
+      vpns[i].dataValues.likeStatus = false;
     }
     return res.json(vpns);
   } catch (error) {
