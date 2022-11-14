@@ -48,6 +48,7 @@
     }
 
     &__btn {
+        position: relative;
         align-self: center;
         text-align: center;
         background-color: #309F85;
@@ -62,6 +63,19 @@
         &:hover {
             color: white;
             background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #309F85;
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            background-image: url('../../../public/img/btn.png');
+            background-repeat: no-repeat;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            z-index: 4;
+            top: 13%;
+            right: -7%;
         }
     }
 }

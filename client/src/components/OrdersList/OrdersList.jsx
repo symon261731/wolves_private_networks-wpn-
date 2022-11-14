@@ -32,7 +32,7 @@ export default function OrdersList() {
   return (
     <div className="order">
       <div className="order__container">
-        <h1 className="order__title">Заказы</h1>
+        <h1 className="order__title">ORDERS</h1>
         <Link to="/createorder" className="order__btn">Make order</Link>
       </div>
       <div>
