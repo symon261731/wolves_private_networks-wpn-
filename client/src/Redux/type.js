@@ -16,6 +16,7 @@ export const SET_MY_SUBSCRIBES = 'SET_MY_SUBSCRIBES';
 // MyServers
 export const SET_MY_SERVERS = 'SET_MY_SERVERS';
 export const ADD_MY_SERVERS = 'ADD_MY_SERVERS';
+export const DELETE_MY_SERVER = 'ADD_MY_SERVER';
 
 //
 export const SET_ORDER = 'SET_ORDER';
