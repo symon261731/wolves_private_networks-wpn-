@@ -13,7 +13,7 @@ router.get('/new/:serverId', authCheck, async (req, res) => {
     if(server['user_id'] === req.session.user.id) return res.json({message: 'You can\'t subscribe - it\'s your VPN!'})
     const purchases = await Purchase.findAll({ where: { user_id: user.id } });
     const subscribed = purchases.filter((el) => el['server_id'] === Number(serverId));
-    console.log({purchases, subscribed});
+    // console.log({purchases, subscribed});
     if (user.pocket >= server.price && subscribed.length === 0) {
       const purchase = await Purchase.create({ user_id: user.id, server_id: serverId });
       const newMoney = user.pocket - server.price;
@@ -34,9 +34,8 @@ router.get('/new/:serverId', authCheck, async (req, res) => {
 router.delete('/unsubscribe/:serverId', authCheck, async (req, res) => {
   try {
     const { serverId } = req.params;
-    // req.session.user.id = 9;
+    req.session.user.id = 9;
     const findPurchase = await Purchase.findOne({ where: { server_id: serverId, user_id: req.session.user.id } });
-    console.log(findPurchase);
     if (!findPurchase) return res.json({ message: 'You can\'t unsubscribed, because you are not subscribed!' });
     await Purchase.destroy({ where: { id: findPurchase.id } });
     return res.sendStatus(200);

@@ -1,8 +1,5 @@
 import {
-  ADD_SERVERS,
-  SET_SERVERS,
-  EDIT_SERVER,
-  LOGOUT_SERVER,
+  ZERO_SUB,
 } from '../type';
 
 export default function listsReducer(state = [], action) {
@@ -22,14 +19,8 @@ export default function listsReducer(state = [], action) {
     //   && server.price <= (Number(payload.to || Infinity)));
     case ADD_SERVERS:
       return [...state, payload];
-    case EDIT_SERVER:
-      return state.map((server) => (server.id === payload.id ? payload : server));
-    case LOGOUT_SERVER:
-      return state.map((server) => {
-        const tmp = { ...server };
-        tmp.subscribeStatus = false;
-        return tmp;
-      });
+    // case EDIT_LIST:
+    //   return state.map((note) => (note.id === payload.id ? payload : note));
     default:
       return state;
   }

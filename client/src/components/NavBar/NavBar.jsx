@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setMoneyPocketThunk } from '../../Redux/actions/pocketAction';
+import { logoutServer } from '../../Redux/actions/serversActions';
 import { logoutUserThunk } from '../../Redux/actions/userActions';
 import './NavBar.scss';
 
@@ -39,6 +40,7 @@ export default function NavBar() {
                   to="/#"
                   onClick={() => {
                     dispatch(logoutUserThunk());
+                    dispatch(logoutServer());
                   }}
                 >
                   Logout
