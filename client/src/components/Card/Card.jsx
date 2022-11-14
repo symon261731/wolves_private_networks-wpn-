@@ -28,8 +28,6 @@ export default function Card({ server }) {
       }
     }
   };
-
-  console.log(user, '----');
   return (
 
     <div className="card">

@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import Order from './Order/Order';
@@ -18,6 +18,7 @@ import Card from '../Card/Card';
 import { editServersOfUserThunk } from '../../Redux/actions/serversActions';
 
 export default function PersonalPage() {
+  const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentOrder = useSelector((state) => state.currentOrder);
@@ -33,14 +34,15 @@ export default function PersonalPage() {
   const servers = useSelector((state) => state.servers);
   const mySubscribes = servers.filter((server) => server.subscribeStatus === true);
 
-  const [toggleState, setToggleState] = useState(1);
+  const [toggleState, setToggleState] = useState(Number(id) || 1);
   const toggleTab = (index) => {
     setToggleState(index);
   };
 
   return (
     <div className="personal-page">
-      <h2 className="personal-page__title">Личный кабинет</h2>
+      <h2 className="personal-page__title">Welcome to your personal account page </h2>
+      <h3 className="personal-page__title">{user?.login}</h3>
       <ul className="personal-page__link-tab">
         <li
           onClick={() => toggleTab(1)}
