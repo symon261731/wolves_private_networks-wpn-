@@ -21,7 +21,8 @@ export const DELETE_MY_SERVER = 'ADD_MY_SERVER';
 //
 export const SET_ORDER = 'SET_ORDER';
 export const ADD_ORDER = 'ADD_ORDER';
-
+export const SET_ONE_ORDER = 'SET_ONE_ORDER';
+export const GET_NEW_ORDER = 'GET_NEW_ORDER';
 //
 export const SET_CURRENT_ORDER = 'SET_CURRENT_ORDER'; // которые взял сам
 //

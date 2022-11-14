@@ -19,7 +19,7 @@ router.get('/all', async (req, res) => {
 
 // /api/order/new - создать новый заказ
 router.post('/new', authCheck, async (req, res) => {
-  //console.log('order', req.body.order);
+  // console.log('order', req.body.order);
   try {
     const {
       title, protocol, price, location,
