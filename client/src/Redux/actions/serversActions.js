@@ -35,13 +35,16 @@ export const setAllServersThunk = () => (dispatch) => {
 };
 
 export const editServersOfUserThunk = (curserver) => (dispatch) => {
-  if (curserver.subscribeStatus) {
+  console.log(curserver);
+  if (!curserver?.subscribeStatus === true) {
+    console.log('HERE');
     axios
       .delete(`/purchase/unsubscribe/${curserver.id}`)
       .then(() => { console.log(curserver); dispatch(editServer(curserver)); });
     // .catch(console.log)
     // .then(() => dispatch(setAllServersThunk()));
   } else {
+    console.log('HERE1');
     axios
       .get(`/purchase/new/${curserver.id}`)
       .then(() => dispatch(editServer(curserver)));

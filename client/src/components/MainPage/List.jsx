@@ -7,7 +7,7 @@ import Pagination from '../Pagination/Pagination';
 
 export default function List() {
   const servers = useSelector((state) => state.servers);
-  console.log(servers);
+  // console.log(servers);
 
   const {
     firstContentIndex,

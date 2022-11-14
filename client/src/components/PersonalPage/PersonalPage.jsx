@@ -68,7 +68,12 @@ export default function PersonalPage() {
           <div className="personal-page__content">
             <h4 className="personal-page__tab-title">My Subscribes</h4>
             { mySubscribes.length !== 0
-              ? (mySubscribes?.map((el) => <OneVpn key={el.id} info={el} />))
+              ? (mySubscribes?.map((el) => (
+                <>
+                  <OneVpn key={el.id} info={el} />
+                  <button key={el.id} type="button" className="personal-page__btn" to="/">Download config</button>
+                </>
+              )))
               : (<p className="personal-page__content">You have no VPN</p>)}
           </div>
         </div>
