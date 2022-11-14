@@ -4,7 +4,7 @@ const path = require('path');
 const process = require('process');
 const authCheck = require('../middlewares/authUser');
 const {
-  ServerVPN, Purchase, RatingServer, User,
+  ServerVPN, Purchase, RatingServer, User, File, ServerComment
 } = require('../db/models');
 
 const router = express.Router();
@@ -257,5 +257,22 @@ router.get('/:serverId', async (req, res) => {
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
 });
+
+
+// /api/server/:serverId - удалить сервер отовсюду
+router.delete('/:serverId', async (req, res) => {
+  try {
+    const { serverId } = req.params;
+    await Purchase.destroy({ where: { server_id: serverId } });
+    await RatingServer.destroy({ where: { server_id: serverId } });
+    await File.destroy({ where: { server_id: serverId } });
+    await ServerComment.destroy({ where: { server_id: serverId } });
+    await ServerVPN.destroy({ where: { id: serverId } });
+    return res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
+})
 
 module.exports = router;

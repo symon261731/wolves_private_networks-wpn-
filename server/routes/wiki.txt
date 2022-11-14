@@ -1,9 +1,11 @@
 serverRouter
 /api/server/all - получить все впн
 /api/server/new/:userId - создать новый впн
-/api/server/:serverId - получить сервер по его id
+GET /api/server/:serverId - получить сервер по его id
+DELETE /api/server/:serverId - удалить сервер отовсюду
 /api/server/user/:userId - получить все сервера, которые создал юзер по его id
 /api/server/user/:userId/purchase - получить все подписки на сервера по номеру id
+/api/server/max-rate - получить значение наибольшего рейтинга среди серверов
 
 commentRouter
 /api/comment/user/all/:userId - получить все комментарии о юзере по его id
