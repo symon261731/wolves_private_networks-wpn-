@@ -81,7 +81,7 @@ export default function PersonalPage() {
             { mySubscribes.length !== 0
               ? (mySubscribes?.map((el) => (
                 <>
-                  <OneVpn key={el.id} info={el} />
+                  <OneVpn key={el.id} info={el} flag />
                   <button key={el.id + 1} type="button" className="personal-page__btn" to="/">Download config</button>
                   <button onClick={() => handlerUnsubscr(el)} key={el.id + 2} type="button" className="personal-page__btn" to="/">Unsubscribe</button>
                 </>
@@ -96,7 +96,7 @@ export default function PersonalPage() {
             { vpn.length !== 0
               ? (
                 <div className="second-tab second-tab_margin">
-                  {vpn?.map((el) => <OneVpn key={el.id} info={el} />)}
+                  {vpn?.map((el) => <OneVpn key={el.id} info={el} flag={false} />)}
                 </div>
               )
               : (<p className="personal-page__content">You don' have VPN</p>)}
