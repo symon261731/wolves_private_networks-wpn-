@@ -1,0 +1,68 @@
+.order-about {
+
+    &__box {
+        color: white;
+        font-weight: 500;
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #333;
+        padding: 25px;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__content {
+        text-align: center;
+        align-self: center;
+        font-size: 23px;
+    }
+
+    &_login {
+        font-size: 35px;
+        line-height: 2;
+        font-weight: 900;
+    }
+
+    &_price {
+        color: orange
+    }
+
+    &_margin {
+        margin-right: 10px;
+    }
+
+    &__confirm {
+        position: relative;
+        color: white;
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: 500;
+        text-align: center;
+        background-color: #309F85;
+        border: none;
+        border-radius: 45px;
+        padding: 16px 50px;
+
+        &:hover {
+            color: white;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #309F85;
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            background-image: url('../../../public/img/btn.png');
+            background-repeat: no-repeat;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            z-index: 4;
+            top: 19%;
+            right: -4%;
+        }
+
+
+    }
+}

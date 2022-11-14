@@ -19,7 +19,7 @@ router.get('/all', async (req, res) => {
 
 // /api/order/new - создать новый заказ
 router.post('/new', authCheck, async (req, res) => {
-  //console.log('order', req.body.order);
+  // console.log('order', req.body.order);
   try {
     const {
       title, protocol, price, location,
@@ -94,4 +94,20 @@ router.get('/closejob/:orderId', authCheck, authCloseOrder, async (req, res) => 
   }
 });
 
+// /api/order/:orderId - возвращает информацию о заказе по его номеру
+router.get('/:orderId', async (req, res) => {
+  try {
+    console.log(req.params);
+    const { orderId } = req.params;
+    const order = await Order.findOne({ where: { id: orderId }, include: [User] });
+    if (order.status !== 'open') {
+      const worker = await OrderUser.findOne({ where: { order_id: orderId }, include: [User] });
+      order.dataValues.worker = worker.User;
+    }
+    return res.json(order);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
+});
 module.exports = router;

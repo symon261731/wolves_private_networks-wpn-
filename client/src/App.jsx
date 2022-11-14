@@ -17,6 +17,7 @@ import ServerInfo from './components/ServerInfo/ServerInfo';
 import Pocket from './components/Pocket/Pocket';
 import PocketForm from './components/PocketForm/PocketForm';
 import OrderAbout from './components/OrderAbout/OrderAbout';
+import FourZeroFour from './components/FourZeroFour/FourZeroFour';
 
 function App() {
   // const user = { login: 'admin', id: 1 };
@@ -32,14 +33,14 @@ function App() {
       <Routes>
         <Route element={<MainPage />} path="/" />
         <Route element={<ProtectedRoute redirect="/" isAllowed={!!user.id} />}>
-          <Route path="/personalPage" element={<PersonalPage />} />
+          <Route path="/personalPage/:id" element={<PersonalPage />} />
           <Route path="/addCash" element={<Pocket />} />
           <Route path="/createVPN" element={<FormVPN />} />
           <Route path="/createorder" element={<FormOrder />} />
           <Route path="/orders" element={<OrdersList />} />
           <Route path="/server/:id" element={<ServerInfo />} />
           <Route path="/pocketForm" element={<PocketForm />} />
-          <Route path="/aboutOrder/:id" element={<OrderAbout />} />
+          <Route path="/:orderId" element={<OrderAbout />} />
           {/* <Route path="/server/:id" element={<ServerInfo />} /> */}
 
         </Route>
@@ -48,6 +49,7 @@ function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="/userHori/:id" element={<UserPage />} />
         {/* </Route> */}
+        <Route path="/fourzerofour" element={<FourZeroFour />} />
       </Routes>
     </div>
   );
