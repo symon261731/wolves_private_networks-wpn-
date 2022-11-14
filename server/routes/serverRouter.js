@@ -120,6 +120,7 @@ router.post('/filter', async (req, res) => {
         },
       },
     });
+    // console.log(vpns.length);
     const allPurchase = await Purchase.findAll({ include: [User] });
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.subscribedUsers = [];
@@ -151,6 +152,8 @@ router.post('/filter', async (req, res) => {
         }
       }
     }
+    // console.log(vpns.length);
+
     return res.json(vpns);
   } catch (error) {
     console.log(error);
