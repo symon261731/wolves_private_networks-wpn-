@@ -80,7 +80,7 @@ export default function Filter() {
         <div className="filter_item">
           <div className="mb-3">
             <p className="filter__label">Rating From</p>
-            <input name="ratingValue" type="range" value={ratingValue} min="1" max={maxRating} onChange={handleChange} />
+            <input name="ratingValue" type="range" value={ratingValue} min="0" max={maxRating} onChange={handleChange} />
             <output>{ratingValue}</output>
           </div>
         </div>
