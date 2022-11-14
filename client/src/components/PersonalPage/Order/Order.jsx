@@ -2,7 +2,7 @@ import React from 'react';
 import './Order.scss';
 
 export default function Order({ info }) {
-  // console.log(info);
+  console.log(info);
   return (
     <div className="current-order__box">
       <p className="current-order__title">{info?.title}</p>
@@ -13,7 +13,9 @@ export default function Order({ info }) {
           {' '}
           <span>$</span>
         </p>
+
       </div>
+      <button type="button" className="current-order__btn">confirm order</button>
     </div>
   );
 }
