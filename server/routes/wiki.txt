@@ -20,6 +20,7 @@ orderRouter
 /api/order/mywork - получить все заказы, которые юзер выполняет
 /api/order/newjob/:orderId - откликнуться на заказ
 /api/order/closejob/:orderId - пометить заказ выполненным
+/api/order/:orderId - возвращает информацию о заказе по его номеру
 
 purchaseRouter
 /api/purchase/new/:serverId - подписаться на новый впн по его id(если деньги есть - ок, если ты уже подписан или не хватает денег - вернется message)
