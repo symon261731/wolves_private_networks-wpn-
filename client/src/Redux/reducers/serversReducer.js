@@ -23,6 +23,7 @@ export default function listsReducer(state = [], action) {
     case ADD_SERVERS:
       return [...state, payload];
     case EDIT_SERVER:
+      console.log({ payload });
       return state.map((server) => (server.id === payload.id ? payload : server));
     case LOGOUT_SERVER:
       return state.map((server) => {
