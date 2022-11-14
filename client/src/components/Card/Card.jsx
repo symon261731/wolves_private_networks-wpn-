@@ -18,20 +18,20 @@ export default function Card({ server }) {
     setCurServer((prev) => ({ ...prev, rating: prev.rating + 1 }));
   }
 
-  const handlerSubscr = async () => {
-    const serv = { ...curServer };
-    console.log(serv);
+  // const handlerSubscr = async () => {
+  //   const serv = { ...curServer };
+  //   serv.subscribeStatus = true;
+  //   console.log(serv);
 
-    dispatch(editServersOfUserThunk(serv));
-    serv.subscribeStatus = true;
-  };
+  //   dispatch(editServersOfUserThunk(serv));
+  // };
 
   const handlerUnsubscr = async () => {
     // curServer.subscribeStatus = false;
     const serv = { ...curServer };
+    serv.subscribeStatus = !serv.subscribeStatus;
 
     dispatch(editServersOfUserThunk(serv));
-    serv.subscribeStatus = false;
   };
 
   return (
@@ -82,7 +82,7 @@ export default function Card({ server }) {
           {!id
                     && <button className="card__btn-info" type="button">Info</button>}
         </Link>
-        {!server.subscribeStatus ? <button className="card__btn-sub" type="button" onClick={() => handlerSubscr()}>Subscribe</button>
+        {!server.subscribeStatus ? <button className="card__btn-sub" type="button" onClick={() => handlerUnsubscr()}>Subscribe</button>
           : <button type="button" className="card__btn-sub unsub_btn" onClick={() => handlerUnsubscr()}>Unsubscribe</button>}
 
       </div>
