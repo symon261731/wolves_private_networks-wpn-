@@ -58,30 +58,61 @@
     &__vpn-list {
         color: white;
         padding: 15px;
+        border-radius: 15px;
         background-color: #333;
         display: flex;
         flex-direction: column;
     }
 
+    // Карточка vpn
 
-    &__vpn-info {
+    &__vpn-item {
+        padding: 15px 200px;
         display: flex;
-        justify-content: space-around;
-        align-items: center;
-
+        justify-content: space-between;
+        font-weight: 600;
+        font-size: 19px;
     }
 
     &__vpn-country {
         text-align: center;
+        align-self: center;
+    }
+
+    &__vpn-score {
+        text-align: center;
         align-self: center
     }
 
+
+    //
 
 
     &__comment-title {
         font-size: 35px;
         font-weight: 900;
         letter-spacing: 0.5px;
+    }
+
+    &__comment-btn {
+        color: white;
+        background-color: #3C336C;
+        border: none;
+        border-radius: 60px;
+        padding: 18px 43px;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 1.4;
+        text-align: center;
+
+        &:not(:last-child) {
+            margin-bottom: 30px;
+        }
+
+        &:hover {
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #3C336C;
+        }
+
     }
 
     &__comments {
