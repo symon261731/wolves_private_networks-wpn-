@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions */
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setServersThunk } from '../../Redux/actions/serversActions';
 import './Filter.scss';
@@ -9,8 +10,14 @@ export default function Filter() {
 
   function handleChange(e) {
     setRatingValue(e.target.value);
-    console.log(1);
   }
+
+  const [maxRating, setMaxRating] = useState(1000000);
+
+  useEffect(() => {
+    axios.get('/server/max-rate')
+      .then((res) => setMaxRating(res.data));
+  }, []);
 
   const dispatch = useDispatch();
   function submitHandle(e) {
@@ -27,15 +34,16 @@ export default function Filter() {
     options.to?.length === 0 ? options.to = 1000000000 : options.to;
     options.ratingValue?.length === 0 ? options.ratingValue = 0 : options.ratingValue;
 
-    console.log({ options });
+    // console.log({ options });
     dispatch(setServersThunk(options));
   }
 
   return (
     <div className="filter">
-      <h5 className="main-page__title">Filters</h5>
       <form onSubmit={submitHandle}>
         <div className="filter__flex-radio">
+          <img src="WolfLogo.png" alt="" style={{ width: '150px' }} />
+          <h5 className="main-page__title">Filters</h5>
           <p className="filter__label">Choose you protocol</p>
           <div className="form-check form-check-inline">
             <input name="OpenVPN" className="form-check-input" type="checkbox" id="inlineCheckbox1" value="OpenVPN" />
@@ -72,7 +80,7 @@ export default function Filter() {
         <div className="filter_item">
           <div className="mb-3">
             <p className="filter__label">Rating From</p>
-            <input name="ratingValue" type="range" value={ratingValue} min="1" max="100" onChange={handleChange} />
+            <input name="ratingValue" type="range" value={ratingValue} min="1" max={maxRating} onChange={handleChange} />
             <output>{ratingValue}</output>
           </div>
         </div>

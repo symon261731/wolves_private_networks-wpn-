@@ -16,6 +16,7 @@ import { checkUserThunk } from './Redux/actions/userActions';
 import ServerInfo from './components/ServerInfo/ServerInfo';
 import Pocket from './components/Pocket/Pocket';
 import PocketForm from './components/PocketForm/PocketForm';
+import OrderAbout from './components/OrderAbout/OrderAbout';
 
 function App() {
   // const user = { login: 'admin', id: 1 };
@@ -30,7 +31,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route element={<MainPage />} path="/" />
-        <Route element={<ProtectedRoute redirect="/" isAllowed={user?.id} />}>
+        <Route element={<ProtectedRoute redirect="/" isAllowed={!!user.id} />}>
           <Route path="/personalPage" element={<PersonalPage />} />
           <Route path="/addCash" element={<Pocket />} />
           <Route path="/createVPN" element={<FormVPN />} />
@@ -38,12 +39,15 @@ function App() {
           <Route path="/orders" element={<OrdersList />} />
           <Route path="/server/:id" element={<ServerInfo />} />
           <Route path="/pocketForm" element={<PocketForm />} />
+          <Route path="/aboutOrder/:id" element={<OrderAbout />} />
           {/* <Route path="/server/:id" element={<ServerInfo />} /> */}
 
         </Route>
+        {/* <Route element={<ProtectedRoute redirect="/" isAllowed={!!user.id} />}> */}
         <Route path="/login" element={<Login />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/userHori/:id" element={<UserPage />} />
+        {/* </Route> */}
       </Routes>
     </div>
   );

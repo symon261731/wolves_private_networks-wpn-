@@ -1,46 +1,37 @@
 .pocket-form {
+    text-align: center;
     padding: 5px;
     margin-top: 6%;
 
     &__box {
         padding: 15px;
         background-color: #333;
-        max-width: 500px;
+        max-width: 700px;
         margin: 0 auto;
         text-align: center;
         border-radius: 25px;
     }
 
-
-    &__flex {
+    &__form {
         display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &:last-child {
-            margin-bottom: 20px;
-        }
+        flex-direction: column;
+        align-items: center
     }
 
-    &__flex-text {
-        display: flex;
-        column-gap: 50px;
-        row-gap: 5px;
-        justify-content: center;
-    }
+    // &__flex {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
 
-    &__text {
-        color: whitesmoke;
-        font-size: 20px;
-        font-weight: 500;
-        margin-bottom: 5px;
-
-        &::first-letter {
-            text-transform: uppercase;
-        }
-    }
+    //     &:last-child {
+    //         margin-bottom: 20px;
+    //     }
+    // }
 
     &__input {
+
+        width: 100%;
+        max-width: 500px;
         padding: 10px;
         border-radius: 10px;
         border: none;
@@ -51,12 +42,14 @@
             outline: none;
         }
 
-        &::placeholder {
-            text-align: center;
+        &:first-child {
+            margin-top: 35px;
         }
     }
 
     &__btn {
+        position: relative;
+        align-self: center;
         text-align: center;
         background-color: #309F85;
         padding: 10px 51px;
@@ -71,20 +64,24 @@
             color: white;
             background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #309F85;
         }
+
+        &::after {
+            content: '';
+            display: block;
+            background-image: url('../../../public/img/btn.png');
+            background-repeat: no-repeat;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            z-index: 4;
+            top: 13%;
+            right: -7%;
+        }
     }
 }
 
+// .rccs__card {
+//     // height: 200px !important;
+//     // width: 350px !important;
 
-.input_date {
-    max-width: 150px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border-right: 1px solid black;
-}
-
-.input_code {
-    max-width: 150px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-left: 1px solid black;
-}
+// }

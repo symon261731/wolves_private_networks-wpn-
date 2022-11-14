@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import './Pocket.scss';
 
 export default function Pocket() {
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
+  const pocket = useSelector((state) => state.pocket);
   return (
     <div className="pocket">
       <div className="pocket__box">
         <p className="pocket__current-cash">
-          {user?.pocket || 0}
+          {pocket || 0}
           $
         </p>
         <p className="pocket__text">
