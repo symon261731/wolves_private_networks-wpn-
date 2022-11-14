@@ -34,7 +34,7 @@ router.get('/new/:serverId', authCheck, async (req, res) => {
 router.delete('/unsubscribe/:serverId', authCheck, async (req, res) => {
   try {
     const { serverId } = req.params;
-    req.session.user.id = 9;
+    // req.session.user.id = 9;
     const findPurchase = await Purchase.findOne({ where: { server_id: serverId, user_id: req.session.user.id } });
     if (!findPurchase) return res.json({ message: 'You can\'t unsubscribed, because you are not subscribed!' });
     await Purchase.destroy({ where: { id: findPurchase.id } });
