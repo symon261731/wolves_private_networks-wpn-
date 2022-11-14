@@ -4,7 +4,7 @@ const path = require('path');
 const process = require('process');
 const authCheck = require('../middlewares/authUser');
 const {
-  ServerVPN, Purchase, RatingServer, User, File, ServerComment
+  ServerVPN, Purchase, RatingServer, User, File, ServerComment,
 } = require('../db/models');
 
 const router = express.Router();
@@ -112,6 +112,7 @@ router.post('/filter', async (req, res) => {
           [Op.gte]: Number(options.ratingValue),
         },
       },
+      order: [['id', 'DESC']],
       include: {
         model: User,
         required: true,
@@ -258,7 +259,6 @@ router.get('/:serverId', async (req, res) => {
   }
 });
 
-
 // /api/server/:serverId - удалить сервер отовсюду
 router.delete('/:serverId', async (req, res) => {
   try {
@@ -273,6 +273,6 @@ router.delete('/:serverId', async (req, res) => {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
-})
+});
 
 module.exports = router;
