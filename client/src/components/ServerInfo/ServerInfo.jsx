@@ -5,6 +5,7 @@ import { setCommentsOfServerThunk } from '../../Redux/actions/commentsActions';
 import Card from '../Card/Card';
 import CommentItem from '../UserPage/CommentItem';
 import ModalServer from './ModalServer';
+import './ServerInfo.scss';
 
 export default function ServerInfo() {
   const { id } = useParams();
@@ -18,12 +19,13 @@ export default function ServerInfo() {
   const commentsList = useSelector((state) => state.comments);
 
   return (
-    <div>
+    <div className="server-info">
       <Card server={server} />
+      <button type="button" className="server-info__add-btn server-info__add-btn_margin-top" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        add comment
+      </button>
       <div className="user-page__comments">
-        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          АДД
-        </button>
+
         <ModalServer id={Number(id)} />
 
         {

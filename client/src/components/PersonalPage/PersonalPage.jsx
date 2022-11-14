@@ -68,6 +68,7 @@ export default function PersonalPage() {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nesciunt quaerat sequi error. Eum quam atque natus saepe inventore? Doloremque cum architecto laudantium doloribus amet. Hic mollitia ullam similique veritatis.
           </p>
         </div>
+
         <div className={toggleState === 2 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
           <div className="personal-page__content">
             <h4 className="personal-page__tab-title">Ваши VPN</h4>
@@ -77,6 +78,7 @@ export default function PersonalPage() {
             <Link className="personal-page__btn" to="/createVPN">Создать VPN</Link>
           </div>
         </div>
+
         <div className={toggleState === 3 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
           <h4 className="personal-page__tab-title">CURRENT ORDERS</h4>
           <div className="personal-page__order current-order">
@@ -89,6 +91,7 @@ export default function PersonalPage() {
             )}
           </div>
         </div>
+
         <div className={toggleState === 4 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
           <h4 className="personal-page__tab-title">ISSUED ORDERS</h4>
           <div className="personal-page__order current-order">
@@ -100,6 +103,7 @@ export default function PersonalPage() {
             )}
           </div>
         </div>
+
       </div>
     </div>
   );
