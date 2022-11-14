@@ -13,7 +13,28 @@
         align-items: center;
     }
 
+    &__content {
+        text-align: center;
+        align-self: center;
+        font-size: 23px;
+    }
+
+    &_login {
+        font-size: 35px;
+        line-height: 2;
+        font-weight: 900;
+    }
+
+    &_price {
+        color: orange
+    }
+
+    &_margin {
+        margin-right: 10px;
+    }
+
     &__confirm {
+        position: relative;
         color: white;
         font-size: 18px;
         text-transform: uppercase;

@@ -40,7 +40,7 @@ function App() {
           <Route path="/orders" element={<OrdersList />} />
           <Route path="/server/:id" element={<ServerInfo />} />
           <Route path="/pocketForm" element={<PocketForm />} />
-          <Route path="/aboutOrder/:id" element={<OrderAbout />} />
+          <Route path="/:orderId" element={<OrderAbout />} />
           {/* <Route path="/server/:id" element={<ServerInfo />} /> */}
 
         </Route>
