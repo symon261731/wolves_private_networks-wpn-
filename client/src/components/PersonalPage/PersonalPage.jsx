@@ -19,7 +19,6 @@ import { editServersOfUserThunk } from '../../Redux/actions/serversActions';
 
 export default function PersonalPage() {
   const { id } = useParams();
-  console.log(id);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentOrder = useSelector((state) => state.currentOrder);
@@ -42,7 +41,8 @@ export default function PersonalPage() {
 
   return (
     <div className="personal-page">
-      <h2 className="personal-page__title">Личный кабинет</h2>
+      <h2 className="personal-page__title">Welcome to your personal account page </h2>
+      <h3 className="personal-page__title">{user?.login}</h3>
       <ul className="personal-page__link-tab">
         <li
           onClick={() => toggleTab(1)}
