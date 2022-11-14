@@ -46,7 +46,6 @@ router.get('/all', async (req, res) => {
         required: true,
       },
     });
-    req.session.user = {id: 8}
     const allPurchase = await Purchase.findAll({ include: [User] });
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.subscribedUsers = [];
@@ -266,11 +265,11 @@ router.delete('/:serverId', async (req, res) => {
     await File.destroy({ where: { server_id: serverId } });
     await ServerComment.destroy({ where: { server_id: serverId } });
     await ServerVPN.destroy({ where: { id: serverId } });
-    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
-  }
     return res.sendStatus(200);
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
 })
 
 module.exports = router;
