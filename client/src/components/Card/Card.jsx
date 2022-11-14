@@ -9,31 +9,20 @@ import { editServersOfUserThunk } from '../../Redux/actions/serversActions';
 import './Card.scss';
 
 export default function Card({ server }) {
-  // console.log(server);
   const [curServer, setCurServer] = useState(server);
   const user = useSelector((state) => state.user);
-  // console.log(user);
   const { id } = useParams();
-  // const [flag, setFlag] = useState(false);
   const dispatch = useDispatch();
 
   function likeHandle() {
     setCurServer((prev) => ({ ...prev, rating: prev.rating + 1 }));
   }
-
-  // const handlerSubscr = async () => {
-  //   const serv = { ...curServer };
-  //   serv.subscribeStatus = true;
-  //   console.log(serv);
-
-  //   dispatch(editServersOfUserThunk(serv));
-  // };
   const handlerUnsubscr = async () => {
-    // curServer.subscribeStatus = false;
     const serv = { ...server };
     serv.subscribeStatus = !serv.subscribeStatus;
-
-    dispatch(editServersOfUserThunk(serv));
+    if (user.pocket >= curServer.price) {
+      dispatch(editServersOfUserThunk(serv));
+    } else { alert('Top up your wallet'); }
   };
 
   return (
