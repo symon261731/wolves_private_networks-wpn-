@@ -54,11 +54,12 @@ export default function OneVpn({ info, flag }) {
           {info?.subscribedUsers?.length}
         </p>
         <button onClick={handleDownload} type="button" className="one-vpn__btn" to="/">Download config</button>
+        {flag
+        && <button onClick={() => handlerUnsubscr(info)} type="button" className="one-vpn__btn one-vpn_unsubscribe">Unsubscribe</button>}
+
         {configLink?.href ? (
           <a className="one-vpn__download" href={`${configLink?.href}`} download="config.ovpn">download config</a>
         ) : (null)}
-        {flag
-        && <button onClick={() => handlerUnsubscr(info)} type="button" className="one-vpn__btn one-vpn_unsubscribe">Unsubscribe</button>}
       </div>
 
     </div>

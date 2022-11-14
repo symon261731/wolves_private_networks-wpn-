@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './FourZeroFour.scss';
+import anime from 'animejs/lib/anime.es';
 import { Link } from 'react-router-dom';
 
 export default function FourZeroFour() {
+  useEffect(() => {
+    anime({
+      targets: '.row svg',
+      translateY: 10,
+      autoplay: true,
+      loop: true,
+      easing: 'easeInOutSine',
+      direction: 'alternate',
+    });
+
+    anime({
+      targets: '#zero',
+      translateX: 10,
+      autoplay: true,
+      loop: true,
+      easing: 'easeInOutSine',
+      direction: 'alternate',
+      scale: [{ value: 1 }, { value: 1.4 }, { value: 1, delay: 250 }],
+      rotateY: { value: '+=180', delay: 200 },
+    });
+  }, []);
   return (
     <div className="four">
       <Link to="/" rel="noreferrer">
