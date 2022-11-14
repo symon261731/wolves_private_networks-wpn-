@@ -1,12 +1,30 @@
 const express = require('express');
 const { Op } = require('sequelize');
+const path = require('path');
+const process = require('process');
 const authCheck = require('../middlewares/authUser');
 const {
   ServerVPN, Purchase, RatingServer, User, File, ServerComment
 } = require('../db/models');
-const { NumberDictionary } = require('unique-names-generator');
 
 const router = express.Router();
+
+// выплевывание файла на фронт
+router.get('/config/:id', (req, res) => {
+  const options = {
+    root: path.join(process.cwd(), 'configs/'),
+    // root: path.join(process.cwd(), 'configs/'),
+
+  };
+  const fileName = 'test.ovpn';
+  res.sendFile(fileName, options, (err) => {
+    if (err) {
+      console.log(err);// (err);
+    } else {
+      console.log('Sent:', fileName);
+    }
+  });
+});
 
 // /api/server/max-rate - получить значение наибольшего рейтинга среди серверов
 router.get('/max-rate', async (req, res) => {
@@ -17,7 +35,7 @@ router.get('/max-rate', async (req, res) => {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
-})
+});
 
 // /api/server/all - получить все впн
 router.get('/all', async (req, res) => {
@@ -33,7 +51,7 @@ router.get('/all', async (req, res) => {
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.subscribedUsers = [];
       for (let j = 0; j < allPurchase.length; j += 1) {
-        if (vpns[i].dataValues.id === allPurchase[j].dataValues['server_id']) {
+        if (vpns[i].dataValues.id === allPurchase[j].dataValues.server_id) {
           vpns[i].dataValues.subscribedUsers.push(allPurchase[j].User);
           allPurchase.splice(j, 1);
         }
@@ -44,7 +62,7 @@ router.get('/all', async (req, res) => {
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.likeStatus = false;
       for (let j = 0; j < likes.length; j += 1) {
-        if (vpns[i].dataValues.id === likes[j].dataValues['server_id']) {
+        if (vpns[i].dataValues.id === likes[j].dataValues.server_id) {
           vpns[i].dataValues.likeStatus = true;
           break;
         }
@@ -54,7 +72,7 @@ router.get('/all', async (req, res) => {
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.subscribeStatus = false;
       for (let j = 0; j < subscribed.length; j += 1) {
-        if (vpns[i].dataValues.id === subscribed[j].dataValues['server_id']) {
+        if (vpns[i].dataValues.id === subscribed[j].dataValues.server_id) {
           vpns[i].dataValues.subscribeStatus = true;
           break;
         }
@@ -107,7 +125,7 @@ router.post('/filter', async (req, res) => {
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.subscribedUsers = [];
       for (let j = 0; j < allPurchase.length; j += 1) {
-        if (vpns[i].dataValues.id === allPurchase[j].dataValues['server_id']) {
+        if (vpns[i].dataValues.id === allPurchase[j].dataValues.server_id) {
           vpns[i].dataValues.subscribedUsers.push(allPurchase[j].User);
           allPurchase.splice(j, 1);
         }
@@ -118,7 +136,7 @@ router.post('/filter', async (req, res) => {
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.likeStatus = false;
       for (let j = 0; j < likes.length; j += 1) {
-        if (vpns[i].dataValues.id === likes[j]['server_id']) {
+        if (vpns[i].dataValues.id === likes[j].server_id) {
           vpns[i].dataValues.likeStatus = true;
           break;
         }
@@ -128,7 +146,7 @@ router.post('/filter', async (req, res) => {
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.subscribeStatus = false;
       for (let j = 0; j < subscribed.length; j += 1) {
-        if (vpns[i].dataValues.id === subscribed[j].dataValues['server_id']) {
+        if (vpns[i].dataValues.id === subscribed[j].dataValues.server_id) {
           vpns[i].dataValues.subscribeStatus = true;
           break;
         }
@@ -163,12 +181,12 @@ router.get('/user/:userId/purchase', authCheck, async (req, res) => {
   try {
     const { userId } = req.params;
     const allPurchase = await Purchase.findAll({ include: [User, ServerVPN] });
-    const purchases = allPurchase.filter((el) => el.dataValues['user_id'] === Number(userId));
+    const purchases = allPurchase.filter((el) => el.dataValues.user_id === Number(userId));
     const vpns = purchases.map((el) => el.ServerVPN);
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.subscribedUsers = [];
       for (let j = 0; j < allPurchase.length; j += 1) {
-        if (vpns[i].dataValues.id === allPurchase[j].dataValues['server_id']) {
+        if (vpns[i].dataValues.id === allPurchase[j].dataValues.server_id) {
           vpns[i].dataValues.subscribedUsers.push(allPurchase[j].User);
           allPurchase.splice(j, 1);
         }
@@ -179,7 +197,7 @@ router.get('/user/:userId/purchase', authCheck, async (req, res) => {
       vpns[i].dataValues.subscribeStatus = true;
       vpns[i].dataValues.likeStatus = false;
       for (let j = 0; j < likes.length; j += 1) {
-        if (vpns[i].dataValues.id === likes[j]['server_id']) {
+        if (vpns[i].dataValues.id === likes[j].server_id) {
           vpns[i].dataValues.likeStatus = true;
           break;
         }
@@ -203,7 +221,7 @@ router.get('/user/:userId', authCheck, async (req, res) => {
       vpns[i].dataValues.likeStatus = false;
       vpns[i].dataValues.subscribeStatus = false;
       for (let j = 0; j < allPurchase.length; j += 1) {
-        if (vpns[i].dataValues.id === allPurchase[j].dataValues['server_id']) {
+        if (vpns[i].dataValues.id === allPurchase[j].dataValues.server_id) {
           vpns[i].dataValues.subscribedUsers.push(allPurchase[j].User);
           allPurchase.splice(j, 1);
         }
@@ -222,7 +240,7 @@ router.get('/:serverId', async (req, res) => {
     const { serverId } = req.params;
     const vpn = await ServerVPN.findByPk(serverId);
     if (!vpn) return res.json({ message: 'VPN with this number doesn\'t exist' });
-    const subscribedUsers = (await Purchase.findAll({ where: { 'server_id': serverId }, include: [User] })).map((el) => el.User);
+    const subscribedUsers = (await Purchase.findAll({ where: { server_id: serverId }, include: [User] })).map((el) => el.User);
     vpn.dataValues.subscribedUsers = subscribedUsers;
     if (!req.session.user) return req.json(vpn);
     const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: vpn.id } });
@@ -238,6 +256,7 @@ router.get('/:serverId', async (req, res) => {
   }
 });
 
+
 // /api/server/:serverId - удалить сервер отовсюду
 router.delete('/:serverId', async (req, res) => {
   try {
@@ -247,10 +266,11 @@ router.delete('/:serverId', async (req, res) => {
     await File.destroy({ where: { server_id: serverId } });
     await ServerComment.destroy({ where: { server_id: serverId } });
     await ServerVPN.destroy({ where: { id: serverId } });
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
     return res.sendStatus(200);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
-  }
 })
+
 module.exports = router;
