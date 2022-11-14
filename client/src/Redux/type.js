@@ -5,6 +5,9 @@ export const LOGOUT = 'LOGOUT';
 // Servers
 export const SET_SERVERS = 'SET_SERVERS';
 export const ADD_SERVERS = 'ADD_SERVERS';
+export const EDIT_SERVER = 'EDIT_SERVER';
+export const LOGOUT_SERVER = 'LOGOUT_SERVER';
+
 // export const DELETE_SERVERS = 'DELETE_SERVERS';
 
 // MySubscribes
