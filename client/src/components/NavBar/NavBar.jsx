@@ -24,7 +24,7 @@ export default function NavBar() {
           <>
             <div className="nav__flex">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/personalPage">MyPage</Link>
+                <Link className="nav-link active" aria-current="page" to="/personalPage/1">MyPage</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/orders">Orders</Link>

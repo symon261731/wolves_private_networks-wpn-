@@ -33,7 +33,7 @@ function App() {
       <Routes>
         <Route element={<MainPage />} path="/" />
         <Route element={<ProtectedRoute redirect="/" isAllowed={!!user.id} />}>
-          <Route path="/personalPage" element={<PersonalPage />} />
+          <Route path="/personalPage/:id" element={<PersonalPage />} />
           <Route path="/addCash" element={<Pocket />} />
           <Route path="/createVPN" element={<FormVPN />} />
           <Route path="/createorder" element={<FormOrder />} />
