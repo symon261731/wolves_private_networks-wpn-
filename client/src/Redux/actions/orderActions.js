@@ -19,8 +19,8 @@ export const addOrderThunk = (order, navigate) => (dispatch) => axios
   .then(() => navigate('/orders'))
   .catch((error) => console.log(error));
 
-export const setOneOrderThunk = () => (dispatch) => axios
-  .get()
+export const setOneOrderThunk = (orderId) => (dispatch) => axios
+  .get(`/order/${orderId}`)
   .then((res) => dispatch(setOneOrder(res.data)))
   .catch(console.log);
 
