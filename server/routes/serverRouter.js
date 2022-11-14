@@ -95,7 +95,7 @@ router.post('/filter', async (req, res) => {
     ownerName: '',
     ratingValue: 0,
   } : options;
-  console.log({ options }, '------');
+  // console.log({ options }, '------');
   try {
     const vpns = await ServerVPN.findAll({
       where: {

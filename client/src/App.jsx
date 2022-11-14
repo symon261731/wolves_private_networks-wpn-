@@ -26,7 +26,7 @@ function App() {
     dispatch(checkUserThunk());
   }, []);
   const user = useSelector((state) => state.user);
-
+  console.log({ user });
   return (
     <div className="App" style={{ position: 'relative', zIndex: '10' }}>
       <NavBar />
@@ -44,11 +44,11 @@ function App() {
           {/* <Route path="/server/:id" element={<ServerInfo />} /> */}
 
         </Route>
-        {/* <Route element={<ProtectedRoute redirect="/" isAllowed={!!user.id} />}> */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/userHori/:id" element={<UserPage />} />
-        {/* </Route> */}
+        <Route element={<ProtectedRoute redirect="/" isAllowed={!user.id} />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/userHori/:id" element={<UserPage />} />
+        </Route>
         <Route path="/fourzerofour" element={<FourZeroFour />} />
       </Routes>
     </div>
