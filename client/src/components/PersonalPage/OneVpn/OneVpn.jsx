@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { deleteServersOfUserThunk } from '../../../Redux/actions/myServersActions';
 import { editServersOfUserThunk } from '../../../Redux/actions/serversActions';
 import './OneVpn.scss';
 
@@ -27,11 +28,15 @@ export default function OneVpn({ info, flag }) {
       dispatch(editServersOfUserThunk(serv));
     }
   };
+
+  const deleteHandler = async (server) => {
+    dispatch(deleteServersOfUserThunk(server));
+  };
   return (
     <div className="one-vpn">
       <div className="one-vpn__box">
         {!flag
-        && <button className="one-vpn__delete-btn" type="button">X</button>}
+        && <button onClick={() => deleteHandler(info)} className="one-vpn__delete-btn" type="button">X</button>}
         <p className="one-vpn__content">
           <span className="one-vpn__span">location:</span>
           {info?.location}
