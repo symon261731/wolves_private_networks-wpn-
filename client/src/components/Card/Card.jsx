@@ -29,11 +29,13 @@ export default function Card({ server }) {
 
     <div className="card">
       <div className="card__body">
-        <p className="card__item">
-          Username:
-          {' '}
-          {curServer?.User?.login || 'ololoshka'}
-        </p>
+        <Link to={`/userHori/${curServer?.User?.id}`}>
+          <p className="card__item">
+            Username:
+            {' '}
+            {curServer?.User?.login || 'ololoshka'}
+          </p>
+        </Link>
         <p className="card__item">
           Protocol:
           {' '}
