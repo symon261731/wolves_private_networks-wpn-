@@ -1,59 +1,37 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+// import axios from 'axios';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { editServersOfUserThunk } from '../../Redux/actions/serversActions';
 import './Card.scss';
 
 export default function Card({ server }) {
+  // console.log(server);
   const [curServer, setCurServer] = useState(server);
   const { id } = useParams();
-  const [flag, setFlag] = useState(false);
+  // const [flag, setFlag] = useState(false);
+  const dispatch = useDispatch();
 
   function likeHandle() {
     setCurServer((prev) => ({ ...prev, rating: prev.rating + 1 }));
   }
-  // const user = useSelector((state) => state.user);
-
-  useEffect(() => {
-    axios
-      .get(`/purchase/info/${curServer.id}`)
-      .then((res) => {
-        console.log(res);
-        if (res.data.length > 0) { setFlag(true); } else (setFlag(false));
-      });
-  }, []);
 
   const handlerSubscr = async () => {
-    // if (id) {
-    //   axios
-    //     .get(`/purchase/new/${id}`)
-    //     // .then((res) => dispatch(addServers(res.data)))
-    //     .catch(console.log);
-    // } else {
-    axios
-      .get(`/purchase/new/${curServer.id}`)
-      .then((res) => {
-        console.log(res);
-        if (!res.data.message) setFlag(!flag);
-      });
-    // }
+    const serv = { ...curServer };
+    console.log(serv);
+
+    dispatch(editServersOfUserThunk(serv));
+    serv.subscribeStatus = true;
   };
 
   const handlerUnsubscr = async () => {
-    // if (id) {
-    //   axios
-    //     .get(`/purchase/unsubscribe/${id}`)
-    //     // .then((res) => dispatch(addServers(res.data)))
-    //     .catch(console.log);
-    // } else {
-    axios
-      .delete(`/purchase/unsubscribe/${curServer.id}`)
-      .then((res) => {
-        console.log(res);
-        if (!res.data.message) setFlag(!flag);
-      });
-    // }
+    // curServer.subscribeStatus = false;
+    const serv = { ...curServer };
+
+    dispatch(editServersOfUserThunk(serv));
+    serv.subscribeStatus = false;
   };
 
   return (
@@ -104,7 +82,7 @@ export default function Card({ server }) {
           {!id
                     && <button className="card__btn-info" type="button">Info</button>}
         </Link>
-        {!flag ? <button className="card__btn-sub" type="button" onClick={() => handlerSubscr()}>Subscribe</button>
+        {!server.subscribeStatus ? <button className="card__btn-sub" type="button" onClick={() => handlerSubscr()}>Subscribe</button>
           : <button type="button" className="card__btn-sub unsub_btn" onClick={() => handlerUnsubscr()}>Unsubscribe</button>}
 
       </div>
