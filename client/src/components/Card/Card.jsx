@@ -1,37 +1,28 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 // import axios from 'axios';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { editServersOfUserThunk } from '../../Redux/actions/serversActions';
 import './Card.scss';
 
 export default function Card({ server }) {
-  // console.log(server);
   const [curServer, setCurServer] = useState(server);
+  const user = useSelector((state) => state.user);
   const { id } = useParams();
-  // const [flag, setFlag] = useState(false);
   const dispatch = useDispatch();
 
   function likeHandle() {
     setCurServer((prev) => ({ ...prev, rating: prev.rating + 1 }));
   }
-
-  // const handlerSubscr = async () => {
-  //   const serv = { ...curServer };
-  //   serv.subscribeStatus = true;
-  //   console.log(serv);
-
-  //   dispatch(editServersOfUserThunk(serv));
-  // };
-
   const handlerUnsubscr = async () => {
-    // curServer.subscribeStatus = false;
-    const serv = { ...curServer };
+    const serv = { ...server };
     serv.subscribeStatus = !serv.subscribeStatus;
-
-    dispatch(editServersOfUserThunk(serv));
+    if (user.pocket >= curServer.price) {
+      dispatch(editServersOfUserThunk(serv));
+    } else { alert('Top up your wallet'); }
   };
 
   return (
@@ -83,7 +74,8 @@ export default function Card({ server }) {
                     && <button className="card__btn-info" type="button">Info</button>}
         </Link>
         {!server.subscribeStatus ? <button className="card__btn-sub" type="button" onClick={() => handlerUnsubscr()}>Subscribe</button>
-          : <button type="button" className="card__btn-sub unsub_btn" onClick={() => handlerUnsubscr()}>Unsubscribe</button>}
+          : ((user.pocket >= curServer.price) ? <button type="button" className="card__btn-sub unsub_btn" onClick={() => handlerUnsubscr()}>Unsubscribe</button>
+            : <div>No enougth money</div>)}
 
       </div>
 

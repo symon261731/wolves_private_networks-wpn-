@@ -11,7 +11,7 @@ export default function Order({ info }) {
         <p className="current-order__price">
           {info?.price}
           {' '}
-          <span>€</span>
+          <span>$</span>
         </p>
       </div>
     </div>

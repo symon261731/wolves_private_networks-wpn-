@@ -22,8 +22,6 @@ export default function UserPage() {
   }, [id]);
 
   useEffect(() => {
-    // console.log(id);
-
     dispatch(setServersOfUserThunk(id));
     dispatch(setCommentsOfUserThunk(id));
   }, [id]);

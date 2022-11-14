@@ -22,11 +22,16 @@ export default function FormVPN() {
         >
           <div className="form-vpn__main-flex">
             <div className="form-vpn__inputs-flex">
-              <input placeholder="ip" name="ip" className="form-vpn__input" type="text" />
-              {/* добавить поле с ip */}
-              <input placeholder="protocol" name="protocol" className="form-vpn__input" type="text" />
-              <input placeholder="price" name="price" className="form-vpn__input" type="text" />
-              <input placeholder="location" name="location" className="form-vpn__input" type="text" />
+              <input placeholder="ip" name="ip" className="form-vpn__input " type="text" required />
+              {/* <input placeholder="protocol" name="protocol" className="form-vpn__input" type="text" /> */}
+              <select className="form-vpn__input form-vpn__select" name="protocol" required>
+                <option className="form-vpn__option" value="OpenVPN">OpenVPN</option>
+                <option className="form-vpn__option" value="WireGuard" selected>WireGuard</option>
+                <option className="form-vpn__option" value="L2TP/IPsec">L2TP/IPsec</option>
+              </select>
+              <input placeholder="price" name="price" className="form-vpn__input" type="text" required />
+              <input placeholder="location" name="location" className="form-vpn__input" type="text" required />
+
             </div>
             <button className="form-vpn__btn" type="submit">confirm</button>
           </div>

@@ -45,7 +45,6 @@ export const editServersOfUserThunk = (curserver) => (dispatch) => {
     // .then(() => dispatch(setAllServersThunk()));
   } else {
     console.log('22222');
-
     axios
       .get(`/purchase/new/${curserver.id}`)
       .then(() => dispatch(editServer(curserver)));
