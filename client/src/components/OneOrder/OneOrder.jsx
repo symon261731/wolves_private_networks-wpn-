@@ -9,7 +9,7 @@ export default function OneOrder({ info }) {
         <p className="one-order__location">{info?.location}</p>
         <p className="one-order__price">
           {info?.price}
-          <span className="one-order__span">€</span>
+          <span className="one-order__span">$</span>
         </p>
       </div>
     </div>

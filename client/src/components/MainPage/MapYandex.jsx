@@ -71,7 +71,7 @@ export default function Map() {
 
   return (
 
-    <div className="img-fluid" id="map" style={{ width: '800px', height: '1200px', backgroundColor: '#cbdfbd' }} />
+    <div className="img-fluid" id="map" style={{ width: '1200px', height: '870px', backgroundColor: '#cbdfbd' }} />
 
   );
 }
