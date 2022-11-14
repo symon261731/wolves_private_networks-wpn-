@@ -3,7 +3,7 @@ import './UserPage.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { setServersOfUserThunk } from '../../Redux/actions/serversActions';
+import { setServersOfUserThunk } from '../../Redux/actions/myServersActions';
 import VpnItem from './VpnItem';
 import { setCommentsOfUserThunk } from '../../Redux/actions/commentsActions';
 import CommentItem from './CommentItem';
@@ -43,7 +43,7 @@ export default function UserPage() {
             <h3 className="user-page__user-name">
               {user?.login}
             </h3>
-            <p className="user-page__user-statistic">238000 выполненных заказов</p>
+            <p className="user-page__user-statistic">238000 completed orders</p>
           </div>
           <div className="user-page__picture">
             <img className="user-page__image" src="https://i.pinimg.com/736x/dd/fd/e2/ddfde2afaee1fde6ab364b00fe62fb9a.jpg" alt="404" />
@@ -58,11 +58,11 @@ export default function UserPage() {
           </ul>
         </div>
         <h3 className="user-page__comment-title">Work rewiew</h3>
-
+        <button type="button" className="user-page__comment-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          add order
+        </button>
         <div className="user-page__comments">
-          <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            АДД
-          </button>
+
           <Modal id={user.id} />
 
           {

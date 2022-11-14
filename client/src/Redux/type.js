@@ -10,6 +10,13 @@ export const LOGOUT_SERVER = 'LOGOUT_SERVER';
 
 // export const DELETE_SERVERS = 'DELETE_SERVERS';
 
+// MySubscribes
+export const SET_MY_SUBSCRIBES = 'SET_MY_SUBSCRIBES';
+
+// MyServers
+export const SET_MY_SERVERS = 'SET_MY_SERVERS';
+export const ADD_MY_SERVERS = 'ADD_MY_SERVERS';
+
 //
 export const SET_ORDER = 'SET_ORDER';
 export const ADD_ORDER = 'ADD_ORDER';
