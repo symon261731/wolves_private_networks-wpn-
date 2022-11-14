@@ -20,7 +20,7 @@ export default function OneVpn({ info }) {
         </p>
         <p className="one-vpn__score">
           <span className="one-vpn__span">Subscribers:</span>
-          5
+          {info?.subscribedUsers.length}
         </p>
       </div>
     </div>
