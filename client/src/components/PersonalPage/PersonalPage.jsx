@@ -14,6 +14,7 @@ import './OneVpn/OneVpn.scss';
 import { setServersOfUserThunk } from '../../Redux/actions/myServersActions';
 import OneVpn from './OneVpn/OneVpn';
 import Card from '../Card/Card';
+import { editServersOfUserThunk } from '../../Redux/actions/serversActions';
 
 export default function PersonalPage() {
   const navigate = useNavigate();
@@ -35,6 +36,15 @@ export default function PersonalPage() {
   const toggleTab = (index) => {
     setToggleState(index);
   };
+
+  const handlerUnsubscr = async (server) => {
+    const serv = { ...server };
+    serv.subscribeStatus = !serv.subscribeStatus;
+    if (user.pocket >= server.price) {
+      dispatch(editServersOfUserThunk(serv));
+    }
+  };
+
   return (
     <div className="personal-page">
       <h2 className="personal-page__title">Личный кабинет</h2>
@@ -72,7 +82,8 @@ export default function PersonalPage() {
               ? (mySubscribes?.map((el) => (
                 <>
                   <OneVpn key={el.id} info={el} />
-                  <button key={el.id} type="button" className="personal-page__btn" to="/">Download config</button>
+                  <button key={el.id + 1} type="button" className="personal-page__btn" to="/">Download config</button>
+                  <button onClick={() => handlerUnsubscr(el)} key={el.id + 2} type="button" className="personal-page__btn" to="/">Unsubscribe</button>
                 </>
               )))
               : (<p className="personal-page__content">You have no VPN</p>)}

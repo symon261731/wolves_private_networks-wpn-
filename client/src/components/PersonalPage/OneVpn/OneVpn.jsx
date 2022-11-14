@@ -5,7 +5,7 @@ export default function OneVpn({ info }) {
   return (
     <div className="one-vpn">
       <div className="one-vpn__box">
-        <button className="one-vpn__delete-btn" type="button">X</button>
+        {/* <button className="one-vpn__delete-btn" type="button">X</button> */}
         <p className="one-vpn__content">
           <span className="one-vpn__span">location:</span>
           {info?.location}
