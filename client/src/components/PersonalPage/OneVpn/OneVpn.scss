@@ -79,4 +79,32 @@
             color: red;
         }
     }
+
+    &__download {
+        margin-right: 10px;
+        margin-left: 10px;
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        line-height: 1.4;
+        font-weight: 500;
+        background-color: #1FAB8A;
+        border-radius: 60px;
+        padding: 21px 73px;
+
+        &:hover {
+            color: white;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #309F85;
+        }
+    }
+
+    &_unsubscribe {
+        background-color: #778CEB;
+        margin-left: 4px;
+
+
+        &:hover {
+            background-color: #778ceb7a;
+        }
+    }
 }
