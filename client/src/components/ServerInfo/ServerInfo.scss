@@ -1,0 +1,29 @@
+.server-info {
+
+    padding: 8px;
+
+    &__add-btn {
+        color: white;
+        background-color: #3C336C;
+        border: none;
+        border-radius: 60px;
+        padding: 18px 43px;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 1.4;
+        text-align: center;
+        text-transform: uppercase;
+
+        &:not(:last-child) {
+            margin-bottom: 30px;
+        }
+
+        &:hover {
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #3C336C;
+        }
+    }
+
+    &__add-btn_margin-top {
+        margin-top: 25px;
+    }
+}

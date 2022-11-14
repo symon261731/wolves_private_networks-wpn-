@@ -5,12 +5,23 @@ export default function OneVpn({ info }) {
   return (
     <div className="one-vpn">
       <div className="one-vpn__box">
-        <h4 className="one-vpn__title">{info?.title}</h4>
-        <div className="one-vpn__flex">
-          <p className="one-vpn__content">{info?.location}</p>
-          <p className="one-vpn__content">{info?.protocol}</p>
-          <p className="one-vpn__content">{info?.ip}</p>
-        </div>
+        <button className="one-vpn__delete-btn" type="button">X</button>
+        <p className="one-vpn__content">
+          <span className="one-vpn__span">location:</span>
+          {info?.location}
+        </p>
+        <p className="one-vpn__content">
+          <span className="one-vpn__span">protocol:</span>
+          {info?.protocol}
+        </p>
+        <p className="one-vpn__content">
+          <span className="one-vpn__span">IP:</span>
+          {info?.ip}
+        </p>
+        <p className="one-vpn__score">
+          <span className="one-vpn__span">Subscribers:</span>
+          5
+        </p>
       </div>
     </div>
   );
