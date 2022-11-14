@@ -28,6 +28,7 @@ router.get('/all', async (req, res) => {
         required: true,
       },
     });
+    req.session.user = {id: 8}
     const allPurchase = await Purchase.findAll({ include: [User] });
     for (let i = 0; i < vpns.length; i += 1) {
       vpns[i].dataValues.subscribedUsers = [];
