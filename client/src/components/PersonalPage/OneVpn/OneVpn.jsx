@@ -32,7 +32,7 @@ export default function OneVpn({ info }) {
         </p>
         <p className="one-vpn__score">
           <span className="one-vpn__span">Subscribers:</span>
-          {info?.subscribedUsers.length}
+          {info?.subscribedUsers?.length}
         </p>
         <button onClick={handleDownload} type="button" className="one-vpn__btn" to="/">Download config</button>
         {configLink?.href ? (

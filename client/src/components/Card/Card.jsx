@@ -5,6 +5,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { payMoneyPocket } from '../../Redux/actions/pocketAction';
 import { editServersOfUserThunk } from '../../Redux/actions/serversActions';
 import './Card.scss';
 
@@ -22,9 +23,13 @@ export default function Card({ server }) {
     serv.subscribeStatus = !serv.subscribeStatus;
     if (user.pocket >= curServer.price) {
       dispatch(editServersOfUserThunk(serv));
+      if (serv.subscribeStatus) {
+        dispatch(payMoneyPocket(server.price));
+      }
     }
   };
 
+  console.log(user, '----');
   return (
 
     <div className="card">
