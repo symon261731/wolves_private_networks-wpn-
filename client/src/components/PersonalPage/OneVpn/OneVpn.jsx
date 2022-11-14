@@ -34,11 +34,12 @@ export default function OneVpn({ info }) {
           <span className="one-vpn__span">Subscribers:</span>
           {info?.subscribedUsers.length}
         </p>
+        <button onClick={handleDownload} type="button" className="one-vpn__btn" to="/">Download config</button>
+        {configLink?.href ? (
+          <a href={`${configLink?.href}`} download="config.ovpn"> config</a>
+        ) : (null)}
       </div>
-      <button onClick={handleDownload} type="button" className="personal-page__btn" to="/">Download config</button>
-      {configLink?.href ? (
-        <a href={`${configLink?.href}`} download="config.ovpn"> config</a>
-      ) : (null)}
+
     </div>
   );
 }
