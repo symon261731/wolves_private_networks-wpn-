@@ -1,13 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './FormVPN.scss';
+import { useNavigate } from 'react-router-dom';
 import { addServersThunk } from '../../Redux/actions/serversActions';
 import { addMyServers } from '../../Redux/actions/myServersActions';
 
 export default function FormVPN() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-
+  const navigate = useNavigate();
   return (
     <div className="form-vpn">
       <div className="form-vpn__container">
@@ -16,7 +17,7 @@ export default function FormVPN() {
           className="form-vpn__form"
           onSubmit={(e) => {
             e.preventDefault();
-            dispatch(addServersThunk(Object.fromEntries(new FormData(e.target)), user.id));
+            dispatch(addServersThunk(Object.fromEntries(new FormData(e.target)), user.id, navigate));
             dispatch(addMyServers(Object.fromEntries(new FormData(e.target)), user.id)); // Чтобы сразу добавлялись в массив моих серверов
           }}
         >

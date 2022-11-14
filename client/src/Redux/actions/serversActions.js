@@ -19,12 +19,13 @@ export const setServersThunk = (input) => (dispatch) => {
     .catch(console.log);
 };
 
-export const addServersThunk = (input, id) => (dispatch) => {
+export const addServersThunk = (input, id, navigate) => (dispatch) => {
   console.log({ input, id });
   axios
     .post(`/server/new/${id}`, input)
     .then((res) => dispatch(addServers(res.data)))
-    .catch(console.log);
+    .catch(console.log)
+    .then(() => navigate('/personalPage/2'));
 };
 
 export const setAllServersThunk = () => (dispatch) => {
