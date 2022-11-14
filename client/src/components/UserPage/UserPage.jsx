@@ -3,7 +3,7 @@ import './UserPage.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { setServersOfUserThunk } from '../../Redux/actions/serversActions';
+import { setServersOfUserThunk } from '../../Redux/actions/myServersActions';
 import VpnItem from './VpnItem';
 import { setCommentsOfUserThunk } from '../../Redux/actions/commentsActions';
 import CommentItem from './CommentItem';
