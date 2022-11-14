@@ -1,26 +1,50 @@
+.second-tab {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 30px;
+
+    &_margin {
+        margin-bottom: 45px;
+    }
+}
+
+
 .one-vpn {
+    flex: 1 1 25%;
+
     &__box {
-        padding: 15px;
-        background-color: black;
+        position: relative;
+        padding: 30px;
+        background-color: rgb(99, 88, 88);
         border-radius: 25px;
 
-        &:last-child {
-            margin-bottom: 30px;
-        }
-    }
-
-    &__title {
-        color: white;
-        font-weight: 700;
-        font-size: 30px;
-    }
-
-    &__flex {
-        display: flex;
-        justify-content: space-between;
     }
 
     &__content {
         font-size: 20px;
+    }
+
+    &__score {
+        font-size: 20px;
+        color: orange;
+    }
+
+    &__span {
+        margin-right: 8px;
+    }
+
+    &__delete-btn {
+        color: white;
+        background-color: inherit;
+        border: none;
+        font-size: 22px;
+        position: absolute;
+        top: 3%;
+        right: 3%;
+
+        &:hover {
+            color: red;
+        }
     }
 }
