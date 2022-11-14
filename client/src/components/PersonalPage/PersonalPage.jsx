@@ -73,14 +73,17 @@ export default function PersonalPage() {
         <div className={toggleState === 1 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
           <div className="personal-page__content">
             <h4 className="personal-page__tab-title">My Subscribes</h4>
+
             { mySubscribes.length !== 0
-              ? (mySubscribes?.map((el) => (
-
-                <div className="download">
-                  <OneVpn key={el.id} info={el} flag />
+              ? (
+                <div className="second-tab second-tab_margin">
+                  {mySubscribes?.map((el) => (
+                    // <div className="download">
+                    <OneVpn key={el.id} info={el} flag />
+                    // </div>
+                  ))}
                 </div>
-
-              )))
+              )
               : (<p className="personal-page__content">You have no VPN</p>)}
           </div>
         </div>

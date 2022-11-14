@@ -47,6 +47,10 @@
         border-radius: 60px;
         border: none;
 
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
+
         &:hover {
             color: white;
             background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #3C336C;
@@ -81,8 +85,6 @@
     }
 
     &__download {
-        margin-right: 10px;
-        margin-left: 10px;
         text-decoration: none;
         color: white;
         font-size: 18px;
@@ -101,7 +103,6 @@
     &_unsubscribe {
         background-color: #778CEB;
         margin-left: 4px;
-
 
         &:hover {
             background-color: #778ceb7a;
