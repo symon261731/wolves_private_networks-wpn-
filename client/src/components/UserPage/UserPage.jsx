@@ -32,7 +32,7 @@ export default function UserPage() {
   //   dispatch(setCommentsOfUserThunk(id));
   // }, []);
 
-  const vpnList = useSelector((state) => state.servers);
+  const vpnList = useSelector((state) => state.myServers);
   const commentsList = useSelector((state) => state.comments);
 
   return (

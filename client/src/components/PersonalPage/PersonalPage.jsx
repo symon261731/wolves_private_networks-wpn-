@@ -10,6 +10,7 @@ import Order from './Order/Order';
 import { setIssuedOrderThunk } from '../../Redux/actions/issuedOrderActions';
 import { setCurrentOrderThunk } from '../../Redux/actions/currentOrderActions';
 import './PesonalPage.scss';
+import './OneVpn/OneVpn.scss';
 import { setServersOfUserThunk } from '../../Redux/actions/myServersActions';
 import OneVpn from './OneVpn/OneVpn';
 import Card from '../Card/Card';
@@ -77,15 +78,21 @@ export default function PersonalPage() {
               : (<p className="personal-page__content">You have no VPN</p>)}
           </div>
         </div>
+
         <div className={toggleState === 2 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
           <div className="personal-page__content">
             <h4 className="personal-page__tab-title">My VPN</h4>
             { vpn.length !== 0
-              ? (vpn?.map((el) => <OneVpn key={el.id} info={el} />))
-              : (<p className="personal-page__content">You have no VPN</p>)}
+              ? (
+                <div className="second-tab second-tab_margin">
+                  {vpn?.map((el) => <OneVpn key={el.id} info={el} />)}
+                </div>
+              )
+              : (<p className="personal-page__content">You don' have VPN</p>)}
             <Link className="personal-page__btn" to="/createVPN">Create VPN</Link>
           </div>
         </div>
+
         <div className={toggleState === 3 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
           <h4 className="personal-page__tab-title">CURRENT ORDERS</h4>
           <div className="personal-page__order current-order">
@@ -98,6 +105,7 @@ export default function PersonalPage() {
             )}
           </div>
         </div>
+
         <div className={toggleState === 4 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
           <h4 className="personal-page__tab-title">ISSUED ORDERS</h4>
           <div className="personal-page__order current-order">
@@ -109,6 +117,7 @@ export default function PersonalPage() {
             )}
           </div>
         </div>
+
       </div>
     </div>
   );
