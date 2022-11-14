@@ -1,11 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { editServersOfUserThunk } from '../../../Redux/actions/serversActions';
 import './OneVpn.scss';
 
 export default function OneVpn({ info, flag }) {
-
-export default function OneVpn({ info }) {
+  // export default function OneVpn({ info }) {
   const [configLink, setConfigLink] = useState({});
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   function handleDownload() {
     axios('server/config/:id', { responseType: 'blob' })
@@ -17,7 +20,7 @@ export default function OneVpn({ info }) {
       });
   }
 
-const handlerUnsubscr = async (server) => {
+  const handlerUnsubscr = async (server) => {
     const serv = { ...server };
     serv.subscribeStatus = !serv.subscribeStatus;
     if (user.pocket >= server.price) {
@@ -49,9 +52,8 @@ const handlerUnsubscr = async (server) => {
         {configLink?.href ? (
           <a href={`${configLink?.href}`} download="config.ovpn"> config</a>
         ) : (null)}
-        {flag &&
-        <button onClick={() => handlerUnsubscr(el)} type="button" className="personal-page__btn">Unsubscribe</button>
-        }
+        {flag
+        && <button onClick={() => handlerUnsubscr(info)} type="button" className="personal-page__btn">Unsubscribe</button>}
       </div>
 
     </div>
