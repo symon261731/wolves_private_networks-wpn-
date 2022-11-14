@@ -22,7 +22,7 @@ export default function Card({ server }) {
     serv.subscribeStatus = !serv.subscribeStatus;
     if (user.pocket >= curServer.price) {
       dispatch(editServersOfUserThunk(serv));
-    } else { alert('Top up your wallet'); }
+    }
   };
 
   return (
