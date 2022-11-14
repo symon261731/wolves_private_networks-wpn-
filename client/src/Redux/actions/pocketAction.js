@@ -19,9 +19,9 @@ export const addMoneyPocketThunk = (param) => (dispatch) => {
     .catch(console.log);
 };
 
-export const payMoneyPocketThunk = () => (dispatch) => {
-  axios
-    .post()
-    .then((res) => dispatch(payMoneyPocket(res.data)))
-    .catch(console.log);
-};
+// export const payMoneyPocketThunk = () => (dispatch) => {
+//   axios
+//     .post()
+//     .then((res) => dispatch(payMoneyPocket(res.data)))
+//     .catch(console.log);
+// };
