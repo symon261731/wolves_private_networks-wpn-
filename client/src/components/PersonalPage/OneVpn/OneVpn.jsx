@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import './OneVpn.scss';
 
+export default function OneVpn({ info, flag }) {
+
 export default function OneVpn({ info }) {
   const [configLink, setConfigLink] = useState({});
 
@@ -14,10 +16,19 @@ export default function OneVpn({ info }) {
         console.log({ res });
       });
   }
+
+const handlerUnsubscr = async (server) => {
+    const serv = { ...server };
+    serv.subscribeStatus = !serv.subscribeStatus;
+    if (user.pocket >= server.price) {
+      dispatch(editServersOfUserThunk(serv));
+    }
+  };
   return (
     <div className="one-vpn">
       <div className="one-vpn__box">
-        <button className="one-vpn__delete-btn" type="button">X</button>
+        {!flag
+        && <button className="one-vpn__delete-btn" type="button">X</button>}
         <p className="one-vpn__content">
           <span className="one-vpn__span">location:</span>
           {info?.location}
@@ -38,6 +49,9 @@ export default function OneVpn({ info }) {
         {configLink?.href ? (
           <a href={`${configLink?.href}`} download="config.ovpn"> config</a>
         ) : (null)}
+        {flag &&
+        <button onClick={() => handlerUnsubscr(el)} type="button" className="personal-page__btn">Unsubscribe</button>
+        }
       </div>
 
     </div>
