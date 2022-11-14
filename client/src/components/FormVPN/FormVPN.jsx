@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './FormVPN.scss';
 import { addServersThunk } from '../../Redux/actions/serversActions';
+import { addMyServers } from '../../Redux/actions/myServersActions';
 
 export default function FormVPN() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export default function FormVPN() {
           onSubmit={(e) => {
             e.preventDefault();
             dispatch(addServersThunk(Object.fromEntries(new FormData(e.target)), user.id));
+            dispatch(addMyServers(Object.fromEntries(new FormData(e.target)), user.id)); // Чтобы сразу добавлялись в массив моих серверов
           }}
         >
           <div className="form-vpn__main-flex">
