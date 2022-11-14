@@ -17,7 +17,7 @@ export default function Filter() {
   useEffect(() => {
     axios.get('/server/max-rate')
       .then((res) => setMaxRating(res.data));
-  });
+  }, []);
 
   const dispatch = useDispatch();
   function submitHandle(e) {

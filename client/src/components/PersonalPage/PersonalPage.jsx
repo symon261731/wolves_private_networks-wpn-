@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import Order from './Order/Order';
 import { setIssuedOrderThunk } from '../../Redux/actions/issuedOrderActions';
 import { setCurrentOrderThunk } from '../../Redux/actions/currentOrderActions';
@@ -35,6 +36,7 @@ export default function PersonalPage() {
   const toggleTab = (index) => {
     setToggleState(index);
   };
+
   return (
     <div className="personal-page">
       <h2 className="personal-page__title">Личный кабинет</h2>
@@ -70,10 +72,9 @@ export default function PersonalPage() {
             <h4 className="personal-page__tab-title">My Subscribes</h4>
             { mySubscribes.length !== 0
               ? (mySubscribes?.map((el) => (
-                <>
+                <div className="download">
                   <OneVpn key={el.id} info={el} />
-                  <button key={el.id} type="button" className="personal-page__btn" to="/">Download config</button>
-                </>
+                </div>
               )))
               : (<p className="personal-page__content">You have no VPN</p>)}
           </div>
