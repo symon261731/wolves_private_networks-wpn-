@@ -50,10 +50,10 @@ export default function OneVpn({ info, flag }) {
         </p>
         <button onClick={handleDownload} type="button" className="one-vpn__btn" to="/">Download config</button>
         {configLink?.href ? (
-          <a href={`${configLink?.href}`} download="config.ovpn"> config</a>
+          <a className="one-vpn__download" href={`${configLink?.href}`} download="config.ovpn">download config</a>
         ) : (null)}
         {flag
-        && <button onClick={() => handlerUnsubscr(info)} type="button" className="personal-page__btn">Unsubscribe</button>}
+        && <button onClick={() => handlerUnsubscr(info)} type="button" className="one-vpn__btn one-vpn_unsubscribe">Unsubscribe</button>}
       </div>
 
     </div>

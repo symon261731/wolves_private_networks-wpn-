@@ -38,8 +38,6 @@ export default function PersonalPage() {
     setToggleState(index);
   };
 
-  
-
   return (
     <div className="personal-page">
       <h2 className="personal-page__title">Личный кабинет</h2>
@@ -77,7 +75,7 @@ export default function PersonalPage() {
               ? (mySubscribes?.map((el) => (
 
                 <div className="download">
-                  <OneVpn key={el.id} info={el} flag/>
+                  <OneVpn key={el.id} info={el} flag />
                 </div>
 
               )))

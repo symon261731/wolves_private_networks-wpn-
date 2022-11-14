@@ -1,5 +1,5 @@
 import React from 'react';
-import './FourZeroFour.css';
+import './FourZeroFour.scss';
 import { Link } from 'react-router-dom';
 
 export default function FourZeroFour() {
