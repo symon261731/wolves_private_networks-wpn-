@@ -1,8 +1,9 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 // import axios from 'axios';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { editServersOfUserThunk } from '../../Redux/actions/serversActions';
 import './Card.scss';
@@ -10,6 +11,8 @@ import './Card.scss';
 export default function Card({ server }) {
   // console.log(server);
   const [curServer, setCurServer] = useState(server);
+  const user = useSelector((state) => state.user);
+  // console.log(user);
   const { id } = useParams();
   // const [flag, setFlag] = useState(false);
   const dispatch = useDispatch();
@@ -25,10 +28,9 @@ export default function Card({ server }) {
 
   //   dispatch(editServersOfUserThunk(serv));
   // };
-
   const handlerUnsubscr = async () => {
     // curServer.subscribeStatus = false;
-    const serv = { ...curServer };
+    const serv = { ...server };
     serv.subscribeStatus = !serv.subscribeStatus;
 
     dispatch(editServersOfUserThunk(serv));
@@ -83,7 +85,8 @@ export default function Card({ server }) {
                     && <button className="card__btn-info" type="button">Info</button>}
         </Link>
         {!server.subscribeStatus ? <button className="card__btn-sub" type="button" onClick={() => handlerUnsubscr()}>Subscribe</button>
-          : <button type="button" className="card__btn-sub unsub_btn" onClick={() => handlerUnsubscr()}>Unsubscribe</button>}
+          : ((user.pocket >= curServer.price) ? <button type="button" className="card__btn-sub unsub_btn" onClick={() => handlerUnsubscr()}>Unsubscribe</button>
+            : <div>No enougth money</div>)}
 
       </div>
 
