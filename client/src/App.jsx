@@ -16,6 +16,8 @@ import { checkUserThunk } from './Redux/actions/userActions';
 import ServerInfo from './components/ServerInfo/ServerInfo';
 import Pocket from './components/Pocket/Pocket';
 import PocketForm from './components/PocketForm/PocketForm';
+import OrderAbout from './components/OrderAbout/OrderAbout';
+import FourZeroFour from './components/FourZeroFour/FourZeroFour';
 
 function App() {
   // const user = { login: 'admin', id: 1 };
@@ -38,6 +40,7 @@ function App() {
           <Route path="/orders" element={<OrdersList />} />
           <Route path="/server/:id" element={<ServerInfo />} />
           <Route path="/pocketForm" element={<PocketForm />} />
+          <Route path="/aboutOrder/:id" element={<OrderAbout />} />
           {/* <Route path="/server/:id" element={<ServerInfo />} /> */}
 
         </Route>
@@ -46,6 +49,7 @@ function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="/userHori/:id" element={<UserPage />} />
         {/* </Route> */}
+        <Route path="/fourzerofour" element={<FourZeroFour />} />
       </Routes>
     </div>
   );

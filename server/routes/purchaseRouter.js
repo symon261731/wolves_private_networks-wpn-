@@ -17,6 +17,9 @@ router.get('/new/:serverId', authCheck, async (req, res) => {
     if (user.pocket >= server.price && subscribed.length === 0) {
       const purchase = await Purchase.create({ user_id: user.id, server_id: serverId });
       const newMoney = user.pocket - server.price;
+      const owner = await User.findByPk(server['user_id']);
+      const addMoney = owner.pocket + server.price;
+      await User.update({ pocket: addMoney }, { where: { id: owner.id } });
       await User.update({ pocket: newMoney }, { where: { id: user.id } });
       return res.sendStatus(200);
     } else if (subscribed.length !== 0) {

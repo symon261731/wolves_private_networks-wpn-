@@ -6,7 +6,8 @@ export default function pocketReducer(state = '', action) {
   switch (type) {
     case SET_MONEY_POCKET: return payload;
     case ADD_MONEY_POCKET: return Number(state) + Number(payload);
-    case PAY_MONEY_POCKET: return payload;
+    case PAY_MONEY_POCKET: return Number(state) - Number(payload);
+
     default: return state;
   }
 }

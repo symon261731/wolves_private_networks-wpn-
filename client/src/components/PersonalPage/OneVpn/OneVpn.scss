@@ -34,6 +34,38 @@
         margin-right: 8px;
     }
 
+    &__btn {
+        position: relative;
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.4;
+        text-align: center;
+        padding: 19.5px 55.25px 19.5px 55.25px;
+        background-color: #3C336C;
+        border-radius: 60px;
+        border: none;
+
+        &:hover {
+            color: white;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #3C336C;
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            background-image: url('../../../../public/img/btn.png');
+            background-repeat: no-repeat;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            z-index: 4;
+            top: 23%;
+            right: -3%;
+        }
+    }
+
     &__delete-btn {
         color: white;
         background-color: inherit;

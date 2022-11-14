@@ -17,7 +17,7 @@ export default function Filter() {
   useEffect(() => {
     axios.get('/server/max-rate')
       .then((res) => setMaxRating(res.data));
-  });
+  }, []);
 
   const dispatch = useDispatch();
   function submitHandle(e) {
@@ -40,9 +40,10 @@ export default function Filter() {
 
   return (
     <div className="filter">
-      <h5 className="main-page__title">Filters</h5>
       <form onSubmit={submitHandle}>
         <div className="filter__flex-radio">
+          <img src="WolfLogo.png" alt="" style={{ width: '150px' }} />
+          <h5 className="main-page__title">Filters</h5>
           <p className="filter__label">Choose you protocol</p>
           <div className="form-check form-check-inline">
             <input name="OpenVPN" className="form-check-input" type="checkbox" id="inlineCheckbox1" value="OpenVPN" />
@@ -79,7 +80,7 @@ export default function Filter() {
         <div className="filter_item">
           <div className="mb-3">
             <p className="filter__label">Rating From</p>
-            <input name="ratingValue" type="range" value={ratingValue} min="1" max={maxRating} onChange={handleChange} />
+            <input name="ratingValue" type="range" value={ratingValue} min="0" max={maxRating} onChange={handleChange} />
             <output>{ratingValue}</output>
           </div>
         </div>

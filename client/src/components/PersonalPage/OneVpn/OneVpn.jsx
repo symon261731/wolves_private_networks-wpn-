@@ -1,7 +1,29 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import './OneVpn.scss';
 
 export default function OneVpn({ info, flag }) {
+
+export default function OneVpn({ info }) {
+  const [configLink, setConfigLink] = useState({});
+
+  function handleDownload() {
+    axios('server/config/:id', { responseType: 'blob' })
+      .then((res) => {
+        const href = URL.createObjectURL(res.data);
+        const download = 'config.ovpn';
+        setConfigLink({ href, download });
+        console.log({ res });
+      });
+  }
+
+const handlerUnsubscr = async (server) => {
+    const serv = { ...server };
+    serv.subscribeStatus = !serv.subscribeStatus;
+    if (user.pocket >= server.price) {
+      dispatch(editServersOfUserThunk(serv));
+    }
+  };
   return (
     <div className="one-vpn">
       <div className="one-vpn__box">
@@ -21,9 +43,17 @@ export default function OneVpn({ info, flag }) {
         </p>
         <p className="one-vpn__score">
           <span className="one-vpn__span">Subscribers:</span>
-          {info?.subscribedUsers.length}
+          {info?.subscribedUsers?.length}
         </p>
+        <button onClick={handleDownload} type="button" className="one-vpn__btn" to="/">Download config</button>
+        {configLink?.href ? (
+          <a href={`${configLink?.href}`} download="config.ovpn"> config</a>
+        ) : (null)}
+        {flag &&
+        <button onClick={() => handlerUnsubscr(el)} type="button" className="personal-page__btn">Unsubscribe</button>
+        }
       </div>
+
     </div>
   );
 }
