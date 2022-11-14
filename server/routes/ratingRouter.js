@@ -11,7 +11,7 @@ router.get('/server/:serverId', authCheck, async (req, res) => {
   try {
     const { serverId } = req.params;
     const findServer = await ServerVPN.findOne({ where: { id: serverId } });
-    if (findServer.user_id === req.session.user.id) return res.json({ message: 'You can\'t rate your own service' });
+    // if (findServer.user_id === req.session.user.id) return res.json({ message: 'You can\'t rate your own service' });
     let liked = await RatingServer.findAll({ where: { user_id: req.session.user.id } });
     liked = liked.filter((el) => el.server_id === Number(serverId));
     if (liked.length === 0) {

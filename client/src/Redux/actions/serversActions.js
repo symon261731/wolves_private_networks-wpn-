@@ -50,3 +50,12 @@ export const editServersOfUserThunk = (curserver) => (dispatch) => {
     // .then(() => dispatch(setAllServersThunk()));
   }
 };
+
+export const addServersLikeThunk = (curserver) => (dispatch) => {
+  axios
+    .get(`/rating/server/${curserver.id}`)
+    .then(() => {
+      dispatch(editServer(curserver));
+    })
+    .catch(console.log);
+};
