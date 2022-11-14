@@ -49,6 +49,7 @@ export default function NavBar() {
                   Pocket:
                   {' '}
                   {pocket || 0}
+                  {/* {user.pocket || 0} */}
                   {' '}
                   USD
                 </Link>

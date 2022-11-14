@@ -37,14 +37,12 @@ export const setAllServersThunk = () => (dispatch) => {
 export const editServersOfUserThunk = (curserver) => (dispatch) => {
   console.log(curserver.subscribeStatus);
   if (!curserver.subscribeStatus) {
-    console.log('11111');
     axios
       .delete(`/purchase/unsubscribe/${curserver.id}`)
       .then(() => { dispatch(editServer(curserver)); });
     // .catch(console.log)
     // .then(() => dispatch(setAllServersThunk()));
   } else {
-    console.log('22222');
     axios
       .get(`/purchase/new/${curserver.id}`)
       .then(() => dispatch(editServer(curserver)));

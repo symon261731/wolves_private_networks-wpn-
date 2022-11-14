@@ -22,18 +22,20 @@ export default function Card({ server }) {
     serv.subscribeStatus = !serv.subscribeStatus;
     if (user.pocket >= curServer.price) {
       dispatch(editServersOfUserThunk(serv));
-    } else { alert('Top up your wallet'); }
+    }
   };
 
   return (
 
     <div className="card">
       <div className="card__body">
-        <p className="card__item">
-          Username:
-          {' '}
-          {curServer?.User?.login || 'ololoshka'}
-        </p>
+        <Link to={`/userHori/${curServer?.User?.id}`}>
+          <p className="card__item">
+            Username:
+            {' '}
+            {curServer?.User?.login || 'ololoshka'}
+          </p>
+        </Link>
         <p className="card__item">
           Protocol:
           {' '}
@@ -64,6 +66,11 @@ export default function Card({ server }) {
           </p>
           <button className="btn btn-sm" style={{ height: '30px' }} type="button" onClick={likeHandle}>🐺</button>
         </div>
+        <p className="card__item">
+          Subscribers:
+          {' '}
+          {curServer?.subscribedUsers.length}
+        </p>
         {/* когда с бека придет инфо о том был ли лайк будет меняться иконка */}
         {/* <div>☝</div> */}
 
