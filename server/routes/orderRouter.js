@@ -94,4 +94,19 @@ router.get('/closejob/:orderId', authCheck, authCloseOrder, async (req, res) => 
   }
 });
 
+// /api/order/:orderId - возвращает информацию о заказе по его номеру
+router.get('/:orderId', async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const order = await Order.findOne({where: {id: orderId}, include: [User]});
+    if (order.status !== 'open') {
+      const worker = await OrderUser.findOne({ where: { order_id: orderId }, include: [User] });
+      order.dataValues.worker = worker.User;
+    }
+    return res.json(order);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
+})
 module.exports = router;
