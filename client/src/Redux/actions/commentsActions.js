@@ -3,10 +3,13 @@ import axios from 'axios';
 import {
   SET_COMMENT,
   ADD_COMMENT,
+  EDIT_COMMENT,
+
 } from '../type';
 
 export const setComment = (payload) => ({ type: SET_COMMENT, payload });
 export const addComment = (payload) => ({ type: ADD_COMMENT, payload });
+export const editComment = (payload) => ({ type: EDIT_COMMENT, payload });
 
 // export const setCommentsThunk = (input) => (dispatch) => {
 //   axios
@@ -42,5 +45,14 @@ export const addCommentOfServerThunk = (input, setInput, id) => (dispatch) => {
     .post(`/comment/server/new/${id}`, { input })
     .then((res) => { dispatch(addComment(res.data)); })
     .then(() => setInput(''))
+    .catch(console.log);
+};
+
+export const addCommentLikeThunk = (comment) => (dispatch) => {
+  axios
+    .get(`/rating/comment/${comment.comment_id}`)
+    .then(() => {
+      dispatch(editComment(comment));
+    })
     .catch(console.log);
 };
