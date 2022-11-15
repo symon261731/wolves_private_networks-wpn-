@@ -24,8 +24,12 @@ export const ADD_ORDER = 'ADD_ORDER';
 export const SET_ONE_ORDER = 'SET_ONE_ORDER';
 export const GET_NEW_ORDER = 'GET_NEW_ORDER';
 export const REMOVE_FROM_ALL = 'REMOVE_FROM_ALL';
+
 //
 export const SET_CURRENT_ORDER = 'SET_CURRENT_ORDER'; // которые взял сам
+export const DONE_NEW_ORDER = 'DONE_NEW_ORDER'; // завершить работу со стороны выполняющего юзера
+
+//
 export const SET_ISSUED_ORDER = 'SET_ISSUED_ORDER'; // которое выдал
 
 // Comments
