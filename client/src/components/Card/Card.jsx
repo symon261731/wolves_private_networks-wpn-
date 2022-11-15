@@ -9,8 +9,9 @@ import { payMoneyPocket } from '../../Redux/actions/pocketAction';
 import { addServersLikeThunk, editServersOfUserThunk } from '../../Redux/actions/serversActions';
 import './Card.scss';
 
-export default function Card({ server }) {
-  // const [curServer, setCurServer] = useState(server);
+export default function Card({ server, setServer }) {
+  console.log({ server });
+
   const user = useSelector((state) => state.user);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export default function Card({ server }) {
   async function likeHandle() {
     const serv = { ...server };
     serv.likeStatus = !serv.likeStatus;
+    if (id) setServer(serv);
     // eslint-disable-next-line no-unused-expressions
     serv?.likeStatus ? serv.rating += 1 : serv.rating -= 1;
     dispatch(addServersLikeThunk(serv));
@@ -26,6 +28,7 @@ export default function Card({ server }) {
   const handlerUnsubscr = async () => {
     const serv = { ...server };
     serv.subscribeStatus = !serv.subscribeStatus;
+    if (id) setServer(serv);
     if (user.pocket >= server?.price) {
       dispatch(editServersOfUserThunk(serv));
       if (serv.subscribeStatus) {
