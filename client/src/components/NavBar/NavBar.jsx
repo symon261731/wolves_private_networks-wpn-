@@ -15,25 +15,25 @@ export default function NavBar() {
   }, [user.id]);
 
   return (
-    <div className="header__margin">
+    <div className="header header__margin">
       <ul className="nav">
-        <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+        <li className="nav__item">
+          <Link className="nav__link" aria-current="page" to="/">Home</Link>
         </li>
         {user?.id ? (
           <>
             <div className="nav__flex">
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/personalPage/1">MyPage</Link>
+              <li className="nav__item">
+                <Link className="nav__link" aria-current="page" to="/personalPage/1">MyPage</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/orders">Orders</Link>
+              <li className="nav__item">
+                <Link className="nav__link" to="/orders">Orders</Link>
               </li>
             </div>
             <div className="nav__flex">
-              <li className="nav-item">
+              <li className="nav__item">
                 <Link
-                  className="nav-link"
+                  className="nav__link"
                   to="/#"
                   onClick={() => {
                     dispatch(logoutUserThunk());
@@ -44,8 +44,8 @@ export default function NavBar() {
 
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/addCash">
+              <li className="nav__item">
+                <Link className="nav__link" to="/addCash">
                   Pocket:
                   {' '}
                   {pocket || 0}
@@ -58,11 +58,11 @@ export default function NavBar() {
           </>
         ) : (
           <>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
+            <li className="nav__item">
+              <Link className="nav__link" to="/login">Login</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/auth">Auth</Link>
+            <li className="nav__item">
+              <Link className="nav__link" to="/auth">Auth</Link>
             </li>
           </>
         )}

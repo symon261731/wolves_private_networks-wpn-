@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+// import { Spring } from '@react-spring/web';
 import { deleteServersOfUserThunk } from '../../../Redux/actions/myServersActions';
 import { editServersOfUserThunk } from '../../../Redux/actions/serversActions';
 import './OneVpn.scss';
@@ -53,12 +54,15 @@ export default function OneVpn({ info, flag }) {
           <span className="one-vpn__span">Subscribers:</span>
           {info?.subscribedUsers?.length}
         </p>
-        <button onClick={handleDownload} type="button" className="one-vpn__btn" to="/">Download config</button>
-        {configLink?.href ? (
-          <a className="one-vpn__download" href={`${configLink?.href}`} download="config.ovpn">download config</a>
-        ) : (null)}
-        {flag
+        <div className="one-vpn__flex">
+          <button onClick={handleDownload} type="button" className="one-vpn__btn" to="/">Download config</button>
+          {flag
         && <button onClick={() => handlerUnsubscr(info)} type="button" className="one-vpn__btn one-vpn_unsubscribe">Unsubscribe</button>}
+
+          {configLink?.href ? (
+            <a className="one-vpn__download" href={`${configLink?.href}`} download="config.ovpn">download config</a>
+          ) : (null)}
+        </div>
       </div>
 
     </div>

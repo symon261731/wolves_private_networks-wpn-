@@ -93,12 +93,24 @@ module.exports = {
     await queryInterface.bulkInsert('Comments', comments, {});
 
     const orders = [];
-    for (let i = 0; i < 50; i += 1) {
+    for (let i = 0; i < 20; i += 1) {
     //   user_id: DataTypes.INTEGER,
     // title: DataTypes.STRING,
     // price: DataTypes.INTEGER,
     // location: DataTypes.STRING,
     // protocol: DataTypes.STRING
+      orders.push({
+        user_id: Math.floor(Math.random() * 19 + 1),
+        title: faker.commerce.productName(),
+        price: Math.floor(Math.random() * 1000000),
+        location: faker.address.country(),
+        protocol: 'very secure swear to God',
+        status: 'in progress',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+    }
+    for (let i = 0; i < 30; i += 1) {
       orders.push({
         user_id: Math.floor(Math.random() * 19 + 1),
         title: faker.commerce.productName(),
@@ -142,14 +154,14 @@ module.exports = {
 
     // OrderUser
     const temp3 = [];
-    for (let i = 0; i < 19; i += 1) {
+    for (let i = 0; i < 20; i += 1) {
     //   order_id: DataTypes.INTEGER,
     // creator: DataTypes.INTEGER,
     // worker: DataTypes.INTEGER
       temp3.push({
         order_id: i + 1,
         creator: orders[i]['user_id'],
-        worker: Math.floor(Math.random() * 19 + 1),
+        worker: Math.floor(Math.random() * 20 + 1),
         createdAt: new Date(),
         updatedAt: new Date(),
       });

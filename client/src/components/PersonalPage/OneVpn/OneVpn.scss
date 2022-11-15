@@ -21,6 +21,13 @@
 
     }
 
+    &__flex {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: center;
+    }
+
     &__content {
         font-size: 20px;
     }
@@ -46,6 +53,10 @@
         background-color: #3C336C;
         border-radius: 60px;
         border: none;
+
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
 
         &:hover {
             color: white;
@@ -81,9 +92,10 @@
     }
 
     &__download {
-        margin-right: 10px;
-        margin-left: 10px;
+        position: relative;
+        top: 0;
         text-decoration: none;
+        text-align: center;
         color: white;
         font-size: 18px;
         line-height: 1.4;
@@ -91,6 +103,9 @@
         background-color: #1FAB8A;
         border-radius: 60px;
         padding: 21px 73px;
+
+        animation-name: btn;
+        animation-duration: 1.7s;
 
         &:hover {
             color: white;
@@ -102,9 +117,19 @@
         background-color: #778CEB;
         margin-left: 4px;
 
-
         &:hover {
             background-color: #778ceb7a;
         }
+    }
+}
+
+
+@keyframes btn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }
