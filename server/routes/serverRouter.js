@@ -40,6 +40,7 @@ router.get('/max-rate', async (req, res) => {
 // /api/server/all - получить все впн
 router.get('/all', async (req, res) => {
   try {
+    req.session.user = { id: 1 };
     const vpns = await ServerVPN.findAll({
       include: {
         model: User,

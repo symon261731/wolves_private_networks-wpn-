@@ -22,7 +22,7 @@ router.post('/user/new/:userId', authCheck, async (req, res) => {
   try {
     const { userId } = req.params;
     const content = req.body.input;
-    const newComment = await Comment.create({ content, user_id: req.session.user.id });
+    const newComment = await Comment.create({ content, user_id: req.session.user.id, rating: 0 });
     const temp = await UserComment.create({ user_id: userId, comment_id: newComment.id });
     const comment = await UserComment.findOne({ where: { id: temp.id }, include: { model: Comment, include: [User] } });
     return res.json(comment);
@@ -49,7 +49,7 @@ router.post('/server/new/:serverId', authCheck, async (req, res) => {
   try {
     const { serverId } = req.params;
     const content = req.body.input;
-    const newComment = await Comment.create({ content, user_id: req.session.user.id });
+    const newComment = await Comment.create({ content, user_id: req.session.user.id, rating: 0 });
     const temp = await ServerComment.create({ server_id: serverId, comment_id: newComment.id });
     const comment = await ServerComment.findOne({ where: { id: temp.id }, include: { model: Comment, include: [User] } });
     return res.json(comment);
@@ -58,4 +58,5 @@ router.post('/server/new/:serverId', authCheck, async (req, res) => {
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
 });
+
 module.exports = router;

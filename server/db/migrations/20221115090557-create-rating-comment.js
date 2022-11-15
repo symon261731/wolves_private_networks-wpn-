@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Comments', {
+    await queryInterface.createTable('RatingComments', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -19,11 +19,18 @@ module.exports = {
         key: 'id',
         },
       },
-      rating: {
-        type: Sequelize.INTEGER
+      comment_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: {
+                tableName: 'Comments',
+            },
+        key: 'id',
+        },
       },
-      content: {
-        type: Sequelize.TEXT
+      score: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +43,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Comments');
+    await queryInterface.dropTable('RatingComments');
   }
 };

@@ -29,8 +29,10 @@ purchaseRouter
 ratingRouter
 /api/rating/server/:serverId - поставить лайк серверу по его id
 /api/rating/user/:userId - поставить лайк юзеру по его id
+/api/rating/comment/:commentId - поставить лайк комментарию по его id
 /api/rating/check/user/:userId - проверить статус лайка юзера по номеру юзера
 /api/rating/check/server/:serverId - проверить статус лайка сервера по номеру сервера
+/api/rating/check/comment/:commentId - проверить статус лайка комменатрия по номеру комментария
 
 pocketRouter
 /api/pocket/refill - положить деньги на кошелек
