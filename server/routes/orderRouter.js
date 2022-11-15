@@ -83,11 +83,11 @@ router.get('/job/done-by-user', authCheck, async (req, res) => {
     const closedOrders = await OrderUser.findAll({ where: { worker: userId, status: 'closed' }, include: [Order] });
     const data = closedOrders.map((el) => el.Order);
     return res.json(data);
-   } catch (error) {
+  } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
-})
+});
 
 // /api/order/closejob/:orderId - пометить заказ выполненным по номеру заказа
 router.get('/closejob/:orderId', authCheck, authCloseOrder, async (req, res) => {
