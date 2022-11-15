@@ -6,6 +6,7 @@ import MapYandex from './MapYandex';
 
 import './MainPage.scss';
 import { setServersThunk } from '../../Redux/actions/serversActions';
+import AnimatedPage from '../AnimateRoute/AnimatedRoute';
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -14,12 +15,14 @@ export default function MainPage() {
   }, []);
 
   return (
-    <div className="main-page">
-      <Filter />
-      <div className="main-page__flex">
-        <List />
-        <MapYandex />
+    <AnimatedPage>
+      <div className="main-page">
+        <Filter />
+        <div className="main-page__flex">
+          <List />
+          <MapYandex />
+        </div>
       </div>
-    </div>
+    </AnimatedPage>
   );
 }
