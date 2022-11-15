@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import './MapYandex.scss';
 
 export default function Map() {
   const [myMap, setMyMap] = useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const servers = useSelector((state) => state.servers);
   // console.log(servers);
   const country = { shir: 55.751574, dolg: 37.573856 };
@@ -47,7 +47,14 @@ export default function Map() {
             // eslint-disable-next-line no-undef
             const myPlacemarkWithContent = new ymaps.Placemark(coordinates, {
               hintContent: [el.location, `${el.rating}🐺`],
-              balloonContent: el.price,
+              balloonContentHeader: `Location: ${el.location}`,
+              balloonContent: `<h>price: ${el.price} USD</h><br>
+              <h>rating: ${el.rating}🐺</h><br>
+              <h>subscribers: ${el.subscribedUsers.length}</h><br>
+              <h>protocol: ${el.protocol}</h><br>
+              <a href="/server/${el.id}">MORE INFO</a><br>
+              `,
+              balloonContentFooter: 'WOLF PRIVATE NETWORK',
               iconContent: '',
             }, {
               iconLayout: 'default#imageWithContent', // Необходимо указать данный тип макета.
@@ -61,7 +68,7 @@ export default function Map() {
               .add(myPlacemarkWithContent);
 
             myPlacemarkWithContent.events.add(['click'], () => {
-              navigate(`/server/${el.id}`);
+              // navigate(`/server/${el.id}`);
             });
           },
         );

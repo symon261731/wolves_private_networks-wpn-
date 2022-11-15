@@ -38,13 +38,13 @@ export default function Card({ server }) {
 
     <div className="card">
       <div className="card__body">
-        <Link to={`/userHori/${server?.User?.id}`}>
-          <p className="card__item">
-            Username:
-            {' '}
-            {server?.User?.login || 'ololoshka'}
-          </p>
-        </Link>
+
+        <p className="card__item">
+          Username:
+          {' '}
+          <Link to={`/userHori/${server?.User?.id}`}>{server?.User?.login || 'ololoshka'}</Link>
+        </p>
+
         <p className="card__item">
           Protocol:
           {' '}
@@ -93,7 +93,7 @@ export default function Card({ server }) {
           {!id
                     && <button className="card__btn-info" type="button">Info</button>}
         </Link>
-        {!server.subscribeStatus ? <button className="card__btn-sub" type="button" onClick={() => handlerUnsubscr()}>Subscribe</button>
+        {!server?.subscribeStatus ? <button className="card__btn-sub" type="button" onClick={() => handlerUnsubscr()}>Subscribe</button>
           : ((user.pocket >= server.price) ? <button type="button" className="card__btn-sub unsub_btn" onClick={() => handlerUnsubscr()}>Unsubscribe</button>
             : <div>No enougth money</div>)}
 

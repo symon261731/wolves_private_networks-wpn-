@@ -28,8 +28,11 @@ export const logoutUserThunk = () => (dispatch) => {
 };
 
 export const checkUserThunk = () => (dispatch) => {
-  axios.post('/user/check').then((res) => dispatch(setUser(res.data)))
-    .catch(console.log);
+  axios.post('/user/check').then((res) => dispatch(setUser({ ...res.data, loading: false })))
+    .catch((err) => {
+      dispatch(setUser({ loading: false }));
+      console.log(err);
+    });
 };
 
 // export const findUserThunk = (id) => (dispatch) => {
