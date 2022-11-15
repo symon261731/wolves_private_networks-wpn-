@@ -241,7 +241,7 @@ router.get('/user/:userId', authCheck, async (req, res) => {
 router.get('/:serverId', async (req, res) => {
   try {
     const { serverId } = req.params;
-    const vpn = await ServerVPN.findByPk(serverId);
+    const vpn = await ServerVPN.findOne({ where: { id: serverId }, include: [User] });
     if (!vpn) return res.json({ message: 'VPN with this number doesn\'t exist' });
     const subscribedUsers = (await Purchase.findAll({ where: { server_id: serverId }, include: [User] })).map((el) => el.User);
     vpn.dataValues.subscribedUsers = subscribedUsers;
