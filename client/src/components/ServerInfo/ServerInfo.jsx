@@ -30,7 +30,7 @@ export default function ServerInfo() {
 
   return (
     <div className="server-info">
-      <Card server={server} />
+      <Card server={server} setServer={setServer} />
       <button type="button" className="server-info__add-btn server-info__add-btn_margin-top" data-bs-toggle="modal" data-bs-target="#exampleModal">
         add comment
       </button>
