@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 // import { Spring } from '@react-spring/web';
 import { deleteServersOfUserThunk } from '../../../Redux/actions/myServersActions';
 import { editServersOfUserThunk } from '../../../Redux/actions/serversActions';
@@ -33,6 +34,7 @@ export default function OneVpn({ info, flag }) {
   const deleteHandler = async (server) => {
     dispatch(deleteServersOfUserThunk(server));
   };
+
   return (
     <div className="one-vpn">
       <div className="one-vpn__box">
@@ -54,6 +56,7 @@ export default function OneVpn({ info, flag }) {
           <span className="one-vpn__span">Subscribers:</span>
           {info?.subscribedUsers?.length}
         </p>
+        <Link to={`/server/${info.id}`}>MORE INFO</Link>
         <div className="one-vpn__flex">
           <button onClick={handleDownload} type="button" className="one-vpn__btn" to="/">Get config</button>
           {flag

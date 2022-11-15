@@ -57,7 +57,7 @@ export default function UserPage() {
         </div>
         <h3 className="user-page__comment-title">Work rewiew</h3>
         <button type="button" className="user-page__comment-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          add order
+          Add comment
         </button>
         <div className="user-page__comments">
 

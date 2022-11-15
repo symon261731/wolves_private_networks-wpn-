@@ -16,6 +16,7 @@ import { setServersOfUserThunk } from '../../Redux/actions/myServersActions';
 import OneVpn from './OneVpn/OneVpn';
 import Card from '../Card/Card';
 import { editServersOfUserThunk } from '../../Redux/actions/serversActions';
+import AnimatedPage from '../AnimateRoute/AnimatedRoute';
 
 export default function PersonalPage() {
   const { id } = useParams();
@@ -40,94 +41,96 @@ export default function PersonalPage() {
   };
 
   return (
-    <div className="personal-page personal-page_margin">
-      <h2 className="personal-page__title">Welcome to your personal account page </h2>
-      <h3 className="personal-page__title">{user?.login}</h3>
-      <ul className="personal-page__link-tab">
-        <li
-          onClick={() => toggleTab(1)}
-          className={toggleState === 1 ? 'personal-page__item active-tab' : 'personal-page__item'}
-        >
-          My subscribes
-        </li>
-        <li
-          onClick={() => toggleTab(2)}
-          className={toggleState === 2 ? 'personal-page__item active-tab' : 'personal-page__item'}
-        >
-          VPN
-        </li>
-        <li
-          onClick={() => toggleTab(3)}
-          className={toggleState === 3 ? 'personal-page__item active-tab' : 'personal-page__item'}
-        >
-          current orders
-        </li>
-        <li
-          onClick={() => toggleTab(4)}
-          className={toggleState === 4 ? 'personal-page__item active-tab' : 'personal-page__item'}
-        >
-          issued orders
-        </li>
-      </ul>
-      <div className="personal-page__tabs">
-        <div className={toggleState === 1 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
-          <div className="personal-page__content">
-            <h4 className="personal-page__tab-title">My Subscribes</h4>
+    <AnimatedPage>
+      <div className="personal-page personal-page_margin">
+        <h2 className="personal-page__title">Welcome to your personal account page </h2>
+        <h3 className="personal-page__name">{user?.login}</h3>
+        <ul className="personal-page__link-tab">
+          <li
+            onClick={() => toggleTab(1)}
+            className={toggleState === 1 ? 'personal-page__item active-tab' : 'personal-page__item'}
+          >
+            My subscribes
+          </li>
+          <li
+            onClick={() => toggleTab(2)}
+            className={toggleState === 2 ? 'personal-page__item active-tab' : 'personal-page__item'}
+          >
+            VPN
+          </li>
+          <li
+            onClick={() => toggleTab(3)}
+            className={toggleState === 3 ? 'personal-page__item active-tab' : 'personal-page__item'}
+          >
+            current orders
+          </li>
+          <li
+            onClick={() => toggleTab(4)}
+            className={toggleState === 4 ? 'personal-page__item active-tab' : 'personal-page__item'}
+          >
+            issued orders
+          </li>
+        </ul>
+        <div className="personal-page__tabs">
+          <div className={toggleState === 1 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
+            <div className="personal-page__content">
+              <h4 className="personal-page__tab-title">My Subscribes</h4>
 
-            { mySubscribes.length !== 0
-              ? (
-                <div className="second-tab second-tab_margin">
-                  {mySubscribes?.map((el) => (
+              { mySubscribes.length !== 0
+                ? (
+                  <div className="second-tab second-tab_margin">
+                    {mySubscribes?.map((el) => (
                     // <div className="download">
-                    <OneVpn key={el.id} info={el} flag />
+                      <OneVpn key={el.id} info={el} flag />
                     // </div>
-                  ))}
-                </div>
-              )
-              : (<p className="personal-page__content">You have no VPN</p>)}
+                    ))}
+                  </div>
+                )
+                : (<p className="personal-page__content">You have no VPN</p>)}
+            </div>
           </div>
-        </div>
 
-        <div className={toggleState === 2 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
-          <div className="personal-page__content">
-            <h4 className="personal-page__tab-title">My VPN</h4>
-            { vpn.length !== 0
-              ? (
-                <div className="second-tab second-tab_margin">
-                  {vpn?.map((el) => <OneVpn key={el.id} info={el} flag={false} />)}
-                </div>
-              )
-              : (<p className="personal-page__content">You don' have VPN</p>)}
-            <Link className="personal-page__btn" to="/createVPN">Create VPN</Link>
+          <div className={toggleState === 2 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
+            <div className="personal-page__content">
+              <h4 className="personal-page__tab-title">My VPN</h4>
+              { vpn.length !== 0
+                ? (
+                  <div className="second-tab second-tab_margin">
+                    {vpn?.map((el) => <OneVpn key={el.id} info={el} flag={false} />)}
+                  </div>
+                )
+                : (<p className="personal-page__content">You don' have VPN</p>)}
+              <Link className="personal-page__btn" to="/createVPN">Create VPN</Link>
+            </div>
           </div>
-        </div>
 
-        <div className={toggleState === 3 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
-          <h4 className="personal-page__tab-title">CURRENT ORDERS</h4>
-          <div className="personal-page__order current-order">
-            {currentOrder.length ? (
-              currentOrder.map((el) => <Order key={el.id} info={el} />)) : (
+          <div className={toggleState === 3 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
+            <h4 className="personal-page__tab-title">CURRENT ORDERS</h4>
+            <div className="personal-page__order current-order">
+              {currentOrder.length ? (
+                currentOrder.map((el) => <Order key={el.id} info={el} />)) : (
+                  <div className="current-order__nope">
+                    <p className="current-order__text"> You haven't token a job yet</p>
+                    <button onClick={() => navigate('/orders')} type="button" className="current-order__btn">find order</button>
+                  </div>
+              )}
+            </div>
+          </div>
+
+          <div className={toggleState === 4 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
+            <h4 className="personal-page__tab-title">ISSUED ORDERS</h4>
+            <div className="personal-page__order current-order">
+              { issuedOrder ? (issuedOrder?.map((el) => <Order key={el.id} info={el} />)) : (
                 <div className="current-order__nope">
-                  <p className="current-order__text"> You haven't token a job yet</p>
+                  <p className="current-order__text"> You haven't given a job yet</p>
                   <button onClick={() => navigate('/orders')} type="button" className="current-order__btn">find order</button>
                 </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
 
-        <div className={toggleState === 4 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
-          <h4 className="personal-page__tab-title">ISSUED ORDERS</h4>
-          <div className="personal-page__order current-order">
-            { issuedOrder ? (issuedOrder?.map((el) => <Order key={el.id} info={el} />)) : (
-              <div className="current-order__nope">
-                <p className="current-order__text"> You haven't given a job yet</p>
-                <button onClick={() => navigate('/orders')} type="button" className="current-order__btn">find order</button>
-              </div>
-            )}
-          </div>
         </div>
-
       </div>
-    </div>
+    </AnimatedPage>
   );
 }

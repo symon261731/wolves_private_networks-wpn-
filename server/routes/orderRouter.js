@@ -95,7 +95,8 @@ router.get('/validate/worker/:orderId', authCheck, authCloseOrderWorker, async (
   try {
     const { orderId } = req.params;
     await Order.update({ status: 'need validation' }, { where: { id: orderId } });
-    return res.sendStatus(200);
+    const order = await Order.findByPk(orderId);
+    return res.json(order);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
