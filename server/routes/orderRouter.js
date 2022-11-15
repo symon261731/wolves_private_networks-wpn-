@@ -76,6 +76,19 @@ router.get('/newjob/:orderId', authCheck, async (req, res) => {
   }
 });
 
+// /api/order/job/done-by-user/:userId - вернуть все заказы, которые выполнил юзер
+router.get('/job/done-by-user', authCheck, async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const closedOrders = await OrderUser.findAll({ where: { worker: userId, status: 'closed' }, include: [Order] });
+    const data = closedOrders.map((el) => el.Order);
+    return res.json(data);
+   } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
+})
+
 // /api/order/closejob/:orderId - пометить заказ выполненным по номеру заказа
 router.get('/closejob/:orderId', authCheck, authCloseOrder, async (req, res) => {
   try {
@@ -86,7 +99,7 @@ router.get('/closejob/:orderId', authCheck, authCloseOrder, async (req, res) => 
     const user = await User.findOne({ where: { id: findCon.worker } });
     const money = user.pocket + findOrder.price;
     await User.update({ pocket: money }, { where: { id: user.id } });
-    const newConnection = await OrderUser.destroy({ where: { order_id: orderId } });
+    await OrderUser.update({ status: 'closed' }, { where: { order_id: orderId } });
     return res.sendStatus(200);
   } catch (error) {
     console.log(error);
