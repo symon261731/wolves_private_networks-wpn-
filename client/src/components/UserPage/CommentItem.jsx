@@ -5,15 +5,22 @@ import { addCommentLikeThunk } from '../../Redux/actions/commentsActions';
 
 export default function CommentItem({ comment }) {
   const dispatch = useDispatch();
-
   async function likeHandle() {
-    const commentToThunk = { ...comment };
-    commentToThunk.likeStatus = !commentToThunk.likeStatus;
+    // const commentToThunk = { ...comment };
+    const commentToThunk = JSON.parse(JSON.stringify(comment));
+
+    console.log(commentToThunk.Comment.likeStatus);
+    commentToThunk.Comment.likeStatus = !commentToThunk.Comment.likeStatus;
+    console.log(commentToThunk.Comment.likeStatus);
+
     // eslint-disable-next-line no-unused-expressions
-    commentToThunk?.likeStatus ? commentToThunk.rating += 1 : commentToThunk.rating -= 1;
+    commentToThunk.Comment.likeStatus ? commentToThunk.Comment.rating += 1 : commentToThunk.Comment.rating -= 1;
+    console.log(commentToThunk);
     dispatch(addCommentLikeThunk(commentToThunk));
   }
-  console.log(comment);
+  // console.log(comment.Comment);
+
+  // console.log(comment);
   return (
     <div className="user-page__one-comment">
       <div className="user-page__pair">
@@ -25,7 +32,7 @@ export default function CommentItem({ comment }) {
           </Link>
         </p>
         <p className="user-page__score">5.0★(нет такого в бд)</p>
-        {comment?.likeStatus ? (
+        {comment?.Comment?.likeStatus ? (
           <button className="btn btn-sm" style={{ height: '30px' }} type="button" onClick={likeHandle}>🐺</button>
         ) : (
           <button className="btn btn-sm" style={{ height: '30px' }} type="button" onClick={likeHandle}>👍</button>
