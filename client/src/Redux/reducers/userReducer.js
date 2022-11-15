@@ -10,7 +10,8 @@ export default function userReducer(state = { loading: true }, action) {
     case LOGOUT:
       return {};
     case EDIT_USER:
-      return { ...state, pocket: payload.amount };
+      console.log(payload);
+      return { ...state, pocket: Number(state.pocket) + Number(payload.amount) };
     default:
       return state;
   }
