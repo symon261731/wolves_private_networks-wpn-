@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { setCommentsOfServerThunk } from '../../Redux/actions/commentsActions';
@@ -11,13 +12,20 @@ export default function ServerInfo() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const servers = useSelector((state) => state.servers);
+  // const servers = useSelector((state) => state.servers);
+
+  const [server, setServer] = useState({});
   // console.log(servers);
-  const server = servers.find((el) => el.id === Number(id));
+  // const server = servers.find((el) => el.id === Number(id));
 
   useEffect(() => {
-    dispatch(setCommentsOfServerThunk(id));
-  }, [id]);
+    axios
+      .get(`/server/${id}`)
+      .then((res) => {
+        setServer(res.data);
+      })
+      .then(() => dispatch(setCommentsOfServerThunk(id)));
+  }, []);
   const commentsList = useSelector((state) => state.comments);
 
   return (
