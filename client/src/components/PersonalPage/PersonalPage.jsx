@@ -44,7 +44,7 @@ export default function PersonalPage() {
     <AnimatedPage>
       <div className="personal-page personal-page_margin">
         <h2 className="personal-page__title">Welcome to your personal account page </h2>
-        <h3 className="personal-page__title">{user?.login}</h3>
+        <h3 className="personal-page__name">{user?.login}</h3>
         <ul className="personal-page__link-tab">
           <li
             onClick={() => toggleTab(1)}

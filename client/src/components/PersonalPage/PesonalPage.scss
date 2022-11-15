@@ -1,7 +1,7 @@
 .personal-page {
 
     &_margin {
-        margin-top: 70px;
+        padding-top: 70px;
     }
 
     &__content {
@@ -10,11 +10,20 @@
 
     &__title {
         text-align: center;
+        color: #333;
+        font-weight: 700;
 
         &:not(:last-child) {
             margin-bottom: 30px;
         }
 
+    }
+
+    &__name {
+        text-align: center;
+        font-size: 36px;
+        font-weight: 900;
+        color: white;
     }
 
     &__link-tab {
@@ -89,4 +98,48 @@
 
 .active-content {
     display: block;
+}
+
+
+$white: #fff;
+$blue: #1e90ff;
+$green: #39d24a;
+$yellow: #ffe244;
+$pink: #ff36a3;
+
+.personal-page {
+    height: 100vh;
+    overflow: hidden;
+    // I do like these colours
+    /* background: 
+    radial-gradient(circle at bottom, #fff -30%, transparent 70%),
+    linear-gradient(to right, #134a8e, #00b6f1 50%),
+    #fff; */
+
+    background:
+        radial-gradient(circle at bottom, $white, transparent 80%),
+        linear-gradient(to top, dodgerblue 0%, transparent 70%),
+        linear-gradient(to bottom, transparent, rgba($white, 0.4) 70%),
+        $blue;
+    animation: bg 30s infinite;
+}
+
+@keyframes bg {
+
+    0%,
+    100% {
+        background-color: $blue;
+    }
+
+    25% {
+        background-color: $green;
+    }
+
+    50% {
+        background-color: $yellow;
+    }
+
+    75% {
+        background-color: $pink;
+    }
 }

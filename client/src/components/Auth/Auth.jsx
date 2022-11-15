@@ -11,7 +11,7 @@ export default function Auth() {
 
   return (
     <AnimatedPage>
-      <div className="auth auth_margin">
+      <div className="auth">
 
         <div className="auth__main-box">
           <form
