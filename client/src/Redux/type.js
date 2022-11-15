@@ -35,6 +35,7 @@ export const SET_ISSUED_ORDER = 'SET_ISSUED_ORDER'; // которое выдал
 // Comments
 export const SET_COMMENT = 'SET_COMMENT';
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
 
 // Pocket
 
