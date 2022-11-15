@@ -12,7 +12,9 @@ export default function ServerInfo() {
   const dispatch = useDispatch();
 
   const servers = useSelector((state) => state.servers);
+  // console.log(servers);
   const server = servers.find((el) => el.id === Number(id));
+
   useEffect(() => {
     dispatch(setCommentsOfServerThunk(id));
   }, [id]);
