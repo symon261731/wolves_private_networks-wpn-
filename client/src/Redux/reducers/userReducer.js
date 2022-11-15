@@ -1,7 +1,7 @@
 import { LOGOUT, SET_USER } from '../type';
 
 // eslint-disable-next-line default-param-last
-export default function userReducer(state = {}, action) {
+export default function userReducer(state = { loading: true }, action) {
   const { type, payload } = action;
 
   switch (type) {
