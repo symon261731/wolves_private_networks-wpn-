@@ -1,6 +1,6 @@
 const express = require('express');
 const {
-  ServerVPN, RatingServer, User, RatingUser,
+  ServerVPN, RatingServer, User, RatingUser, Comment, RatingComment
 } = require('../db/models');
 const authCheck = require('../middlewares/authUser');
 
@@ -20,6 +20,27 @@ router.get('/server/:serverId', authCheck, async (req, res) => {
     } else {
       await RatingServer.destroy({ where: { user_id: req.session.user.id, server_id: serverId } });
       await findServer.decrement('rating', { by: 1 });
+    }
+    return res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
+});
+
+// /api/rating/comment/:commentId -  поставить лайк комменту по его id
+router.get('/comment/:commentId', authCheck, async (req, res) => {
+  try {
+    const { commentId } = req.params;
+    const findComment = await Comment.findOne({ where: { id: commentId } });
+    if (findComment.user_id === req.session.user.id) return res.json({ message: 'You can\'t rate your own comment' });
+    let liked = await RatingComment.findAll({ where: { user_id: req.session.user.id, comment_id: commentId } });
+    if (liked.length === 0) {
+      await findComment.increment('rating', { by: 1 });
+      await RatingComment.create({ user_id: req.session.user.id, comment_id: commentId });
+    } else {
+      await RatingComment.destroy({ where: { user_id: req.session.user.id, comment_id: commentId } });
+      await findComment.decrement('rating', { by: 1 });
     }
     return res.sendStatus(200);
   } catch (error) {
@@ -70,6 +91,21 @@ router.get('/check/server/:serverId', async (req, res) => {
   try {
     const { serverId } = req.params;
     const status = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: serverId } });
+    if (status) {
+      return res.json(true);
+    }
+    return res.json(false);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
+});
+
+// /api/rating/check/comment/:commentId - проверить статус лайка комментария по номеру комментария
+router.get('/check/server/:serverId', async (req, res) => {
+  try {
+    const { commentId } = req.params;
+    const status = await RatingComment.findOne({ where: { user_id: req.session.user.id, comment_id: commentId } });
     if (status) {
       return res.json(true);
     }

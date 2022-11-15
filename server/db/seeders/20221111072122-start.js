@@ -86,6 +86,7 @@ module.exports = {
       comments.push({
         user_id: Math.floor(Math.random() * 19 + 1),
         content: faker.commerce.productDescription(),
+        rating: 0,
         createdAt: new Date(),
         updatedAt: new Date(),
       });
@@ -162,6 +163,7 @@ module.exports = {
         order_id: i + 1,
         creator: orders[i]['user_id'],
         worker: Math.floor(Math.random() * 20 + 1),
+        status: 'open',
         createdAt: new Date(),
         updatedAt: new Date(),
       });

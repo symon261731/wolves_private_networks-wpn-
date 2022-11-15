@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ServerVPN, File, Comment, UserComment, RatingServer, RatingUser, Order, OrderUser, Purchase, Card, Transaction}) {
+    static associate({ServerVPN, File, Comment, UserComment, RatingServer, RatingUser, Order, OrderUser, Purchase, Card, Transaction, RatingComment}) {
       // define association here
       this.hasMany(ServerVPN, { foreignKey: 'user_id' });
       this.hasMany(File, { foreignKey: 'user_id' });
@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(Purchase, { foreignKey: 'user_id' });
       this.hasMany(Card, { foreignKey: 'user_id' });
       this.hasMany(Transaction, { foreignKey: 'user_id' });
+      this.hasMany(RatingComment, { foreignKey: 'user_id' });
     }
   }
   User.init({
