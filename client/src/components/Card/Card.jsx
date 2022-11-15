@@ -26,10 +26,10 @@ export default function Card({ server }) {
   const handlerUnsubscr = async () => {
     const serv = { ...server };
     serv.subscribeStatus = !serv.subscribeStatus;
-    if (user.pocket >= server.price) {
+    if (user.pocket >= server?.price) {
       dispatch(editServersOfUserThunk(serv));
       if (serv.subscribeStatus) {
-        dispatch(payMoneyPocket(server.price));
+        dispatch(payMoneyPocket(server?.price));
       }
     }
   };
@@ -82,7 +82,7 @@ export default function Card({ server }) {
         <p className="card__item">
           Subscribers:
           {' '}
-          {server?.subscribedUsers.length}
+          {server?.subscribedUsers?.length}
         </p>
         {/* когда с бека придет инфо о том был ли лайк будет меняться иконка */}
         {/* <div>☝</div> */}
@@ -94,7 +94,7 @@ export default function Card({ server }) {
                     && <button className="card__btn-info" type="button">Info</button>}
         </Link>
         {!server?.subscribeStatus ? <button className="card__btn-sub" type="button" onClick={() => handlerUnsubscr()}>Subscribe</button>
-          : ((user.pocket >= server.price) ? <button type="button" className="card__btn-sub unsub_btn" onClick={() => handlerUnsubscr()}>Unsubscribe</button>
+          : ((user.pocket >= server?.price) ? <button type="button" className="card__btn-sub unsub_btn" onClick={() => handlerUnsubscr()}>Unsubscribe</button>
             : <div>No enougth money</div>)}
 
       </div>
