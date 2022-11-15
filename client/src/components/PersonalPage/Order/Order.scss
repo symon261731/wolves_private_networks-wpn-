@@ -19,9 +19,7 @@
         }
     }
 
-    &__box_green {
-        background-color: green;
-    }
+
 
     &__title {
         font-size: 30px;
@@ -71,4 +69,9 @@
         }
     }
 
+}
+
+
+.current-order__box_green {
+    background-color: rgb(133, 226, 133);
 }

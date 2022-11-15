@@ -1,5 +1,6 @@
 .personal-page {
 
+
     &_margin {
         padding-top: 70px;
     }
@@ -58,8 +59,10 @@
         color: white;
         max-width: 1440px;
         margin: 0 auto;
+
         padding: 20px;
         border-radius: 15px;
+
     }
 
     &__one-tab {
@@ -108,8 +111,8 @@ $yellow: #ffe244;
 $pink: #ff36a3;
 
 .personal-page {
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    padding-bottom: 40px;
     // I do like these colours
     /* background: 
     radial-gradient(circle at bottom, #fff -30%, transparent 70%),
