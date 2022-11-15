@@ -13,8 +13,8 @@ export default function listsReducer(state = [], action) {
       // case EDIT_LIST:
       //   return state.map((note) => (note.id === payload.id ? payload : note));
     case EDIT_COMMENT:
-      // console.log({ payload });
-      return state.map((comment) => (comment.id === payload.id ? payload : comment));
+      console.log({ payload });
+      return state.map((comment) => (comment.Comment.id === payload.Comment.id ? payload : comment));
     default:
       return state;
   }

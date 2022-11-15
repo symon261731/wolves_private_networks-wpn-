@@ -6,6 +6,7 @@ import OneOrder from '../OneOrder/OneOrder';
 import './OrderList.scss';
 import usePagination from '../../hooks/usePagination';
 import Pagination from '../Pagination/Pagination';
+import AnimatedPage from '../AnimateRoute/AnimatedRoute';
 
 export default function OrdersList() {
   const dispatch = useDispatch();
@@ -30,22 +31,24 @@ export default function OrdersList() {
   });
 
   return (
-    <div className="order">
-      <div className="order__container">
-        <h1 className="order__title">ORDERS</h1>
-        <Link to="/createorder" className="order__btn">Make order</Link>
-      </div>
-      <div>
-        <div className="one-order">
-          {order
-            .slice(firstContentIndex, lastContentIndex)
-            .map((el) => <OneOrder key={el.id} info={el} />)}
+    <AnimatedPage>
+      <div className="order">
+        <div className="order__container">
+          <h1 className="order__title">ORDERS</h1>
+          <Link to="/createorder" className="order__btn">Make order</Link>
         </div>
-        {order.length > 0
+        <div>
+          <div className="one-order">
+            {order
+              .slice(firstContentIndex, lastContentIndex)
+              .map((el) => <OneOrder key={el.id} info={el} />)}
+          </div>
+          {order.length > 0
        && (
        <Pagination array={order} nextPage={nextPage} prevPage={prevPage} gaps={gaps} page={page} setPage={setPage} totalPages={totalPages} />
        )}
+        </div>
       </div>
-    </div>
+    </AnimatedPage>
   );
 }
