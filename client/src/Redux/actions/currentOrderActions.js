@@ -10,6 +10,6 @@ export const setCurrentOrderThunk = () => (dispatch) => axios
   .catch((error) => console.log(error));
 
 export const doneNewOrderThunk = (orderId) => (dispatch) => axios
-  .get(`/order/closejob/${orderId}`)
+  .get(`/order/validate/worker/${orderId}`)
   .then((res) => dispatch(doneNewOrder(res.data)))
   .catch(console.log);

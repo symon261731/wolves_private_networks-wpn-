@@ -9,7 +9,7 @@ export default function orderReducer(state = [], action) {
     // отправить заказ на рассмотрение со стороны выполняющего
     case DONE_NEW_ORDER: return state.map((el) => {
       if (el.id === payload.id) {
-        el.status = 'closed';
+        el.status = 'need validation';
         return el;
       }
       return el;
