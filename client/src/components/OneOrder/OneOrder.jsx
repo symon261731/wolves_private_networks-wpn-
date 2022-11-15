@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function OneOrder({ info }) {
   return (
-    <Link className="one-order__link" to={`/${info.id}`}>
+    <Link className="one-order__link" to={`/order/${info.id}`}>
       <div className="one-order__box">
         <p className="one-order__title">{info?.title}</p>
         <div className="one-order__path">

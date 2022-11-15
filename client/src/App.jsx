@@ -42,7 +42,7 @@ function App() {
               <Route path="/orders" element={<OrdersList />} />
               <Route path="/server/:id" element={<ServerInfo />} />
               <Route path="/pocketForm" element={<PocketForm />} />
-              <Route path="/:orderId" element={<OrderAbout />} />
+              <Route path="order/:orderId" element={<OrderAbout />} />
               <Route path="/userHori/:id" element={<UserPage />} />
               {/* <Route path="/server/:id" element={<ServerInfo />} /> */}
 
@@ -51,7 +51,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/auth" element={<Auth />} />
             </Route>
-            <Route path="/fourzerofour" element={<FourZeroFour />} />
+            <Route path="*" element={<FourZeroFour />} />
           </Routes>
         </>
       )}
