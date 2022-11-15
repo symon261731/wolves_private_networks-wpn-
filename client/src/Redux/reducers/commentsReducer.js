@@ -1,4 +1,4 @@
-import { ADD_COMMENT, SET_COMMENT } from '../type';
+import { ADD_COMMENT, SET_COMMENT, EDIT_COMMENT } from '../type';
 
 export default function listsReducer(state = [], action) {
   const { type, payload } = action;
@@ -12,6 +12,9 @@ export default function listsReducer(state = [], action) {
       return [...state, payload];
       // case EDIT_LIST:
       //   return state.map((note) => (note.id === payload.id ? payload : note));
+    case EDIT_COMMENT:
+      // console.log({ payload });
+      return state.map((comment) => (comment.id === payload.id ? payload : comment));
     default:
       return state;
   }
