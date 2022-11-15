@@ -1,6 +1,6 @@
 const express = require('express');
 const {
-  Comment, UserComment, ServerComment, User,
+  Comment, UserComment, ServerComment, User, RatingComment
 } = require('../db/models');
 const authCheck = require('../middlewares/authUser');
 const router = express.Router();
@@ -10,7 +10,17 @@ router.get('/user/all/:userId', async (req, res) => {
   try {
     const { userId } = req.params;
     const comments = await UserComment.findAll({ where: { user_id: userId }, include: { model: Comment, include: [User] } });
-    return res.json(comments);
+    const likes = await RatingComment.findAll({ where: { user_id: req.session.user.id } });
+    const commentsWithLike = comments.map((comment) => {
+      comment.Comment.dataValues.likeStatus = false;
+      for (let i = 0; i < likes.length; i += 1) {
+        if (likes[i]['comment_id'] === comment['comment_id']) {
+          comment.Comment.dataValues.likeStatus = true;
+        }
+      }
+      return comment;
+    })
+    return res.json(commentsWithLike);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
@@ -37,7 +47,17 @@ router.get('/server/all/:serverId', async (req, res) => {
   try {
     const { serverId } = req.params;
     const comments = await ServerComment.findAll({ where: { server_id: serverId }, include: { model: Comment, include: [User] } });
-    return res.json(comments);
+    const likes = await RatingComment.findAll({ where: { user_id: req.session.user.id } });
+    const commentsWithLike = comments.map((comment) => {
+      comment.Comment.dataValues.likeStatus = false;
+      for (let i = 0; i < likes.length; i += 1) {
+        if (likes[i]['comment_id'] === comment['comment_id']) {
+          comment.Comment.dataValues.likeStatus = true;
+        }
+      }
+      return comment;
+    })
+    return res.json(commentsWithLike);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
