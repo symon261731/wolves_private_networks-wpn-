@@ -94,7 +94,8 @@ router.get('/job/done-by-user', authCheck, async (req, res) => {
 router.get('/validate/worker/:orderId', authCheck, authCloseOrderWorker, async (req, res) => {
   try {
     const { orderId } = req.params;
-    const order = await Order.update({ status: 'need validation' }, { where: { id: orderId } });
+    await Order.update({ status: 'need validation' }, { where: { id: orderId } });
+    const order = await Order.findByPk(orderId);
     return res.json(order);
   } catch (error) {
     console.log(error);
