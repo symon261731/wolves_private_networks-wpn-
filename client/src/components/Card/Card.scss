@@ -2,6 +2,7 @@
     padding: 10px;
     border: none;
     transition: all 100ms ease 0s;
+    min-width: 300px;
 
     &:hover {
         box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -14,11 +15,13 @@
     &__flex {
         display: flex;
         justify-content: space-between;
+
     }
 
     &__buttons {
         display: flex;
         justify-content: space-around;
+        column-gap: 5px
     }
 
     &__price {
@@ -53,6 +56,6 @@
 
 }
 
-.unsub_btn{
+.unsub_btn {
     background-color: red;
 }

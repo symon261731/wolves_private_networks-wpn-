@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { doneNewOrderThunk } from '../../../Redux/actions/currentOrderActions';
 
 export default function Order({ info }) {
-  console.log(info);
   const dispatch = useDispatch();
   return (
     <div className={(info.status === 'close' ? 'current-order__box current-order__box_green' : 'current-order__box')}>
