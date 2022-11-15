@@ -49,8 +49,9 @@ export const addCommentOfServerThunk = (input, setInput, id) => (dispatch) => {
 };
 
 export const addCommentLikeThunk = (comment) => (dispatch) => {
+  console.log('111111');
   axios
-    .get(`/rating/comment/${comment.comment_id}`)
+    .get(`/rating/comment/${comment.Comment.id}`)
     .then(() => {
       dispatch(editComment(comment));
     })
