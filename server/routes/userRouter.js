@@ -55,13 +55,13 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/check', async (req, res) => {
-  console.log(req.session.user);
+  // console.log(req.session.user);
   if (req.session.user) {
     const user = await User.findOne({
       attributes: ['id', 'login', 'email', 'pocket', 'rating', 'img'],
       where: { id: Number(req.session.user.id) },
     });
-    console.log({ user });
+    // console.log({ user });
     return res.json(user);
   }
   return res.sendStatus(401);
