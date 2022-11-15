@@ -105,7 +105,7 @@
         padding: 21px 73px;
 
         animation-name: btn;
-        animation-duration: 1.7s;
+        animation-duration: 1s;
 
         &:hover {
             color: white;
@@ -131,5 +131,6 @@
 
     to {
         opacity: 1;
+        transform: rotate(360deg);
     }
 }

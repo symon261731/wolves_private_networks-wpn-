@@ -55,7 +55,7 @@ export default function OneVpn({ info, flag }) {
           {info?.subscribedUsers?.length}
         </p>
         <div className="one-vpn__flex">
-          <button onClick={handleDownload} type="button" className="one-vpn__btn" to="/">Download config</button>
+          <button onClick={handleDownload} type="button" className="one-vpn__btn" to="/">Get config</button>
           {flag
         && <button onClick={() => handlerUnsubscr(info)} type="button" className="one-vpn__btn one-vpn_unsubscribe">Unsubscribe</button>}
 
