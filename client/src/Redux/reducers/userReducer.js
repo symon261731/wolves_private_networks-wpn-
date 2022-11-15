@@ -1,4 +1,4 @@
-import { LOGOUT, SET_USER } from '../type';
+import { LOGOUT, SET_USER, EDIT_USER } from '../type';
 
 // eslint-disable-next-line default-param-last
 export default function userReducer(state = { loading: true }, action) {
@@ -9,6 +9,8 @@ export default function userReducer(state = { loading: true }, action) {
       return payload;
     case LOGOUT:
       return {};
+    case EDIT_USER:
+      return { ...state, pocket: payload.amount };
     default:
       return state;
   }

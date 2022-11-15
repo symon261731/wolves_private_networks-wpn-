@@ -3,6 +3,7 @@ const express = require('express');
 const { Order, OrderUser, User } = require('../db/models');
 const authCheck = require('../middlewares/authUser');
 const authCloseOrder = require('../middlewares/authCloseOrder');
+const authCloseOrderWorker = require('../middlewares/authCloseOrderWorker');
 
 const router = express.Router();
 
@@ -68,7 +69,7 @@ router.get('/newjob/:orderId', authCheck, async (req, res) => {
     const { orderId } = req.params;
     await Order.update({ status: 'in progress' }, { where: { id: orderId } });
     const findOrder = await Order.findByPk(orderId);
-    const newConnection = await OrderUser.create({ creator: findOrder.user_id, worker: req.session.user.id, order_id: findOrder.id });
+    const newConnection = await OrderUser.create({ creator: findOrder.user_id, worker: req.session.user.id, order_id: findOrder.id, status: 'open'});
     return res.sendStatus(200);
   } catch (error) {
     console.log(error);
@@ -84,6 +85,18 @@ router.get('/job/done-by-user', authCheck, async (req, res) => {
     const data = closedOrders.map((el) => el.Order);
     return res.json(data);
    } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'You broke my perfect database. Again.' });
+  }
+})
+
+// /api/order/validate/worker/:orderId -  пометить заказ выполненным со стороны исполнителя
+router.get('/validate/worker/:orderId', authCheck, authCloseOrderWorker, async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    await Order.update({ status: 'need validation' }, { where: { id: orderId } });
+    return res.sendStatus(200);
+  } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }

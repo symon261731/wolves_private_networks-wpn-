@@ -5,6 +5,7 @@ import 'react-credit-cards/es/styles-compiled.css';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addMoneyPocketThunk } from '../../Redux/actions/pocketAction';
+import { editUser } from '../../Redux/actions/userActions';
 
 export default function PocketForm() {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ export default function PocketForm() {
           onSubmit={(e) => {
             e.preventDefault();
             dispatch(addMoneyPocketThunk(Object.fromEntries(new FormData(e.target))));
+            dispatch(editUser(Object.fromEntries(new FormData(e.target))));
             navigate('/');
           }}
           className="pocket-form__form"

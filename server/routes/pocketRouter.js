@@ -7,6 +7,7 @@ const router = express.Router();
 
 // /api/pocket/refill - положить деньги на кошелек
 router.post('/refill', authCheck, async (req, res) => {
+  console.log(req.body);
   try {
     const {
       amount, name, number, expiry,
