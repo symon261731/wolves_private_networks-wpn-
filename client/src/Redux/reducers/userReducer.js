@@ -1,4 +1,6 @@
-import { LOGOUT, SET_USER, EDIT_USER } from '../type';
+import {
+  LOGOUT, SET_USER, EDIT_USER,
+} from '../type';
 
 // eslint-disable-next-line default-param-last
 export default function userReducer(state = { loading: true }, action) {

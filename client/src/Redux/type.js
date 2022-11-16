@@ -2,6 +2,7 @@
 export const SET_USER = 'SET_USER';
 export const LOGOUT = 'LOGOUT';
 export const EDIT_USER = 'EDIT_USER';
+export const ERROR_USER = 'ERROR_USER';
 
 // Servers
 export const SET_SERVERS = 'SET_SERVERS';
