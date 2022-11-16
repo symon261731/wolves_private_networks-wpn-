@@ -4,6 +4,7 @@ export default function Pagination({
   array, nextPage, prevPage, gaps, page, setPage, totalPages,
 }) {
   return (
+
     <div className="pagination">
       <p className="text">
 

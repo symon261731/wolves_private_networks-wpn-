@@ -5,7 +5,7 @@ export default function orderReducer(state = [], action) {
 
   switch (type) {
     case SET_ISSUED_ORDER: return payload;
-    case DONE_ISSUED_ORDER: return state.filter((el) => el.status !== payload.status);
+    case DONE_ISSUED_ORDER: return state.filter((el) => el.id !== payload.id);
     default: return state;
   }
 }

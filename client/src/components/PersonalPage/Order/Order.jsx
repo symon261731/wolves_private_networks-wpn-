@@ -18,7 +18,7 @@ export default function Order({ info }) {
         </p>
 
       </div>
-      <button onClick={() => dispatch(doneNewOrderThunk(info.id))} type="button" className="current-order__btn">confirm order</button>
+      {info.status !== 'closed' ? (<button onClick={() => dispatch(doneNewOrderThunk(info.id))} type="button" className="current-order__btn">confirm order</button>) : (null)}
     </div>
   );
 }

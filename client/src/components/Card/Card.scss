@@ -1,5 +1,6 @@
 .card {
-    padding: 10px;
+
+    padding: 15px;
     border: none;
     transition: all 100ms ease 0s;
     min-width: 300px;
@@ -15,6 +16,7 @@
     &__flex {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
 
     }
 
@@ -44,6 +46,7 @@
     &__btn-sub {
         border: none;
         padding: 10px 55px;
+        font-weight: 700;
         background-color: #309F85;
         color: white;
         border-radius: 65px;
