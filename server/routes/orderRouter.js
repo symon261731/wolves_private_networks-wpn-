@@ -46,7 +46,7 @@ router.post('/new', authCheck, async (req, res) => {
 router.get('/myorders', authCheck, async (req, res) => {
   try {
     const orders = await Order.findAll({ where: { user_id: req.session.user.id } });
-    return res.json(orders);
+    return res.json(orders.filter((el) => el.status !== 'closed'));
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
@@ -71,7 +71,9 @@ router.get('/newjob/:orderId', authCheck, async (req, res) => {
     const { orderId } = req.params;
     await Order.update({ status: 'in progress' }, { where: { id: orderId } });
     const findOrder = await Order.findByPk(orderId);
-    const newConnection = await OrderUser.create({ creator: findOrder.user_id, worker: req.session.user.id, order_id: findOrder.id, status: 'open'});
+    const newConnection = await OrderUser.create({
+      creator: findOrder.user_id, worker: req.session.user.id, order_id: findOrder.id, status: 'open',
+    });
     return res.sendStatus(200);
   } catch (error) {
     console.log(error);
@@ -103,7 +105,7 @@ router.get('/validate/worker/:orderId', authCheck, authCloseOrderWorker, async (
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
-})
+});
 
 // /api/order/closejob/:orderId - пометить заказ выполненным по номеру заказа
 router.get('/closejob/:orderId', authCheck, authCloseOrder, async (req, res) => {
@@ -122,9 +124,8 @@ router.get('/closejob/:orderId', authCheck, authCloseOrder, async (req, res) => 
       await User.update({ pocket: moneyOwner }, { where: { id: owner.id } });
       await OrderUser.update({ status: 'closed' }, { where: { order_id: orderId } });
       return res.json(findOrder);
-    } else {
-      return res.status(400).json({ message: 'You can\'t close this order' });
     }
+    return res.status(400).json({ message: 'You can\'t close this order' });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });

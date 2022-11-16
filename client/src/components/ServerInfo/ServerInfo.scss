@@ -3,6 +3,7 @@
     padding: 8px;
 
     &__add-btn {
+        position: relative;
         color: white;
         background-color: #3C336C;
         border: none;
@@ -16,6 +17,19 @@
 
         &:not(:last-child) {
             margin-bottom: 30px;
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            background-image: url('../../../public/img/btn.png');
+            background-repeat: no-repeat;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            z-index: 4;
+            top: 22%;
+            right: -5%;
         }
 
         &:hover {

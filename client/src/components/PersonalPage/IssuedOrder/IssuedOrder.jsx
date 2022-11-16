@@ -1,9 +1,8 @@
 import React from 'react';
-import './Order.scss';
 import { useDispatch } from 'react-redux';
-import { doneNewOrderThunk } from '../../../Redux/actions/currentOrderActions';
+import { doneIssuedOrderThunk } from '../../../Redux/actions/issuedOrderActions';
 
-export default function Order({ info }) {
+export default function IssuedOrder({ info }) {
   const dispatch = useDispatch();
 
   return (
@@ -18,7 +17,7 @@ export default function Order({ info }) {
         </p>
 
       </div>
-      {info.status !== 'closed' ? (<button onClick={() => dispatch(doneNewOrderThunk(info.id))} type="button" className="current-order__btn">confirm order</button>) : (null)}
+      <button onClick={() => dispatch(doneIssuedOrderThunk(info.id))} type="button" className="current-order__btn">done order</button>
     </div>
   );
 }
