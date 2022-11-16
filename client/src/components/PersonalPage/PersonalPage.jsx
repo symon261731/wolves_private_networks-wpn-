@@ -50,31 +50,31 @@ export default function PersonalPage() {
             onClick={() => toggleTab(1)}
             className={toggleState === 1 ? 'personal-page__item active-tab' : 'personal-page__item'}
           >
-            My subscribes
+            My subscribtions
           </li>
           <li
             onClick={() => toggleTab(2)}
             className={toggleState === 2 ? 'personal-page__item active-tab' : 'personal-page__item'}
           >
-            VPN
+            My VPNs
           </li>
           <li
             onClick={() => toggleTab(3)}
             className={toggleState === 3 ? 'personal-page__item active-tab' : 'personal-page__item'}
           >
-            current orders
+            Orders in work
           </li>
           <li
             onClick={() => toggleTab(4)}
             className={toggleState === 4 ? 'personal-page__item active-tab' : 'personal-page__item'}
           >
-            issued orders
+            My orders
           </li>
         </ul>
         <div className="personal-page__tabs">
           <div className={toggleState === 1 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
             <div className="personal-page__content">
-              <h4 className="personal-page__tab-title">My Subscribes</h4>
+              <h4 className="personal-page__tab-title">My Subscribtions</h4>
 
               { mySubscribes.length !== 0
                 ? (
@@ -86,13 +86,18 @@ export default function PersonalPage() {
                     ))}
                   </div>
                 )
-                : (<p className="personal-page__content">You have no VPN</p>)}
+                : (
+                  <div className="current-order__nope">
+                    <p className="personal-page__content">You don't have subscriptions yet</p>
+                    <button onClick={() => navigate('/')} type="button" className="current-order__btn">Find VPN</button>
+                  </div>
+                )}
             </div>
           </div>
 
           <div className={toggleState === 2 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
             <div className="personal-page__content">
-              <h4 className="personal-page__tab-title">My VPN</h4>
+              <h4 className="personal-page__tab-title">My VPNs</h4>
               { vpn.length !== 0
                 ? (
                   <div className="second-tab second-tab_margin">
@@ -105,25 +110,25 @@ export default function PersonalPage() {
           </div>
 
           <div className={toggleState === 3 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
-            <h4 className="personal-page__tab-title">CURRENT ORDERS</h4>
+            <h4 className="personal-page__tab-title">ORDERS IN WORK</h4>
             <div className="personal-page__order current-order">
               {currentOrder.length ? (
                 currentOrder.map((el) => <Order key={el.id} info={el} />)) : (
                   <div className="current-order__nope">
-                    <p className="current-order__text"> You haven't token a job yet</p>
-                    <button onClick={() => navigate('/orders')} type="button" className="current-order__btn">find order</button>
+                    <p className="current-order__text"> You don't have orders in work yet</p>
+                    <button onClick={() => navigate('/orders')} type="button" className="current-order__btn">Find order</button>
                   </div>
               )}
             </div>
           </div>
 
           <div className={toggleState === 4 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
-            <h4 className="personal-page__tab-title">ISSUED ORDERS</h4>
+            <h4 className="personal-page__tab-title">MY ORDERS</h4>
             <div className="personal-page__order current-order">
-              { issuedOrder ? (issuedOrder?.map((el) => <Order key={el.id} info={el} />)) : (
+              { issuedOrder.length ? (issuedOrder?.map((el) => <Order key={el.id} info={el} />)) : (
                 <div className="current-order__nope">
-                  <p className="current-order__text"> You haven't given a job yet</p>
-                  <button onClick={() => navigate('/orders')} type="button" className="current-order__btn">find order</button>
+                  <p className="current-order__text"> You don't have orders yet</p>
+                  <button onClick={() => navigate('/createorder')} type="button" className="current-order__btn">Create order</button>
                 </div>
               )}
             </div>

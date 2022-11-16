@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const { User } = require('../db/models');
+const validatePassword = require('../utils/validatePassword');
 
 const router = express.Router();
 
@@ -8,6 +9,7 @@ router.post('/signup', async (req, res) => {
   const {
     login, email, password, img,
   } = req.body.inputs;
+  if (!validatePassword(password)) return res.json({ message: 'Мы заботимся о твоей безопасности - напрягись и придумай хоть какой-нибудь нормальный пароль' });
   if (login && email && password) {
     try {
       // if (!img) img = '/img/avatar.jpg';
@@ -23,7 +25,7 @@ router.post('/signup', async (req, res) => {
         req.session.user = sessionUser;
         return res.json(sessionUser);
       }
-      return res.sendStatus(401);
+      return res.status(401).json({ message: 'Invalid input' });
     } catch (e) {
       console.log(e);
       return res.sendStatus(500);
@@ -44,8 +46,10 @@ router.post('/login', async (req, res) => {
         delete sessionUser.password;
         req.session.user = sessionUser;
         return res.json(sessionUser);
+      } else {
+        res.status(401).json({ message: 'Напрягись и вспомни пароль, если это выше твоих сил логин beb все еще свободен'})
       }
-      return res.sendStatus(401);
+      return res.status(401).json({ message: 'Нет юзера с таким email - кого ты пытаешься наебать?'});
     } catch (e) {
       console.log(e);
       return res.sendStatus(500);
