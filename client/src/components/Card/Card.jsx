@@ -68,7 +68,7 @@ export default function Card({ server, setServer }) {
           <p className="card__item card__price">
             Price:
             {' '}
-            {server?.price}
+            {server?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
           </p>
         </div>
         <div className="card__flex">
