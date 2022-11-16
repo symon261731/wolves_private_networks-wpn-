@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 // import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { payMoneyPocket } from '../../Redux/actions/pocketAction';
@@ -10,7 +10,9 @@ import { addServersLikeThunk, editServersOfUserThunk } from '../../Redux/actions
 import './Card.scss';
 
 export default function Card({ server, setServer }) {
-  console.log({ server });
+  // console.log({ server });
+
+  const [flag, setFlag] = useState(false);
 
   const user = useSelector((state) => state.user);
   const { id } = useParams();
@@ -35,7 +37,7 @@ export default function Card({ server, setServer }) {
       if (serv.subscribeStatus) {
         dispatch(payMoneyPocket(server?.price));
       }
-    }
+    } else { setFlag(true); }
   };
 
   return (
@@ -99,8 +101,18 @@ export default function Card({ server, setServer }) {
         </Link>
         {!server?.subscribeStatus ? <button className="card__btn-sub" type="button" onClick={() => handlerUnsubscr()}>Subscribe</button>
           : <button type="button" className="card__btn-sub unsub_btn" onClick={() => handlerUnsubscr()}>Unsubscribe</button>}
-
       </div>
+      {
+          flag && (
+          <p style={{ color: 'red' }}>
+            {' '}
+            <br />
+            {' '}
+            Need to top up wallet
+            {' '}
+          </p>
+          )
+        }
 
     </div>
   );

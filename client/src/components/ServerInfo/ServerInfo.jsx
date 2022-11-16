@@ -27,7 +27,7 @@ export default function ServerInfo() {
       .then(() => dispatch(setCommentsOfServerThunk(id)));
   }, []);
   const commentsList = useSelector((state) => state.comments);
-
+  console.log(server);
   return (
     <div className="server-info">
       <Card server={server} setServer={setServer} />
