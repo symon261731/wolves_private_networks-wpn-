@@ -14,7 +14,7 @@ export default function CommentItem({ comment }) {
     console.log(commentToThunk);
     dispatch(addCommentLikeThunk(commentToThunk));
   }
-  console.log(comment);
+  // console.log(comment);
   return (
     <div className="user-page__one-comment">
       <div className="user-page__pair">

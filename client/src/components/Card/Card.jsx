@@ -10,7 +10,7 @@ import { addServersLikeThunk, editServersOfUserThunk } from '../../Redux/actions
 import './Card.scss';
 
 export default function Card({ server, setServer }) {
-  console.log({ server });
+  // console.log({ server });
 
   const user = useSelector((state) => state.user);
   const { id } = useParams();
