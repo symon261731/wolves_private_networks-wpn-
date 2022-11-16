@@ -1,6 +1,7 @@
 .form-vpn {
 
     &__container {
+        transform: translateY(35%);
         max-width: 900px;
         margin: 0 auto;
         padding: 70px;
@@ -78,5 +79,43 @@
             color: white;
         }
 
+    }
+}
+
+
+$white: #fff;
+$blue: #1e90ff;
+$green: #39d24a;
+$yellow: #ffe244;
+$pink: #ff36a3;
+
+.form-vpn {
+    height: 100vh;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at bottom, $white, transparent 80%),
+        linear-gradient(to top, dodgerblue 0%, transparent 70%),
+        linear-gradient(to bottom, transparent, rgba($white, 0.4) 70%),
+        $blue;
+    animation: bg 30s infinite;
+}
+
+@keyframes bg {
+
+    0%,
+    100% {
+        background-color: $blue;
+    }
+
+    25% {
+        background-color: $green;
+    }
+
+    50% {
+        background-color: $yellow;
+    }
+
+    75% {
+        background-color: $pink;
     }
 }

@@ -32,6 +32,7 @@ export const DONE_NEW_ORDER = 'DONE_NEW_ORDER'; // завершить работ
 
 //
 export const SET_ISSUED_ORDER = 'SET_ISSUED_ORDER'; // которое выдал
+export const DONE_ISSUED_ORDER = 'DONE_ISSUED_ORDER'; // завершить заказ со стороны заказчика
 
 // Comments
 export const SET_COMMENT = 'SET_COMMENT';
