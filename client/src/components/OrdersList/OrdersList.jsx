@@ -35,7 +35,7 @@ export default function OrdersList() {
       <div className="order">
         <div className="order__container">
           <h1 className="order__title">ORDERS</h1>
-          <Link to="/createorder" className="order__btn">Make order</Link>
+          <Link to="/createorder" className="order__btn">Create order</Link>
         </div>
         <div>
           <div className="one-order">

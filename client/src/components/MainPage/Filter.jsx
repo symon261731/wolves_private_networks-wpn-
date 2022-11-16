@@ -61,7 +61,7 @@ export default function Filter() {
         <div className="filter_item">
           <div className="mb-3">
             <p className="filter__label">Location</p>
-            <input name="location" type="text" className="filter__input" id="formGroupExampleInput" placeholder="input loacation" />
+            <input name="location" type="text" className="filter__input" id="formGroupExampleInput" placeholder="input location" />
           </div>
           <div className="mb-3">
             <p className="filter__label">Owner name/company</p>

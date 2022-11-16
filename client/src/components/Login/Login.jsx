@@ -29,7 +29,7 @@ export default function Login() {
                 </div>
                 <div className="auth__content">
                   <p className="auth__text">Password</p>
-                  <input placeholder="password" name="password" type="password" className="auth__input" />
+                    <input placeholder="password" name="password" type="password" className="auth__input" />
                 </div>
                 <button type="submit" className="auth__btn">Submit</button>
               </div>
