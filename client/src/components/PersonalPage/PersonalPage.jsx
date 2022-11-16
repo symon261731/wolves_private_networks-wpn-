@@ -6,7 +6,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import Order from './Order/Order';
 import { setIssuedOrderThunk } from '../../Redux/actions/issuedOrderActions';
 import { setCurrentOrderThunk } from '../../Redux/actions/currentOrderActions';
@@ -17,6 +16,7 @@ import OneVpn from './OneVpn/OneVpn';
 import Card from '../Card/Card';
 import { editServersOfUserThunk } from '../../Redux/actions/serversActions';
 import AnimatedPage from '../AnimateRoute/AnimatedRoute';
+import IssuedOrder from './IssuedOrder/IssuedOrder';
 
 export default function PersonalPage() {
   const { id } = useParams();
@@ -125,7 +125,8 @@ export default function PersonalPage() {
           <div className={toggleState === 4 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
             <h4 className="personal-page__tab-title">MY ORDERS</h4>
             <div className="personal-page__order current-order">
-              { issuedOrder.length ? (issuedOrder?.map((el) => <Order key={el.id} info={el} />)) : (
+
+              { issuedOrder.length ? (issuedOrder?.map((el) => <IssuedOrder key={el.id} info={el} />)) : (
                 <div className="current-order__nope">
                   <p className="current-order__text"> You don't have orders yet</p>
                   <button onClick={() => navigate('/createorder')} type="button" className="current-order__btn">Create order</button>
