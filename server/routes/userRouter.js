@@ -41,6 +41,7 @@ router.post('/login', async (req, res) => {
       const user = await User.findOne({
         where: { email },
       });
+      if (!user) res.status(401).json({ message: 'Нет юзера с таким email - кого ты пытаешься наебать?'});
       if (await bcrypt.compare(password, user.password)) {
         const sessionUser = JSON.parse(JSON.stringify(user));
         delete sessionUser.password;
