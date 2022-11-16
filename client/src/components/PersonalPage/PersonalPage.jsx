@@ -6,7 +6,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import Order from './Order/Order';
 import { setIssuedOrderThunk } from '../../Redux/actions/issuedOrderActions';
 import { setCurrentOrderThunk } from '../../Redux/actions/currentOrderActions';

@@ -69,7 +69,9 @@ router.get('/newjob/:orderId', authCheck, async (req, res) => {
     const { orderId } = req.params;
     await Order.update({ status: 'in progress' }, { where: { id: orderId } });
     const findOrder = await Order.findByPk(orderId);
-    const newConnection = await OrderUser.create({ creator: findOrder.user_id, worker: req.session.user.id, order_id: findOrder.id, status: 'open'});
+    const newConnection = await OrderUser.create({
+      creator: findOrder.user_id, worker: req.session.user.id, order_id: findOrder.id, status: 'open',
+    });
     return res.sendStatus(200);
   } catch (error) {
     console.log(error);
@@ -101,7 +103,7 @@ router.get('/validate/worker/:orderId', authCheck, authCloseOrderWorker, async (
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
   }
-})
+});
 
 // /api/order/closejob/:orderId - пометить заказ выполненным по номеру заказа
 router.get('/closejob/:orderId', authCheck, authCloseOrder, async (req, res) => {
