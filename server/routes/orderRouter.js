@@ -44,7 +44,7 @@ router.post('/new', authCheck, async (req, res) => {
 router.get('/myorders', authCheck, async (req, res) => {
   try {
     const orders = await Order.findAll({ where: { user_id: req.session.user.id } });
-    return res.json(orders);
+    return res.json(orders.filter((el) => el.status !== 'closed'));
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
@@ -122,9 +122,8 @@ router.get('/closejob/:orderId', authCheck, authCloseOrder, async (req, res) => 
       await User.update({ pocket: moneyOwner }, { where: { id: owner.id } });
       await OrderUser.update({ status: 'closed' }, { where: { order_id: orderId } });
       return res.json(findOrder);
-    } else {
-      return res.status(400).json({ message: 'You can\'t close this order' });
     }
+    return res.status(400).json({ message: 'You can\'t close this order' });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
