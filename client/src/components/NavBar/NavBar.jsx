@@ -48,7 +48,7 @@ export default function NavBar() {
                 <Link className="nav__link" to="/addCash">
                   Pocket:
                   {' '}
-                  {pocket || 0}
+                  {pocket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') || 0}
                   {/* {user.pocket || 0} */}
                   {' '}
                   USD

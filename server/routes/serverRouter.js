@@ -40,7 +40,6 @@ router.get('/max-rate', async (req, res) => {
 // /api/server/all - получить все впн
 router.get('/all', async (req, res) => {
   try {
-    req.session.user = { id: 1 };
     const vpns = await ServerVPN.findAll({
       include: {
         model: User,
@@ -245,8 +244,15 @@ router.get('/:serverId', async (req, res) => {
     const vpn = await ServerVPN.findOne({ where: { id: serverId }, include: [User] });
     if (!vpn) return res.json({ message: 'VPN with this number doesn\'t exist' });
     const subscribedUsers = (await Purchase.findAll({ where: { server_id: serverId }, include: [User] })).map((el) => el.User);
+    if (req.session.user) {
+      if (subscribedUsers.filter((el) => el.id === req.session.id)) {
+        vpn.dataValues.subscribeStatus = true;
+      }
+    } else {
+      vpn.dataValues.subscribeStatus = false;
+    }
     vpn.dataValues.subscribedUsers = subscribedUsers;
-    if (!req.session.user) return req.json(vpn);
+    if (!req.session.user) return res.json(vpn);
     const likeStatus = await RatingServer.findOne({ where: { user_id: req.session.user.id, server_id: vpn.id } });
     if (likeStatus) {
       vpn.dataValues.likeStatus = true;

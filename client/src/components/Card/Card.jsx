@@ -28,8 +28,9 @@ export default function Card({ server, setServer }) {
   const handlerUnsubscr = async () => {
     const serv = { ...server };
     serv.subscribeStatus = !serv.subscribeStatus;
-    if (id) setServer(serv);
     if (user.pocket >= server?.price) {
+      if (id) setServer(serv);
+
       dispatch(editServersOfUserThunk(serv));
       if (serv.subscribeStatus) {
         dispatch(payMoneyPocket(server?.price));
@@ -42,7 +43,7 @@ export default function Card({ server, setServer }) {
       <div className="card__body">
 
         <p className="card__item">
-          Username:
+          Owner:
           {' '}
           <Link to={`/userHori/${server?.User?.id}`}>{server?.User?.login || 'ololoshka'}</Link>
         </p>
@@ -66,7 +67,7 @@ export default function Card({ server, setServer }) {
           <p className="card__item card__price">
             Price:
             {' '}
-            {server?.price}
+            {server?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
           </p>
         </div>
         <div className="card__flex">
