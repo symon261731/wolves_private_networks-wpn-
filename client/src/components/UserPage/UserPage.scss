@@ -146,7 +146,7 @@
 
     &__pair {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
     }
 
@@ -159,5 +159,17 @@
     &__score {
         color: orange;
         align-self: center;
+    }
+
+
+
+    &__text {
+        text-decoration: none;
+        color: white
+    }
+
+    &__dich {
+        display: flex;
+        align-items: center;
     }
 }

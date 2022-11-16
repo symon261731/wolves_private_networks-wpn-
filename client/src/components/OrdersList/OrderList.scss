@@ -2,6 +2,7 @@
 
 
     &__container {
+        padding: 5px;
         max-width: 1440px;
         margin: 0 auto;
         margin-bottom: 50px;
@@ -10,6 +11,7 @@
     &__title {
         font-size: 50px;
         text-align: center;
+        padding-top: 5%;
 
         &:not(:last-child) {
             margin-bottom: 40px;
@@ -58,4 +60,42 @@
     row-gap: 15px;
     max-width: 1440px;
     margin: 0 auto;
+}
+
+$white: #fff;
+$blue: #1e90ff;
+$green: #39d24a;
+$yellow: #ffe244;
+$pink: #ff36a3;
+
+.order {
+    min-height: 100vh;
+    padding-bottom: 20px;
+
+    background:
+        radial-gradient(circle at bottom, $white, transparent 80%),
+        linear-gradient(to top, dodgerblue 0%, transparent 70%),
+        linear-gradient(to bottom, transparent, rgba($white, 0.4) 70%),
+        $blue;
+    animation: bg 30s infinite;
+}
+
+@keyframes bg {
+
+    0%,
+    100% {
+        background-color: $blue;
+    }
+
+    25% {
+        background-color: $green;
+    }
+
+    50% {
+        background-color: $yellow;
+    }
+
+    75% {
+        background-color: $pink;
+    }
 }

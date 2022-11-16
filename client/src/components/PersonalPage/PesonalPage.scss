@@ -28,6 +28,7 @@
     }
 
     &__link-tab {
+        transform: translateX(14%);
         display: flex;
         align-items: center;
         column-gap: 10px;
@@ -42,11 +43,13 @@
         list-style-type: none;
         background-color: #333;
         color: rgba(255, 255, 255, 0.499);
+        font-weight: 600;
         text-align: center;
         padding: 8px 25px;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         transform: translateY(30%);
+        transition: all 500ms ease 0s;
 
         &:hover {
             color: rgb(255, 255, 255);
@@ -59,7 +62,6 @@
         color: white;
         max-width: 1440px;
         margin: 0 auto;
-
         padding: 20px;
         border-radius: 15px;
 
@@ -89,6 +91,7 @@
 
 .active-tab {
     color: white;
+    transition: all 1s ease 0s;
 
     &::after {
         content: '';
