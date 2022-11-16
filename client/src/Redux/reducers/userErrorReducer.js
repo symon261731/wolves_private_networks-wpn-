@@ -1,5 +1,6 @@
 import { ERROR_USER } from '../type';
 
+// eslint-disable-next-line no-unused-vars
 export default function orderReducer(state = [], action) {
   const { type, payload } = action;
 
@@ -7,6 +8,6 @@ export default function orderReducer(state = [], action) {
     case ERROR_USER:
       console.log(payload);
       return payload;
-    default: return state;
+    default: return null;
   }
 }

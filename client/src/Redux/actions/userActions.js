@@ -8,20 +8,18 @@ export const logout = () => ({ type: LOGOUT });
 export const editUser = (payload) => ({ type: EDIT_USER, payload });
 // export const errorUser = (payload) => ({ type: ERROR_USER, payload });
 
-export const signUpUserThunk = (inputs, navigate) => (dispatch) => {
+export const signUpUserThunk = (inputs) => (dispatch) => {
   axios
     .post('/user/signup', { inputs })
     .then((res) => dispatch(setUser(res.data)))
-    .then(() => navigate('/'))
-    .catch(console.log);
+    .catch((err) => { if (err) { dispatch({ type: ERROR_USER, payload: err.response?.data?.message }); } });
 };
 
-export const loginUserThunk = (inputs, navigate) => (dispatch) => {
+export const loginUserThunk = (inputs) => (dispatch) => {
   axios
     .post('/user/login', { inputs })
     .then((res) => dispatch(setUser(res.data)))
-    .catch((err) => dispatch({ type: ERROR_USER, payload: err.response.data.message }))
-    // .then(() => navigate('/'));
+    .catch((err) => { if (err) { dispatch({ type: ERROR_USER, payload: err.response?.data?.message }); } });
 };
 
 export const logoutUserThunk = () => (dispatch) => {
