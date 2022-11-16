@@ -9,7 +9,7 @@ router.post('/signup', async (req, res) => {
   const {
     login, email, password, img,
   } = req.body.inputs;
-  // if (!validatePassword(password)) return res.json({ message: 'Мы заботимся о твоей безопасности - напрягись и придумай хоть какой-нибудь нормальный пароль' });
+  //if (!validatePassword(password)) return res.json({ message: 'Мы заботимся о твоей безопасности - напрягись и придумай хоть какой-нибудь нормальный пароль' });
   if (login && email && password) {
     try {
       // if (!img) img = '/img/avatar.jpg';
@@ -25,13 +25,12 @@ router.post('/signup', async (req, res) => {
         req.session.user = sessionUser;
         return res.json(sessionUser);
       }
-      return res.status(401).json({ message: 'Invalid input' });
     } catch (e) {
       console.log(e);
       return res.sendStatus(500);
     }
   }
-  return res.sendStatus(500);
+  return res.status(401).json({ message: 'Invalid input' });
 });
 
 router.post('/login', async (req, res) => {
