@@ -1,4 +1,4 @@
-export default function validatePassword(password) {
+function validatePassword(password) {
   const lowercase = 'abcdefghijklmnopqrstuvwxyz';
   const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const special = '!@#$%^&*()-_+=<>,./;:[]{}?|';
@@ -11,3 +11,4 @@ export default function validatePassword(password) {
     && password.split('').some((char) => digits.includes(char))
     && password !== 'password'
 }
+module.exports = validatePassword;
