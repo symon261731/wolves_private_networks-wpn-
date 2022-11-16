@@ -9,5 +9,5 @@ export default function validatePassword(password) {
     && password.split('').some((char) => uppercase.includes(char))
     && password.split('').some((char) => special.includes(char))
     && password.split('').some((char) => digits.includes(char))
-    && password !== 'password'
+    && password !== 'password';
 }
