@@ -28,8 +28,9 @@ export default function Card({ server, setServer }) {
   const handlerUnsubscr = async () => {
     const serv = { ...server };
     serv.subscribeStatus = !serv.subscribeStatus;
-    if (id) setServer(serv);
     if (user.pocket >= server?.price) {
+      if (id) setServer(serv);
+
       dispatch(editServersOfUserThunk(serv));
       if (serv.subscribeStatus) {
         dispatch(payMoneyPocket(server?.price));
