@@ -25,11 +25,18 @@ export default function CommentItem({ comment }) {
             {' '}
           </Link>
         </p>
-        <p className="user-page__score">{comment?.Comment?.rating}</p>
         {comment?.Comment?.likeStatus ? (
-          <button className="btn btn-sm" style={{ height: '30px' }} type="button" onClick={likeHandle}>🐺</button>
+          <div>
+            {comment?.Comment?.rating}
+
+            <button className="btn btn-sm" style={{ height: '30px' }} type="button" onClick={likeHandle}>🐺</button>
+          </div>
         ) : (
-          <button className="btn btn-sm" style={{ height: '30px' }} type="button" onClick={likeHandle}>👍</button>
+          <div>
+            {comment?.Comment?.rating}
+
+            <button className="btn btn-sm" style={{ height: '30px' }} type="button" onClick={likeHandle}>👍</button>
+          </div>
         )}
 
       </div>
