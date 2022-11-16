@@ -17,6 +17,7 @@ import OneVpn from './OneVpn/OneVpn';
 import Card from '../Card/Card';
 import { editServersOfUserThunk } from '../../Redux/actions/serversActions';
 import AnimatedPage from '../AnimateRoute/AnimatedRoute';
+import IssuedOrder from './IssuedOrder/IssuedOrder';
 
 export default function PersonalPage() {
   const { id } = useParams();
@@ -120,7 +121,7 @@ export default function PersonalPage() {
           <div className={toggleState === 4 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
             <h4 className="personal-page__tab-title">ISSUED ORDERS</h4>
             <div className="personal-page__order current-order">
-              { issuedOrder ? (issuedOrder?.map((el) => <Order key={el.id} info={el} />)) : (
+              { issuedOrder ? (issuedOrder?.map((el) => <IssuedOrder key={el.id} info={el} />)) : (
                 <div className="current-order__nope">
                   <p className="current-order__text"> You haven't given a job yet</p>
                   <button onClick={() => navigate('/orders')} type="button" className="current-order__btn">find order</button>

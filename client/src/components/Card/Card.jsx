@@ -38,7 +38,6 @@ export default function Card({ server, setServer }) {
   };
 
   return (
-
     <div className="card">
       <div className="card__body">
 
