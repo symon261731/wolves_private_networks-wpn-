@@ -1,10 +1,11 @@
 .order-about {
+    padding: 5px;
 
     &__box {
         transform: translateY(70%);
         color: white;
         font-weight: 500;
-        max-width: 500px;
+        max-width: 1000px;
         margin: 0 auto;
         background-color: #333;
         padding: 25px;
@@ -21,7 +22,9 @@
     }
 
     &_login {
+
         font-size: 35px;
+        text-align: center;
         line-height: 2;
         font-weight: 900;
     }
@@ -102,5 +105,16 @@ $pink: #ff36a3;
 
     75% {
         background-color: $pink;
+    }
+}
+
+
+
+
+@media (width: 511px) {
+    .order-about {
+        &_login {
+            font-size: 25;
+        }
     }
 }
