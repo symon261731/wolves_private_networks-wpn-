@@ -9,7 +9,7 @@ router.post('/signup', async (req, res) => {
   const {
     login, email, password, img,
   } = req.body.inputs;
-  if (!validatePassword(password)) return res.json({ message: 'Мы заботимся о твоей безопасности - напрягись и придумай хоть какой-нибудь нормальный пароль' });
+  // if (!validatePassword(password)) return res.json({ message: 'Мы заботимся о твоей безопасности - напрягись и придумай хоть какой-нибудь нормальный пароль' });
   if (login && email && password) {
     try {
       // if (!img) img = '/img/avatar.jpg';
