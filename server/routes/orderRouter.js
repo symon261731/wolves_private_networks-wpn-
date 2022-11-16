@@ -110,14 +110,21 @@ router.get('/closejob/:orderId', authCheck, authCloseOrder, async (req, res) => 
   console.log('param', req.params);
   try {
     const { orderId } = req.params;
-    await Order.update({ status: 'closed' }, { where: { id: orderId } });
-    const findOrder = await Order.findByPk(orderId);
-    const findCon = await OrderUser.findOne({ where: { order_id: orderId } });
-    const user = await User.findOne({ where: { id: findCon.worker } });
-    const money = user.pocket + findOrder.price;
-    await User.update({ pocket: money }, { where: { id: user.id } });
-    await OrderUser.update({ status: 'closed' }, { where: { order_id: orderId } });
-    return res.json(findOrder);
+    if ((await Order.findByPk(orderId)).status === 'need validation') {
+      await Order.update({ status: 'closed' }, { where: { id: orderId } });
+      const findOrder = await Order.findByPk(orderId);
+      const findCon = await OrderUser.findOne({ where: { order_id: orderId } });
+      const user = await User.findOne({ where: { id: findCon.worker } });
+      const money = user.pocket + findOrder.price;
+      const owner = await User.findByPk(req.session.user.id);
+      const moneyOwner = owner.pocket - findOrder.price;
+      await User.update({ pocket: money }, { where: { id: user.id } });
+      await User.update({ pocket: moneyOwner }, { where: { id: owner.id } });
+      await OrderUser.update({ status: 'closed' }, { where: { order_id: orderId } });
+      return res.json(findOrder);
+    } else {
+      return res.status(400).json({ message: 'You can\'t close this order' });
+    }
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'You broke my perfect database. Again.' });
