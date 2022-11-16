@@ -35,10 +35,3 @@ export const checkUserThunk = () => (dispatch) => {
       console.log(err);
     });
 };
-
-// export const findUserThunk = (id) => (dispatch) => {
-//   axios
-//     .post(`/user/${id}`)
-//     .then((res) => dispatch(setUser(res.data)))
-//     .catch(console.log);
-// };
