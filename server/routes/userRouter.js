@@ -25,13 +25,12 @@ router.post('/signup', async (req, res) => {
         req.session.user = sessionUser;
         return res.json(sessionUser);
       }
-      return res.status(401).json({ message: 'Invalid input' });
     } catch (e) {
       console.log(e);
       return res.sendStatus(500);
     }
   }
-  return res.sendStatus(500);
+  return res.status(401).json({ message: 'Invalid input' });
 });
 
 router.post('/login', async (req, res) => {
