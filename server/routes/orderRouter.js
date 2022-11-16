@@ -26,7 +26,7 @@ router.post('/new', authCheck, async (req, res) => {
       title, protocol, price, location,
     } = req.body.order;
     const user = await User.findByPk(req.session.user.id);
-    if (user.pocket < Number(price)) return res.json({ message: 'You don\'t have enough money to pay for his order' });
+    if (user.pocket < Number(price)) return res.json({ message: 'You don\'t have enough money to pay for this order' });
     const newOrder = await Order.create({
       user_id: req.session.user.id,
       title,

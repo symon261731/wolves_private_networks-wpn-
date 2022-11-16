@@ -63,7 +63,7 @@ export default function PocketForm() {
             <input
               type="tel"
               name="expiry"
-              placeholder=" MM/YY expiry"
+              placeholder=" MMYY expire"
               value={expiry}
               onChange={(e) => setExpiry(e.target.value)}
               onFocus={(e) => setFocus(e.target.name)}
