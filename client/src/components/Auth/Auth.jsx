@@ -35,6 +35,8 @@ export default function Auth() {
                 <div className="auth__content">
                   <p className="auth__text">Password</p>
                   <input placeholder="password" name="password" type="password" className="auth__input" />
+                  <p style={{ color: 'white' }}>At least 1 uppercase, 1 lowercase, 1 digit and 1 special symbol</p>
+
                 </div>
               </div>
               <button type="submit" className="auth__btn">Submit</button>

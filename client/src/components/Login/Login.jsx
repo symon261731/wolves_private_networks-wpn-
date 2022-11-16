@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-indent */
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginUserThunk } from '../../Redux/actions/userActions';
 import AnimatedPage from '../AnimateRoute/AnimatedRoute';
@@ -8,6 +8,8 @@ import AnimatedPage from '../AnimateRoute/AnimatedRoute';
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userError = useSelector((state) => state.userError);
+  console.log(userError);
 
   return (
     <AnimatedPage>
@@ -30,9 +32,13 @@ export default function Login() {
                 </div>
                 <div className="auth__content">
                   <p className="auth__text">Password</p>
-                    <input placeholder="password" name="password" type="password" className="auth__input" />
+                  <input placeholder="password" name="password" type="password" className="auth__input" />
                 </div>
                 <button type="submit" className="auth__btn">Submit</button>
+                {
+                    userError
+                    && <p style={{ color: 'red' }}>{userError}</p>
+                    }
               </div>
             </form>
           </div>
