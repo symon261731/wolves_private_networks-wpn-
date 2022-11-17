@@ -1,7 +1,6 @@
 const express = require('express');
 const { Op } = require('sequelize');
-const path = require('path');
-const process = require('process');
+const axios = require('axios');
 const authCheck = require('../middlewares/authUser');
 const {
   ServerVPN, Purchase, RatingServer, User, File, ServerComment,
@@ -10,20 +9,22 @@ const {
 const router = express.Router();
 
 // выплевывание файла на фронт
-router.get('/config/:id', (req, res) => {
-  const options = {
-    root: path.join(process.cwd(), 'configs/'),
-    // root: path.join(process.cwd(), 'configs/'),
+router.get('/config/:id', async (req, res) => {
+  if (!req.session.user) return res.status(200);
+  // const { id } = req.params;
+  // console.log(id);
+  // const server = await ServerVPN.findByPk(id);
+  // console.log(server.ip);
+  // const subscribed = await Purchase.findOne({ where: { user_id: req.session.user.id, server_id: id } });
+  // console.log(subscribed);
 
-  };
-  const fileName = 'test.ovpn';
-  res.sendFile(fileName, options, (err) => {
-    if (err) {
-      console.log(err);// (err);
-    } else {
-      console.log('Sent:', fileName);
-    }
-  });
+  const file = await axios.get('http://193.42.112.60:3005/config');
+  // console.log(file);
+  if (file) {
+    res.send(file.data);
+  } else {
+    console.log('Sent:', file.data);
+  }
 });
 
 // /api/server/max-rate - получить значение наибольшего рейтинга среди серверов
