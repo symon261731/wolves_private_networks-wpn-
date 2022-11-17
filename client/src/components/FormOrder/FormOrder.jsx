@@ -11,7 +11,7 @@ export default function FormOrder() {
   return (
     <AnimatedPage>
       <div className="form-vpn">
-        <div className="form-vpn__container">
+        <div className="form-vpn__container" style={{ maxWidth: '739px' }}>
           <h2 className="form-vpn__title">Add new order</h2>
           <form
             onSubmit={(e) => {
