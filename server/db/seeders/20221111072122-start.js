@@ -163,7 +163,7 @@ module.exports = {
     //   comment_id: DataTypes.INTEGER,
     // user_id: DataTypes.INTEGER
       temp2.push({
-        comment_id: Math.floor(Math.random() * 7 + 10),
+        comment_id: Math.floor(Math.random() * 7 + 11),
         user_id: Math.floor(Math.random() * 20 + 1),
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -190,7 +190,7 @@ module.exports = {
 
     // Purchase
     const purchases = [];
-    for (let i = 0; i < 30; i += 1) {
+    for (let i = 0; i < 200; i += 1) {
       purchases.push({
         user_id: Math.floor(Math.random() * 20 + 1),
         server_id: Math.floor(Math.random() * 30 + 1),
