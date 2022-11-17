@@ -42,7 +42,7 @@ export default function Filter() {
     <div className="filter">
       <form onSubmit={submitHandle}>
         <div className="filter__flex-radio">
-          <img src="WolfLogo.png" alt="" style={{ width: '150px' }} />
+          <img className="filter__img" src="WolfLogo.png" alt="404" style={{ width: '150px' }} />
           <h5 className="main-page__title">Filters</h5>
           <p className="filter__label">Choose you protocol</p>
           <div className="form-check form-check-inline">

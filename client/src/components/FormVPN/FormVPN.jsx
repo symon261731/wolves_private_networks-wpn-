@@ -32,8 +32,8 @@ export default function FormVPN() {
               </select>
               <input placeholder="price" name="price" className="form-vpn__input" type="text" required />
               <input placeholder="location" name="location" className="form-vpn__input" type="text" required />
-
             </div>
+            <a className="form-vpn__link" href="https://github.com/nikimaryB/server_for_vpn">Download web server and install on your VPN</a>
             <button className="form-vpn__btn" type="submit">confirm</button>
           </div>
         </form>

@@ -47,7 +47,7 @@ export default function Card({ server, setServer }) {
         <p className="card__item">
           Owner:
           {' '}
-          <Link to={`/userHori/${server?.User?.id}`}>{server?.User?.login || 'ololoshka'}</Link>
+          <Link className="card__user-link" to={`/userHori/${server?.User?.id}`}>{server?.User?.login || 'ololoshka'}</Link>
         </p>
 
         <p className="card__item">

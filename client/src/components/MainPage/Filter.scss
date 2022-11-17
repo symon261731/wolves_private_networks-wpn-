@@ -2,6 +2,10 @@
     position: fixed;
     left: 25px;
 
+    &__img {
+        margin-bottom: 10px;
+    }
+
     &__flex-radio {
         display: flex;
         flex-direction: column;

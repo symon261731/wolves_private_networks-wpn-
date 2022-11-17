@@ -14,7 +14,7 @@ export default function OneVpn({ info, flag }) {
   const user = useSelector((state) => state.user);
 
   function handleDownload() {
-    axios('server/config/:id', { responseType: 'blob' })
+    axios(`server/config/${info?.id}`, { responseType: 'blob' })
       .then((res) => {
         const href = URL.createObjectURL(res.data);
         const download = 'config.ovpn';
@@ -56,7 +56,7 @@ export default function OneVpn({ info, flag }) {
           <span className="one-vpn__span">Subscribers:</span>
           {info?.subscribedUsers?.length}
         </p>
-        <Link to={`/server/${info.id}`}>MORE INFO</Link>
+        <Link className="one-vpn__more-info" to={`/server/${info.id}`}>MORE INFO</Link>
         <div className="one-vpn__flex">
           <button onClick={handleDownload} type="button" className="one-vpn__btn" to="/">Get config</button>
           {flag

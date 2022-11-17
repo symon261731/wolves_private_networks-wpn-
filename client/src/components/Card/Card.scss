@@ -5,6 +5,13 @@
     transition: all 100ms ease 0s;
     min-width: 300px;
 
+    &__user-link {
+        text-decoration: none;
+        color: #309F85;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
     &:hover {
         box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
     }
@@ -17,13 +24,16 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        column-gap: 7px;
 
     }
+
 
     &__buttons {
         display: flex;
         justify-content: space-around;
-        column-gap: 5px
+        column-gap: 5px;
+
     }
 
     &__price {
