@@ -14,7 +14,7 @@ export default function OneVpn({ info, flag }) {
   const user = useSelector((state) => state.user);
 
   function handleDownload() {
-    axios('server/config/:id', { responseType: 'blob' })
+    axios(`server/config/${info?.id}`, { responseType: 'blob' })
       .then((res) => {
         const href = URL.createObjectURL(res.data);
         const download = 'config.ovpn';
