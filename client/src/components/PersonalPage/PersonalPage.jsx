@@ -14,7 +14,7 @@ import './OneVpn/OneVpn.scss';
 import { setServersOfUserThunk } from '../../Redux/actions/myServersActions';
 import OneVpn from './OneVpn/OneVpn';
 import Card from '../Card/Card';
-import { editServersOfUserThunk } from '../../Redux/actions/serversActions';
+import { editServersOfUserThunk, setAllServersThunk } from '../../Redux/actions/serversActions';
 import AnimatedPage from '../AnimateRoute/AnimatedRoute';
 import IssuedOrder from './IssuedOrder/IssuedOrder';
 
@@ -29,6 +29,7 @@ export default function PersonalPage() {
   useEffect(() => {
     dispatch(setCurrentOrderThunk());
     dispatch(setIssuedOrderThunk());
+    dispatch(setAllServersThunk());
     dispatch(setServersOfUserThunk(user.id));
   }, []);
   const vpn = useSelector((state) => state.myServers);
