@@ -23,7 +23,11 @@ export default function FormOrder() {
             <div className="form-vpn__main-flex">
               <div className="form-vpn__inputs-flex">
                 <input placeholder="please describe your order" name="title" className="form-vpn__input" type="text" />
-                <input placeholder="protocol" name="protocol" className="form-vpn__input" type="text" />
+                <select className="form-vpn__input form-vpn__select" name="protocol" required>
+                  <option className="form-vpn__option" value="OpenVPN">OpenVPN</option>
+                  <option className="form-vpn__option" value="WireGuard" selected>WireGuard</option>
+                  <option className="form-vpn__option" value="L2TP/IPsec">L2TP/IPsec</option>
+                </select>
                 <input placeholder="price" name="price" className="form-vpn__input" type="text" />
                 <input placeholder="location" name="location" className="form-vpn__input" type="text" />
               </div>
