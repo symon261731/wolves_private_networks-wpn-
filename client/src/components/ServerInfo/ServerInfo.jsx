@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { setCommentsOfServerThunk } from '../../Redux/actions/commentsActions';
+import AnimatedPage from '../AnimateRoute/AnimatedRoute';
 import Card from '../Card/Card';
 import CommentItem from '../UserPage/CommentItem';
 import ModalServer from './ModalServer';
@@ -29,19 +30,21 @@ export default function ServerInfo() {
   const commentsList = useSelector((state) => state.comments);
   console.log(server);
   return (
-    <div className="server-info">
-      <Card server={server} setServer={setServer} />
-      <button type="button" className="server-info__add-btn server-info__add-btn_margin-top" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        add comment
-      </button>
-      <div className="user-page__comments">
+    <AnimatedPage>
+      <div className="server-info">
+        <Card server={server} setServer={setServer} />
+        <button type="button" className="server-info__add-btn server-info__add-btn_margin-top" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          add comment
+        </button>
+        <div className="user-page__comments">
 
-        <ModalServer id={Number(id)} />
+          <ModalServer id={Number(id)} />
 
-        {
+          {
               commentsList?.map((el) => (<CommentItem key={el.id} comment={el} />))
             }
+        </div>
       </div>
-    </div>
+    </AnimatedPage>
   );
 }
