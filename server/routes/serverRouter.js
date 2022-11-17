@@ -241,16 +241,14 @@ router.get('/user/:userId', authCheck, async (req, res) => {
 router.get('/:serverId', async (req, res) => {
   try {
     const { serverId } = req.params;
-    req.session.user = { id: 19 };
     const vpn = await ServerVPN.findOne({ where: { id: serverId }, include: [User] });
     if (!vpn) return res.json({ message: 'VPN with this number doesn\'t exist' });
     const subscribedUsers = (await Purchase.findAll({ where: { server_id: serverId }, include: [User] })).map((el) => el.User);
+    vpn.dataValues.subscribeStatus = false;
     if (req.session.user) {
-      if (subscribedUsers.filter((el) => el.id === req.session.id)) {
+      if ((subscribedUsers.filter((el) => el.dataValues.id === req.session.user.id)).length !== 0) {
         vpn.dataValues.subscribeStatus = true;
       }
-    } else {
-      vpn.dataValues.subscribeStatus = false;
     }
     vpn.dataValues.subscribedUsers = subscribedUsers;
     if (!req.session.user) return res.json(vpn);

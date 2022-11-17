@@ -51,7 +51,7 @@ export default function PersonalPage() {
             onClick={() => toggleTab(1)}
             className={toggleState === 1 ? 'personal-page__item active-tab' : 'personal-page__item'}
           >
-            My subscribtions
+            My subscriptions
           </li>
           <li
             onClick={() => toggleTab(2)}
@@ -75,7 +75,7 @@ export default function PersonalPage() {
         <div className="personal-page__tabs">
           <div className={toggleState === 1 ? 'personal-page__one-tab active-content' : 'personal-page__one-tab'}>
             <div className="personal-page__content">
-              <h4 className="personal-page__tab-title">My Subscribtions</h4>
+              <h4 className="personal-page__tab-title">My Subscriptions</h4>
 
               { mySubscribes.length !== 0
                 ? (
