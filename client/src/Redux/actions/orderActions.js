@@ -28,5 +28,5 @@ export const setOneOrderThunk = (orderId) => (dispatch) => axios
 export const getNewOrderThunk = (orderId, navigate) => (dispatch) => axios
   .get(`/order/newjob/${orderId}`)
   .then((res) => dispatch(getNewOrder(res.data)))
-  .then(navigate('/'))
+  .then(navigate('/orders'))
   .catch(console.log);
